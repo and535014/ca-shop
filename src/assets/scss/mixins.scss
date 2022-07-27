@@ -1,0 +1,23 @@
+@mixin size($w,$h:$w){
+    width: $w;
+    height: $h;
+}
+
+@mixin flexCenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin abCenter{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%)
+}
+
+@mixin boxShadow{
+    box-shadow: 0 1px 24px 0 rgba(black,.1);
+}
+
+

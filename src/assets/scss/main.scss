@@ -1,0 +1,277 @@
+@import "../scss/variables.scss";
+@import "../scss/mixins.scss";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+// html tag -------------------------------
+a{
+    color: rgba(black,.9);
+    text-decoration: none;
+
+    &.hsiao-email{
+        text-decoration: underline;
+    }
+    &:visited{
+        color: auto;
+    }
+}
+
+i{
+    line-height: 1;
+    text-align: center;
+}
+
+input{
+    box-sizing: border-box;
+    font-size: 1.6rem;
+    padding: .8rem;
+    border-radius: .5rem;
+    border: none;
+    border: 2px solid $black-10;
+    outline: none;
+    font-family: 'Noto Sans TC', 'Noto Sans', Avenir, Helvetica, Arial, sans-serif;
+
+    &:focus{
+        border: 2px solid rgba($brand-color, .6);
+    }
+}
+
+textarea{
+    box-sizing: border-box;
+    font-size: 1.6rem;
+    padding: .8rem;
+    border-radius: .5rem;
+    border: none;
+    border: 2px solid $black-10;
+    outline: none;
+    width: 100%;
+    resize: none;
+    font-family: 'Noto Sans TC', 'Noto Sans', Avenir, Helvetica, Arial, sans-serif;
+
+    &:focus{
+        border: 2px solid rgba($brand-color, .6);
+    }
+}
+
+// btn --------------------------------
+.btn{
+    border: 2px solid rgba($brand-color, .6);
+    background-color: #fff;
+    color: $brand-color;
+    cursor: pointer;
+    transition: .3s;
+    border-radius: .5rem;
+    font-weight: bold;
+    box-sizing: border-box;
+    display: inline-flex;
+    // display: inline-block;
+    justify-content: center;
+    align-items: center;
+
+    &:hover{
+        background-color: rgba($brand-color,.1);
+    }
+}
+
+
+.btn-l{
+    font-size: $fs-btn-l;
+    padding: 0.5*$fs-btn-l $fs-btn-l;
+
+    &.btn-withIcon{
+        i{
+            margin-left: 0.8rem;
+        }
+    }
+
+    &.btn-icon{
+        //size 40px
+        @include size(40px);
+        font-size: 2.4rem;
+        text-align: center;
+        line-height: 1;
+        border-radius: 50%;
+        border: none;
+        padding: 0;
+    }
+}
+
+.btn-s{
+    font-size: $fs-btn-s;
+    padding: 0.5*$fs-btn-s $fs-btn-s;
+
+    &.btn-withIcon{
+        i{
+            margin-left: 0.4rem;
+        }
+    }
+
+    &.btn-icon{
+        //size 32px
+        @include size(32px);
+        font-size: 2rem;
+        text-align: center;
+        line-height: 1;
+        border-radius: 50%;
+        border: none;
+        padding: 0;
+    }
+}
+
+.btn-primary{
+    background-color: rgba($brand-color, 1);
+    color: white;
+    font-weight: 500;
+
+    &:hover{
+        background-color: rgba($brand-color,.8);
+    }
+}
+
+.btn-round{
+    border-radius: 100px;
+}
+
+
+// tag -------------
+.tag{
+    background-color: rgba($brand-color,.1);
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 100px;
+    text-align: center;
+}
+
+.tag-l{
+    font-size: $fs-tag-l;
+    //1.6rem
+    padding: .8rem 1.6rem;
+}
+
+.tag-s{
+    font-size: $fs-tag-s;
+    //1.2rem
+    padding: .6rem 1.2rem;
+}
+
+//page ---------------
+.page{
+    padding-top: 140px;
+}
+//section ---------------
+.section{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 0 24px;
+}
+
+//container -------------------
+.container{
+    position: relative;
+    max-width: 1200px;
+    flex: 1;
+}
+
+.container-fluid{
+    width: 100%;
+}
+
+// title --------------------------------
+// h2
+.title{
+    font-size: $fs-title;
+    //3.2rem 
+    font-weight: bold;
+    line-height: 1.1;
+    margin-bottom: 24px;
+}
+
+//h3
+.subtitle{
+    font-size: $fs-subtitle;
+    //2.4rem
+    font-weight: bold;
+    margin-bottom: 16px;
+    line-height: 1.1;
+    color: rgba($brand-color, 1);
+}
+
+.caption{
+    font-size: $fs-cap;
+    //1.4rem
+}
+
+#app {
+    font-family: 'Noto Sans TC', 'Noto Sans', Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    font-size: 2rem;
+    line-height: 1.5;
+    color: rgba(black,.9);
+    letter-spacing: .6px;
+
+    .goTop{
+        position: fixed;
+        right: 2.4rem;
+        bottom: 10rem;
+        @include boxShadow;
+        @include size(40px);
+        border: 2px solid rgba($brand-color, .6);
+        opacity: 0;
+        transition: .5s;
+        transform: translateY(20px);
+        z-index: 10;
+        &.isShow{
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+//rwd ------------------------------
+@media screen and (max-width: 991px){
+    .page{
+        padding-top: 110px;
+    }
+}
+
+@media screen and (max-width: 767px){
+    .title{
+        font-size: 30px;
+        margin-bottom: 16px;
+    }
+
+    .subtitle{
+        font-size: 22px;
+        margin-bottom: 12px;
+    }
+
+    .caption{
+        font-size: 13px;
+    }
+
+    .tag-l{
+        font-size: 14px;
+    }
+
+    .tag-s{
+        font-size: 12px;
+    }
+
+    #app{
+        font-size: 18px;
+        .goTop{
+            bottom: 10rem;
+        }
+    }
+}
+
+@media screen and (max-width: 479px){
+    #app{
+        font-size: 16px;
+        .goTop{
+            bottom: 13rem;
+        }
+    }
+}

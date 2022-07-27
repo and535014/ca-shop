@@ -1,0 +1,35 @@
+//color --------
+$black-100: rgba(black, 1);
+$black-80: rgba(black, .8);
+$black-60: rgba(black, .6);
+$black-40: rgba(black, .4);
+$black-20: rgba(black, .2);
+$black-10: rgba(black, .1);
+
+$brand-color: rgba(#007158,1);
+
+
+//font-size --------
+$fs-tag-l: 1.6rem;
+$fs-tag-s: 1.2rem;
+
+$fs-btn-l: 2rem;
+$fs-btn-s: 1.6rem;
+
+$fs-btn-icon-l: 3.2rem;
+$fs-btn-icon-s: 2.4rem;
+
+$fs-r: 10px;
+$fs-16: 1.6rem;
+$fs-20: 2rem;
+
+$fs-title: 3.2rem;
+$fs-subtitle: 2.4rem;
+$fs-cap: 1.4rem;
+$fs-p: 1.6rem;
+
+
+// root ----------------------
+html{
+    font-size: $fs-r;
+}
