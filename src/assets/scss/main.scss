@@ -22,9 +22,9 @@ i{
 
 input{
     box-sizing: border-box;
-    font-size: 1.6rem;
-    padding: .8rem;
-    border-radius: .5rem;
+    font-size: 14px;
+    padding: 6px 14px;
+    border-radius: 2px;
     border: none;
     border: 2px solid $black-10;
     outline: none;
@@ -37,9 +37,9 @@ input{
 
 textarea{
     box-sizing: border-box;
-    font-size: 1.6rem;
-    padding: .8rem;
-    border-radius: .5rem;
+    font-size: 14px;
+    padding: 6px;
+    border-radius: 2px;
     border: none;
     border: 2px solid $black-10;
     outline: none;
@@ -59,7 +59,7 @@ textarea{
     color: $brand-color;
     cursor: pointer;
     transition: .3s;
-    border-radius: .5rem;
+    border-radius: 5px;
     font-weight: bold;
     box-sizing: border-box;
     display: inline-flex;
@@ -79,14 +79,14 @@ textarea{
 
     &.btn-withIcon{
         i{
-            margin-left: 0.8rem;
+            margin-left: 8px;
         }
     }
 
     &.btn-icon{
         //size 40px
         @include size(40px);
-        font-size: 2.4rem;
+        font-size: 24px;
         text-align: center;
         line-height: 1;
         border-radius: 50%;
@@ -101,14 +101,14 @@ textarea{
 
     &.btn-withIcon{
         i{
-            margin-left: 0.4rem;
+            margin-left: 4px;
         }
     }
 
     &.btn-icon{
         //size 32px
         @include size(32px);
-        font-size: 2rem;
+        font-size: 20px;
         text-align: center;
         line-height: 1;
         border-radius: 50%;
@@ -144,13 +144,13 @@ textarea{
 .tag-l{
     font-size: $fs-tag-l;
     //1.6rem
-    padding: .8rem 1.6rem;
+    padding: 8px 16px;
 }
 
 .tag-s{
     font-size: $fs-tag-s;
     //1.2rem
-    padding: .6rem 1.2rem;
+    padding: 6px 12px;
 }
 
 //page ---------------
@@ -166,14 +166,10 @@ textarea{
 }
 
 //container -------------------
-.container{
+.wrapper{
     position: relative;
-    max-width: 1200px;
-    flex: 1;
-}
-
-.container-fluid{
-    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
 }
 
 // title --------------------------------
@@ -206,14 +202,14 @@ textarea{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    font-size: 2rem;
-    line-height: 1.5;
+    font-size: 16px;
+    line-height: 1.4;
     color: rgba(black,.9);
     letter-spacing: .6px;
 
     .goTop{
         position: fixed;
-        right: 2.4rem;
+        right: 24px;
         bottom: 10rem;
         @include boxShadow;
         @include size(40px);
@@ -262,7 +258,7 @@ textarea{
     #app{
         font-size: 18px;
         .goTop{
-            bottom: 10rem;
+            bottom: 100px;
         }
     }
 }
@@ -271,7 +267,7 @@ textarea{
     #app{
         font-size: 16px;
         .goTop{
-            bottom: 13rem;
+            bottom: 130px;
         }
     }
 }
