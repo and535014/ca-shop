@@ -6,7 +6,7 @@ header.header
                 .search-icon.btn.btn-l.btn-icon 
                     i(class="fa-solid fa-magnifying-glass")
             .logo-wrap 
-                .logo 
+                router-link.logo(to="/")
             .icons-wrap 
                 a.btn.btn-l.btn-icon(href="#") 
                     i(class="fa-solid fa-user")
