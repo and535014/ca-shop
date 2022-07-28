@@ -24,7 +24,7 @@ header.header
                     @mouseleave="first.isOpen = false"
                     :class="{isOpen: first.isOpen}"
                     )
-                    .title
+                    router-link.title(to="/browse")
                         span {{ first.navFirst }}
                     transition(name="fadeIn")
                         .nav-second(
@@ -49,6 +49,7 @@ export default {
 <style lang="scss">
 .header{
     padding: 0 24px;
+    margin-bottom: 32px;
     border-bottom: 1px solid #000;
     *{
         // border: 1px solid #000;
@@ -121,6 +122,7 @@ export default {
                     font-size: 16px;
                     margin: 0;
                     font-weight: normal;
+                    display: block;
                 }
 
             }
@@ -131,7 +133,7 @@ export default {
             width: auto;
             min-width: 100%;
             position: absolute;
-            top: 40px;
+            top: 42px;
             left: 0;
             padding: 10px 0;
             display: flex;
@@ -139,6 +141,7 @@ export default {
             border: 1px solid #000;
             box-sizing: border-box;
             z-index: 1;
+            background-color: #fff;
 
             a{
                 padding: 14px 10px;

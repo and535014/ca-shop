@@ -1,6 +1,7 @@
 <template lang="pug">
 NavComp
 router-view
+FooterComp
 </template>
 
 <style lang="scss">

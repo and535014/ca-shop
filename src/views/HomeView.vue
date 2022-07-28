@@ -16,6 +16,12 @@
         .counter(
           v-for='i in num' 
           :class='[counterClass(i), {active: i-1==currentNum%5}]')
+  .section.scetion-limit
+    .wrapper 
+      h2.title 現正預購中
+      .cards-wrap
+        CardContainer(v-for="i in 10")
+        
 
 
 </template>
@@ -170,7 +176,7 @@ export default {
 <style lang="scss">
 .page.page-home{
   *{
-    border: 1px solid #000;
+    // border: 1px solid #000;
   }
   .test{
     font-size: 60px;
@@ -254,6 +260,19 @@ export default {
             background-color: rgba(black,.8);
           }
         }
+      }
+    }
+  }
+
+  .scetion-limit{
+    text-align: left;
+    .cards-wrap{
+      display: flex;
+      flex-wrap: wrap;
+
+      .card-container{
+        margin-right: 24px;
+        margin-bottom: 32px;
       }
     }
   }
