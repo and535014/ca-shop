@@ -49,7 +49,6 @@ export default {
 <style lang="scss">
 .header{
     padding: 0 24px;
-    margin-bottom: 32px;
     border-bottom: 1px solid #000;
     *{
         // border: 1px solid #000;

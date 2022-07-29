@@ -16,7 +16,7 @@
         .counter(
           v-for='i in num' 
           :class='[counterClass(i), {active: i-1==currentNum%5}]')
-  .section.scetion-limit
+  section.section.scetion-limit
     .wrapper 
       h2.title 現正預購中
       .cards-wrap
