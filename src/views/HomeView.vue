@@ -266,13 +266,28 @@ export default {
 
   .scetion-limit{
     text-align: left;
+    .title{
+      margin-bottom: 32px;
+    }
+
     .cards-wrap{
       display: flex;
       flex-wrap: wrap;
 
       .card-container{
-        margin-right: 24px;
-        margin-bottom: 32px;
+        flex-basis: calc((100% - 48px) / 3);
+
+        &:nth-child(3n+3){
+          margin-right: 0;
+        }
+
+        .link-top{
+          padding-bottom: 160%;
+        }
+
+        .info{
+          display: none;
+        }
       }
     }
   }
