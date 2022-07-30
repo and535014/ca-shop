@@ -2,7 +2,7 @@
 .page.page-product
     .section.section-header
         .wrapper
-            p 4分 MSD / MDD > 服飾
+            p 4分 MSD/MDD > 服飾
     .section.section-main
         .wrapper
             .product-main
@@ -89,7 +89,7 @@
                         p 
                             span ◎ 
                             span 售價：全款255元。
-
+PhotoZoom
 </template>
 
 <script>
