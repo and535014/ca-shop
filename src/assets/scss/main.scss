@@ -54,12 +54,12 @@ textarea{
 
 // btn --------------------------------
 .btn{
-    border: 2px solid rgba($brand-color, .6);
+    border: 2px solid #eee;
     background-color: #fff;
     color: $brand-color;
     cursor: pointer;
     transition: .3s;
-    border-radius: 5px;
+    border-radius: 2px;
     font-weight: bold;
     box-sizing: border-box;
     display: inline-flex;
@@ -151,6 +151,7 @@ textarea{
     font-size: $fs-tag-s;
     //1.2rem
     padding: 6px 12px;
+    line-height: 26px;
 }
 
 //page ---------------
