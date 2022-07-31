@@ -129,23 +129,20 @@ export default {
         }
 
         .nav-second{
-            width: auto;
-            min-width: 100%;
             position: absolute;
+            min-width: 100%;
             top: 42px;
             left: 0;
-            padding: 10px 0;
-            display: flex;
-            flex-direction: column;
             border: 1px solid #000;
-            box-sizing: border-box;
             z-index: 1;
             background-color: #fff;
+            padding: 8px 12px;
 
             a{
-                padding: 14px 10px;
+                line-height: 40px;
                 opacity: 0;
                 transition: .5s .5s;
+                display: block;
             }
         }
     }
