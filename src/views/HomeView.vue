@@ -5,9 +5,10 @@
   .banner-wrap 
     .banner
       ul.viewport
-        li.item(v-for="i in num" :class="itemClass(i)" @click="getLeft($event)")
-          a.link No.{{ i-1 }} 
-            p {{ (i-1)-currentNum}}
+        li.item(v-for="(banner, bid) in banners" :class="itemClass(bid)" @click="getLeft($event)")
+          //- a.link(v-html="getImg(banner.img)")
+          a.link {{ currentNum}}
+            p {{ bid }}, {{ bid - currentNum}}
       .ctrl.ctrl-l.btn.btn-l.btn-icon(@click="switchLeft")
         i(class="fa-solid fa-angle-left")
       .ctrl.ctrl-r.btn.btn-l.btn-icon(@click="switchRight")
@@ -15,7 +16,7 @@
       .counter-wrap
         .counter(
           v-for='i in num' 
-          :class='[counterClass(i), {active: i-1==currentNum%5}]')
+          :class='[counterClass(i), {active: i-1==currentNum % num}]')
   section.section.scetion-limit
     .wrapper 
       h2.title 現正預購中
@@ -27,13 +28,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'HomeView',
   created(){
   },
   data(){
     return {
-      num: 5,
       currentNum: 2,
       timer: null
     }
@@ -41,14 +42,20 @@ export default {
   computed: {
     currentP(){
       return this.currentNum%this.num
+    },
+    ...mapState({
+      banners: state => state.banners
+    }),
+    num(){
+      return this.banners.length
     }
   },
   methods: {
     itemClass(id){
-      return 'item-'+(id-1)
+      return 'item-'+(id)
     },
     counterClass(id){
-      return 'counter-'+(id-1)
+      return 'counter-'+(id)
     },
     switchLeft(){
       clearTimeout(this.timer)
@@ -116,7 +123,7 @@ export default {
         if(this.currentNum > 0){
           this.currentNum--
         }else{
-          this.currentNum = 4
+          this.currentNum = this.num-1
         }
   
         for (var i =0; i<this.num; i++){
@@ -168,6 +175,9 @@ export default {
           }
         }
       },300)
+    },
+    getImg(url, alt){
+      return `<img src="${url}" alt="${alt}">`
     }
   }
 }
@@ -192,7 +202,7 @@ export default {
         height: 405px;
         border-color: red;
         position: relative;
-        overflow: hidden;
+        // overflow: hidden;
         .item{
           transform: translate3d(0, 0, 0);
           transform-style: preserve-3d;
@@ -204,10 +214,10 @@ export default {
           .link{
             display: block;
             @include size(100%);
-            background-color: #eee;
             font-size: 60px;
-            p{
-              font-size: 60px;
+
+            img{
+              width: 100%;
             }
           }
         }
@@ -215,10 +225,15 @@ export default {
         @for $i from 0 through 5 {
           .item-#{$i}{
             transform: translate3d(#{($i - 2)*720}px, 0, 0);
-            @if $i > 3 {
-              visibility: hidden;
-              opacity: 0;
-            }
+            // @if $i > 3 {
+            //   visibility: hidden;
+            //   opacity: 0;
+            // }
+
+            // @if $i < 1 {
+            //   visibility: hidden;
+            //   opacity: 0;
+            // }
           }
 
         }
