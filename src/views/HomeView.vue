@@ -6,9 +6,9 @@
     .banner
       ul.viewport
         li.item(v-for="(banner, bid) in banners" :class="itemClass(bid)" @click="getLeft($event)")
-          //- a.link(v-html="getImg(banner.img)")
-          a.link {{ currentNum}}
-            p {{ bid }}, {{ bid - currentNum}}
+          a.link(v-html="getImg(banner.img)")
+          //- a.link {{ bid }}
+            p {{ bid - currentNum}}
       .ctrl.ctrl-l.btn.btn-l.btn-icon(@click="switchLeft")
         i(class="fa-solid fa-angle-left")
       .ctrl.ctrl-r.btn.btn-l.btn-icon(@click="switchRight")
@@ -72,46 +72,28 @@ export default {
           let delta = i - this.currentNum
           let newLeft = 0
   
-          if(Math.abs(delta)<2){
+          if( delta>=-2 && delta<=3 ){
             newLeft = span*delta
+          }else if( delta <=-3 ){
+            newLeft = span*(this.num-Math.abs(delta))
+          }else if( delta >=4 ){
+            newLeft = -span*(this.num-Math.abs(delta))
+          }
+  
+          if( Math.abs(delta) < 2 || Math.abs(delta) > 4){
             target.style.cssText = `
               transform: translate3d(${newLeft}px, 0, 0);
               visibility: visible;
               opacity: 1;
+              transition: 0.5s;
+            `
+          }else if( Math.abs(delta) >= 2 ){
+            target.style.cssText = `
+              transform: translate3d(${newLeft}px, 0, 0);
+              visibility: hidden;
+              opacity: 0;
               transition: 0.5s;
             ` 
-          }else if(Math.abs(delta)==2){
-            newLeft = span*delta
-            target.style.cssText = `
-              transform: translate3d(${newLeft}px, 0, 0);
-              visibility: hidden;
-              opacity: 0;
-              transition: 0.5s;
-            `
-          }else if(Math.abs(delta) == 3){
-            if(delta > 0){
-              newLeft = -span*(5-Math.abs(delta))
-            }else if(delta < 0){
-              newLeft = span*(5-Math.abs(delta))
-            }
-            target.style.cssText = `
-              transform: translate3d(${newLeft}px, 0, 0);
-              visibility: hidden;
-              opacity: 0;
-              transition: 0.5s;
-            `
-          }else if(Math.abs(delta) >= 4){
-            if(delta > 0){
-              newLeft = -span*(5-Math.abs(delta))
-            }else if(delta < 0){
-              newLeft = span*(5-Math.abs(delta))
-            }
-            target.style.cssText = `
-              transform: translate3d(${newLeft}px, 0, 0);
-              visibility: visible;
-              opacity: 1;
-              transition: 0.5s;
-            `
           }
         }
       },300)
@@ -120,10 +102,10 @@ export default {
     switchRight(){
       clearTimeout(this.timer)
       this.timer=setTimeout(()=>{
-        if(this.currentNum > 0){
+        if(this.currentNum > 1){
           this.currentNum--
         }else{
-          this.currentNum = this.num-1
+          this.currentNum = this.num
         }
   
         for (var i =0; i<this.num; i++){
@@ -131,50 +113,33 @@ export default {
           let span = target.clientWidth
           let delta = i - this.currentNum
           let newLeft = 0
-  
-          if(Math.abs(delta)<2){
+
+          if( delta>=-2 && delta<=3 ){
             newLeft = span*delta
+          }else if( delta <=-3 ){
+            newLeft = span*(this.num-Math.abs(delta))
+          }else if( delta >=4 ){
+            newLeft = -span*(this.num-Math.abs(delta))
+          }
+  
+          if( Math.abs(delta) < 2 || Math.abs(delta) > 4){
             target.style.cssText = `
               transform: translate3d(${newLeft}px, 0, 0);
               visibility: visible;
               opacity: 1;
+              transition: 0.5s;
+            `
+          }else if( Math.abs(delta) >= 2 ){
+            target.style.cssText = `
+              transform: translate3d(${newLeft}px, 0, 0);
+              visibility: hidden;
+              opacity: 0;
               transition: 0.5s;
             ` 
-          }else if(Math.abs(delta)==2){
-            newLeft = span*delta
-            target.style.cssText = `
-              transform: translate3d(${newLeft}px, 0, 0);
-              visibility: hidden;
-              opacity: 0;
-              transition: 0.5s;
-            `
-          }else if(Math.abs(delta) == 3){
-            if(delta > 0){
-              newLeft = -span*(5-Math.abs(delta))
-            }else if(delta < 0){
-              newLeft = span*(5-Math.abs(delta))
-            }
-            target.style.cssText = `
-              transform: translate3d(${newLeft}px, 0, 0);
-              visibility: hidden;
-              opacity: 0;
-              transition: 0.5s;
-            `
-          }else if(Math.abs(delta) >= 4){
-            if(delta > 0){
-              newLeft = -span*(5-Math.abs(delta))
-            }else if(delta < 0){
-              newLeft = span*(5-Math.abs(delta))
-            }
-            target.style.cssText = `
-              transform: translate3d(${newLeft}px, 0, 0);
-              visibility: visible;
-              opacity: 1;
-              transition: 0.5s;
-            `
           }
         }
       },300)
+
     },
     getImg(url, alt){
       return `<img src="${url}" alt="${alt}">`
@@ -215,6 +180,7 @@ export default {
             display: block;
             @include size(100%);
             font-size: 60px;
+            background-color: #eee;
 
             img{
               width: 100%;
@@ -225,15 +191,15 @@ export default {
         @for $i from 0 through 5 {
           .item-#{$i}{
             transform: translate3d(#{($i - 2)*720}px, 0, 0);
-            // @if $i > 3 {
-            //   visibility: hidden;
-            //   opacity: 0;
-            // }
+            @if $i > 3 {
+              visibility: hidden;
+              opacity: 0;
+            }
 
-            // @if $i < 1 {
-            //   visibility: hidden;
-            //   opacity: 0;
-            // }
+            @if $i < 1 {
+              visibility: hidden;
+              opacity: 0;
+            }
           }
 
         }
