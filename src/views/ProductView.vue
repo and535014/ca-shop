@@ -8,22 +8,32 @@
             .product-main
                 .photos
                     .main-photo
-                        .pic-l
+                        .pic-l(v-html="getImg(currentImg)")
                     .thumbs
-                        .pic-s(v-for='i in 4')
+                        .pic-s(
+                            v-for='img in product.imgs' 
+                            v-html="getImg(img)"
+                            :class="{active: currentImg==img}"
+                            @click="setCurrentImg(img)"
+                            )
                 .product-main-info
-                    .pre-order-tag
-                        span.tag.tag-s 預購商品
-                        span 預計：2022 / 12 出貨
-                    .title 高腰連身裙高腰連身裙高腰連身裙高腰連身裙高腰連身裙高腰連身裙
-                    .brand Holy Cross
+                    .pre-order-tag(v-if="product.isPreorder")
+                        span.tag.tag-l 預購商品
+                        span 預計：{{ product.deliveryDate }} 出貨
+                    .title {{ product.title }}
+                    .brand {{ product.brand }}
                     .prices
                         span.unit NT$
-                        span.num 2,115 ~ 2,205
+                        span.num(v-if="!currentSpec") {{ minPrice }} ~ {{ maxPrice }}
+                        span.num(v-if="currentSpec") {{ currentSpec.price }}
                     .specs.flex-box
                         label.flex-item 規格
                         ul.options
-                            li.btn.btn-s(v-for='i in 3') 紅色
+                            li.btn.btn-s.spec-item(
+                                v-for='spec in product.specs'
+                                @click="getCurrentSpec(spec)"
+                                :class="{active: currentSpec==spec}"
+                                ) {{ spec.name }}
                     .quantity.flex-box
                         label.flex-item 數量
                         .input
@@ -34,7 +44,7 @@
                         .btn.btn-l 加入購物車
                         .buy.btn.btn-l 我要預購
                     ul.notices
-                        p.pre-order 本商品為預購商品，2022/7/30 晚上10點截止
+                        p.pre-order 本商品為預購商品，{{ product.preorderDeadline }} 截止
                         p.delivery 運送方式：一般宅配、國際快遞、與之前的預購訂單合併出貨、7-11取貨、全家超商取貨
                         p.pay 付款方式：LINE Pay、PayPal、信用卡、ATM 虛擬帳號、超商代碼
 
@@ -93,8 +103,57 @@ PhotoZoom
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
+    created(){
+        this.currentImg = this.product.imgs.pic01
+    },
+    props: ['id'],
+    data(){
+        return {
+            currentImg: null,
+            currentSpec: null,
+            order: {}
+        }
+    },
+    computed: {
+        ...mapState({
+            products: state => state.products,
+        }),
+        product(){
+            return this.products[this.id]
+        },
+        maxPrice(){
+            let specs = this.product.specs
+            let prices = specs.map((spec)=>spec.price).sort(function(a,b){
+                return a-b
+            })
+            let id = prices.length - 1
 
+            return prices[id]
+        },
+        minPrice(){
+            let specs = this.product.specs
+            let prices = specs.map((spec)=>spec.price).sort(function(a,b){
+                return a-b
+            })
+            let id = 0
+
+            return prices[id]
+        }
+    },
+    methods: {
+        getImg(url){
+            return `<img src="${url}">`
+        },
+        setCurrentImg(img){
+            this.currentImg = img
+        },
+        getCurrentSpec(spec){
+            this.currentSpec = spec
+            this.currentImg = spec.url
+        }
+    }
 }
 </script>
 
@@ -124,7 +183,8 @@ export default {
             padding: 24px;
 
             .photos{
-                margin-right: 32px;
+                margin-right: 64px;
+                max-width: 450px;
 
                 .main-photo{
                     margin-bottom: 12px;
@@ -132,11 +192,17 @@ export default {
 
                 .thumbs{
                     display: flex;
+                    overflow: hidden;
+                    width: 100%;
                 }
                 .pic-l{
                     width: 450px;
                     height: 450px;
                     background-color: #eee;
+
+                    img{
+                        height: 100%;
+                    }
                 }
 
                 .pic-s{
@@ -144,17 +210,28 @@ export default {
                     height: 82px;
                     background-color: #eee;
                     margin-right: 8px;
+                    box-sizing: border-box;
+                    cursor: pointer;
+
+                    img{
+                        height: 100%;
+                    }
+
+                    &.active{
+                        border: 1px solid #000;
+                    }
                 }
             }
 
             .product-main-info{
+                flex: 1;
                 .pre-order-tag{
-                    font-size: 12px;
+                    font-size: 14px;
                     margin-bottom: 12px;
                     .tag{
                         margin-right: 8px;
                         border-radius: 0;
-                        padding: 4px 6px;;
+                        padding: 4px 6px;
                     }
                 }
 
@@ -185,8 +262,13 @@ export default {
                 .specs{
                     margin-bottom: 24px;
 
-                    .btn{
+                    .spec-item{
                         margin-right: 8px;
+
+                        &.active{
+                            background-color: $brand-color;
+                            color: white;
+                        }
                     }
                 }
 

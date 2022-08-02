@@ -26,7 +26,7 @@
     section.section.section-main
         .wrapper
             .card-wrap
-                CardContainer(v-for="i in 18")
+                CardContainer(v-for="product in products" :product="product")
             .pages-wrap
                 ul.pages
                     li 
@@ -41,8 +41,14 @@
 
 <script>
 import CardContainer from '@/components/CardContainer.vue';
+import { mapState } from 'vuex'
 export default {
-    components: { CardContainer }
+    components: { CardContainer },
+    computed: {
+        ...mapState({
+            products: state => state.products
+        })
+    }
 }
 </script>
 

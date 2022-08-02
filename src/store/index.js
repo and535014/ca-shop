@@ -72,27 +72,27 @@ export default createStore({
       {
         id: 1,
         title: '25時茶會',
-        img: `img/banner/pic01.png`
+        img: `/img/banner/pic01.png`
       }, {
         id: 2,
         title: '25時茶會',
-        img: `img/banner/pic02.png`
+        img: `/img/banner/pic02.png`
       }, {
         id: 3,
         title: '25時茶會',
-        img: `img/banner/pic03.png`
+        img: `/img/banner/pic03.png`
       }, {
         id: 4,
         title: '25時茶會',
-        img: `img/banner/pic03.png`
+        img: `/img/banner/pic04.png`
       }, {
         id: 5,
         title: '25時茶會',
-        img: `img/banner/pic03.png`
+        img: `/img/banner/pic05.png`
       }, {
         id: 6,
         title: '25時茶會',
-        img: `img/banner/pic03.png`
+        img: `/img/banner/pic06.png`
       }
     ],
     products: [
@@ -104,13 +104,37 @@ export default createStore({
         isDiscount: false,
         isPreorder: true,
         preorderDeadline: '2022/07/31',
+        deliveryDate: '2022/12',
         state: 'pre-order',
         brand: '25 時茶會',
         size: '4 分 MSD/MDD',
         cata: '服飾',
         tags: ['4 分 MSD/MDD', '服飾'],
         discription: ``,
-        spec: ['棕色', '灰色', '粉色']
+        specs: [
+          {
+            name: '棕色',
+            price: 1000,
+            url: `/img/products/product01/pic01.png`
+          }, {
+            name: '灰色',
+            price: 1200,
+            url: `/img/products/product01/pic06.png`
+          }, {
+            name: '粉色',
+            price: 1700,
+            url: `/img/products/product01/pic02.png`
+          }],
+        imgCover: `/img/products/product01/cover.png`,
+        imgs: {
+          pic01: `/img/products/product01/pic01.png`,
+          pic02: `/img/products/product01/pic02.png`,
+          pic03: `/img/products/product01/pic03.png`,
+          pic04: `/img/products/product01/pic04.png`,
+          pic05: `/img/products/product01/pic05.png`,
+          pic06: `/img/products/product01/pic06.png`,
+          pic07: `/img/products/product01/pic07.png`
+        }
       }, {
         id: 1,
         title: '短斗篷套組',
@@ -118,29 +142,33 @@ export default createStore({
         discount: 0.9,
         isDiscount: false,
         isPreorder: true,
-        preorderDeadline: '2022/07/31',
+        preorderDeadline: '2022/7/30 晚上10點',
+        deliveryDate: '2022/12',
         state: 'pre-order',
         brand: 'Cocoriang',
         size: '小寵',
         cata: '服飾',
         tags: ['小寵', '服飾'],
         discription: ``,
-        spec: ['藍色', '紅色']
-      }, {
-        id: 2,
-        title: '雙釦帶黑色高跟鞋',
-        price: 400,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
-        preorderDeadline: '2022/07/31',
-        state: 'pre-order',
-        brand: '腳尖上的小詩',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['4 分 MSD/MDD', '鞋子'],
-        discription: ``,
-        spec: ['黑色']
+        specs: [
+          {
+            name: '棕色',
+            price: 1000,
+            url: `/img/products/product01/pic01.png`
+          }, {
+            name: '灰色',
+            price: 1200,
+            url: `/img/products/product01/pic01.png`
+          }, {
+            name: '粉色',
+            price: 1700,
+            url: `/img/products/product01/pic01.png`
+          }],
+        imgCover: `/img/products/product02/cover.png`,
+        imgs: {
+          pic01: `/img/products/product02/pic01.png`,
+          pic02: `/img/products/product02/pic02.png`
+        }
       }
     ]
   },

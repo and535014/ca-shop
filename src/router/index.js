@@ -13,9 +13,10 @@ const routes = [
     name: 'Browse',
     component: BrowseView
   }, {
-    path: '/product',
+    path: '/product/:id',
     name: 'product',
-    component: ProductView
+    component: ProductView,
+    props: true
   }
 ]
 

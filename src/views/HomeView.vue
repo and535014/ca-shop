@@ -21,14 +21,13 @@
     .wrapper 
       h2.title 現正預購中
       .cards-wrap
-        CardContainer(v-for="i in 10")
-        
-
+        CardContainer(v-for="product in products" :product="product")
 
 </template>
 
 <script>
 import { mapState } from 'vuex'
+
 export default {
   name: 'HomeView',
   created(){
@@ -44,7 +43,8 @@ export default {
       return this.currentNum%this.num
     },
     ...mapState({
-      banners: state => state.banners
+      banners: state => state.banners,
+      products: state => state.products
     }),
     num(){
       return this.banners.length

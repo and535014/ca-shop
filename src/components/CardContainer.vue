@@ -1,19 +1,27 @@
 <template lang="pug">
 .card-container
-    router-link.link-top(to="/product")
-        .pic    
+    router-link.link-top(:to="getPath(product.id)")
+        .pic(v-html="getImg(product.imgCover,'')")
     .info
-        router-link.link-bottom(to="/product") 商品名稱商品名稱商品名稱商品名稱商品名稱商品名稱
+        router-link.link-bottom(to="/product") {{ product.title }}
         .details 
-            a.brand(href="#") 品牌名稱
+            a.brand(href="#") {{ product.brand }}
             .price
                 span.unit NT$
-                span.num 1,790
+                span.num {{ product.price }}
 </template>
 
 <script>
 export default {
-
+    props: ['product'],
+    methods: {
+        getImg(url, alt){
+        return `<img src="${url}" alt="${alt}">`
+        },
+        getPath(id){
+            return `/product/${id}`
+        }
+    }
 }
 </script>
 
@@ -25,9 +33,6 @@ export default {
     flex-basis: calc((100% - 96px) / 5);
     min-width: 170px;
     box-sizing: border-box;
-    // border: 1px solid #000;
-
-
 
     .link-top{
         display: block;
@@ -35,12 +40,14 @@ export default {
         padding-bottom: 100%;
         background-color: #eee;
         .pic{
-            background-color: #333;
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: auto;
+            img{
+                width: 100%;
+            }
         }
     }
 
