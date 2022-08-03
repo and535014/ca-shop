@@ -4,8 +4,10 @@ NavComp(
     :key="cartIsOpen" 
     @update="updateCart"
     )
-router-view
-transition(name="fadeIn")
+router-view(v-slot="{ Component }")
+    transition(name="fadeIn" mode="out-in")
+        component(:is="Component")
+transition(name="fadeIn" mode="out-in")
     MaskCover(
         v-if="maskIsActive" 
         @click="cartIsOpen=!cartIsOpen")
