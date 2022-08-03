@@ -9,9 +9,9 @@
             .modal-content
                 .pic-wrap
                     img(src="https://cdn01.pinkoi.com/product/ZW4fi4zF/0/22/800x0.jpg")
-                .ctrl-wrap.ctrl-l-wrap
+                .ctrl.ctrl-l
                     i(class="fa-solid fa-angle-left")
-                .ctrl-wrap.ctrl-r-wrap
+                .ctrl.ctrl-r
                     i(class="fa-solid fa-angle-right")
 
 </template>

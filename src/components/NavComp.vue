@@ -3,19 +3,21 @@ header.header
     .top-header
         .wrapper
             .search-bar-wrap
-                .search-icon.btn.btn-l.btn-icon 
+                .search-icon.btn.btn-l.btn-icon-m.btn-text
                     i(class="fa-solid fa-magnifying-glass")
             .logo-wrap 
-                router-link.logo(to="/")
+                router-link.logo(to="/") Crystal Apple
             .icons-wrap 
-                a.btn.btn-l.btn-icon(href="#") 
+                .btn.btn-l.btn-icon-m.btn-text
                     i(class="fa-solid fa-user")
-                a.btn.btn-l.btn-icon(href="#") 
+                .btn.btn-l.btn-icon-m.btn-text
                     i(class="fa-regular fa-heart")
-                a.btn.btn-l.btn-icon(href="#") 
+                .btn.btn-l.btn-icon-m.btn-text
                     i(class="fa-solid fa-clipboard-list")
-                .btn.btn-l.btn-icon(@click="cartOpen=!cartOpen") 
+                .btn.btn-l.btn-icon-m.btn-text.btn-cart(@click="cartOpen=!cartOpen") 
                     i(class="fa-solid fa-cart-shopping")
+                    .cart-count(v-if="cartList.length!=0") {{ cartList.length }}
+
     nav.navigation 
         .wrapper
             ul.nav-first(v-for='first in navigation')
@@ -26,7 +28,7 @@ header.header
                     )
                     router-link.title(to="/browse")
                         span {{ first.navFirst }}
-                    transition(name="fadeIn")
+                    transition(name="navFadeIn")
                         .nav-second(
                             v-if="first.navSecond" 
                             v-show="first.isOpen"
@@ -41,16 +43,14 @@ export default {
     props: ['cartIsOpen'],
     computed: {
         ...mapState({
-            navigation: state => state.header.navigation
+            navigation: state => state.header.navigation,
+            cartList: state => state.cartList
         })
     },
     data(){
         return {
             cartOpen: this.cartIsOpen 
         }
-    },
-    methods: {
-
     },
     watch: {
         cartOpen: {
@@ -65,15 +65,10 @@ export default {
 <style lang="scss">
 .header{
     padding: 0 24px;
-    border-bottom: 1px solid #000;
-    *{
-        // border: 1px solid #000;
-    }
+    border-bottom: 1px solid $black-40;
 
     .top-header{
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 20px 0 14px;
+        padding: 16px 0;
         .wrapper{
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -90,8 +85,6 @@ export default {
             @include flexCenter;
             .logo{
                 grid-area: 'logo';
-                @include size(60px);
-                background-color: #333;
             }
         }
 
@@ -100,9 +93,27 @@ export default {
             display: flex;
             justify-content: flex-end;
             align-items: center;
+
             .btn{
                 margin-left: 12px;
             }
+
+            .btn-cart{
+                position: relative;
+                .cart-count{
+                    position: absolute;
+                    top: -8px;
+                    right: -8px;
+                    width: 20px;
+                    line-height: 20px;
+                    font-size: 10px;
+                    background-color: lighten($brand-color,20);
+                    border-radius: 100px;
+                    color: white;
+                    font-weight: bold;
+                }
+            }
+
         }
 
     }
@@ -149,16 +160,20 @@ export default {
             min-width: 100%;
             top: 42px;
             left: 0;
-            border: 1px solid #000;
+            border: 1px solid $black-40;
             z-index: 1;
             background-color: #fff;
             padding: 8px 12px;
 
-            a{
+            .topic-link{
                 line-height: 40px;
-                opacity: 0;
-                transition: .5s .5s;
+                transition: .3s;
                 display: block;
+                color: $black-60;
+
+                &:hover{
+                    color: lighten($brand-color,10);
+                }
             }
         }
     }

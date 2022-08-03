@@ -2,37 +2,27 @@
 footer.footer
     .wrapper
         .top-section
-            .logo
+            .logo.logo-s Crystal Apple
             .links
-                ul.footer-links_wrap
+                ul.footer-links_wrap(v-for="link in links")
                     li.footer-links_item
-                        .footer-links_title 商品分類
-                    li.footer-links_item(v-for="i in 4")
-                        a.footer-links_link(href="#") 4分 MSD/MDD
-                ul.footer-links_wrap
-                    li.footer-links_item
-                        .footer-links_title 幫助政策
-                    li.footer-links_item(v-for="i in 4")
-                        a.footer-links_link(href="#") 4分 MSD/MDD
-                ul.footer-links_wrap
-                    li.footer-links_item
-                        .footer-links_title 關於我們
-                    li.footer-links_item(v-for="i in 4")
-                        a.footer-links_link(href="#") 4分 MSD/MDD
+                        .footer-links_title {{ link.title }}
+                    li.footer-links_item(v-for="content in link.content")
+                        a.footer-links_link(href="#") {{ content.title }}
             .right
                 .social-links-wrap
+                    .social-links_title 追蹤我們
                     .social-links_item
-                        .social-links_title 追蹤我們
-                    .social-links_item
-                        .btn.btn-icon.btn-l
+                        .btn.social-links_link
                             i(class="fa-brands fa-instagram")
-                        .btn.btn-icon.btn-l
-                            i(class="fa-brands fa-facebook")
-                        .btn.btn-icon.btn-l
+                        .btn.social-links_link
+                            i(class="fa-brands fa-line")
+                        .btn.social-links_link
+                            i(class="fa-brands fa-facebook-f")
+                        .btn.social-links_link
                             i(class="fa-brands fa-twitter")
                 .subscribe-wrap
-                    .subscribe_item
-                        .subscribe_title 訂閱電子報
+                    .subscribe_title 訂閱電子報
                     .subscribe_input
                         input(type="email")
                         .btn.btn-s.btn-primary 訂閱
@@ -41,15 +31,20 @@ footer.footer
                 p.copyright.caption Copyright © Our Mori Co., Ltd. All rights reserved.
             .right
                 .lang-switch
-                    i(class="fa-solid fa-earth-americas")
+                    i(class="fa-solid fa-earth-americas icon-s")
                     span 繁體中文
 
 
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-
+    computed: {
+        ...mapState({
+            links: state => state.footer.links
+        })
+    }
 }
 </script>
 
@@ -58,32 +53,33 @@ export default {
     border-top: 1px solid #eee;
     padding: 32px 24px;
     font-size: 14px;
+    text-align: left;
     .top-section{
         display: flex;
         justify-content: space-between;
-        text-align: left;
-        font-size: 13px;
+        align-items: flex-start;
         border-bottom: 1px solid #eee;
         padding: 32px 0;
 
         .logo{
-            @include size(100px);
-            background-color: #333;
             margin-right: 64px;
         }
 
         .links{
             display: flex;
+            justify-content: space-between;
             flex: 1;
+            margin-right: 64px;
 
             .footer-links_wrap{
-                margin-right: 48px;
+                margin-right: 32px;
             }
             .footer-links_item{
                 margin-bottom: 8px;
             }
             .footer-links_title{
                 font-weight: 500;
+                font-size: 15px;
             }
             .footer-links_link{
                 &:hover{
@@ -95,32 +91,47 @@ export default {
         .right{
             flex-basis: 400px;
             .social-links-wrap{
-                margin-bottom: 24px;
+                margin-bottom: 32px;
+
                 .social-links_title{
                     font-weight: bold;
                     font-size: 16px;
+                    margin-bottom: 16px;
                 }
                 .social-links_item{
                     margin-bottom: 12px;
+                }
+                .social-links_link{
+                    margin-right: 36px;
+                    border-radius: 100px;
+                    font-size: 20px;
+                    @include size(40px);
+                    background-color: $black-60;
+                    color: white;
+
+                    &:nth-child(3){
+                        font-size: 18px;
+                    }
                 }
 
             }
             .subscribe-wrap{
                 margin-bottom: 24px;
+
                 .subscribe_title{
                     font-weight: bold;
                     font-size: 16px;
-                }
-                .subscribe_item{
-                    margin-bottom: 24px;
+                    margin-bottom: 16px;
                 }
 
                 .subscribe_input{
-                    border: 2px solid #eee;
+                    // border: 2px solid #eee;
                     display: flex;
+
                     input{
                         flex: 1;
-                        border: none;
+                        border: 2px solid #eee;
+                        border-radius: 2px 0 0 2px;
                     }
                     .btn{
                         border: none;
@@ -136,9 +147,6 @@ export default {
         display: flex;
         justify-content: space-between;
         padding: 12px 0 32px;
-
-        .left{
-        }
 
         .right{
             .lang-switch{

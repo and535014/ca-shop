@@ -171,7 +171,75 @@ export default createStore({
         }
       }
     ],
-    cartList: []
+    cartList: [],
+    footer: {
+      links: [
+        {
+          title: '商品分類',
+          content: [
+            {
+              title: '限時團購',
+              url: ''
+            }, {
+              title: '所有商品',
+              url: ''
+            }, {
+              title: '服飾',
+              url: ''
+            }, {
+              title: '假髮',
+              url: ''
+            }, {
+              title: '眼珠',
+              url: ''
+            }, {
+              title: '鞋子',
+              url: ''
+            }, {
+              title: '配件',
+              url: ''
+            }
+          ]
+        }, {
+          title: '幫助 / 政策',
+          content: [
+            {
+              title: '購物說明',
+              url: ''
+            }, {
+              title: '運送須知',
+              url: ''
+            }, {
+              title: '預購進度',
+              url: ''
+            }, {
+              title: '訊息公告',
+              url: ''
+            }, {
+              title: '隱私政策',
+              url: ''
+            }, {
+              title: '服務條款',
+              url: ''
+            }
+          ]
+        }, {
+          title: '關於我們',
+          content: [
+            {
+              title: '公司資訊',
+              url: ''
+            }, {
+              title: '聯絡我們',
+              url: ''
+            }, {
+              title: '人才招募',
+              url: ''
+            }
+          ]
+        }
+      ]
+    }
   },
   getters: {
   },

@@ -9,10 +9,10 @@
           a.link(v-html="getImg(banner.img)")
           //- a.link {{ bid }}
             p {{ bid - currentNum}}
-      .ctrl.ctrl-l.btn.btn-l.btn-icon(@click="switchLeft")
-        i(class="fa-solid fa-angle-left")
-      .ctrl.ctrl-r.btn.btn-l.btn-icon(@click="switchRight")
-        i(class="fa-solid fa-angle-right")
+      .ctrl.ctrl-l(@click="switchLeft")
+        i(class="fa-solid fa-angle-left icon-l")
+      .ctrl.ctrl-r(@click="switchRight")
+        i(class="fa-solid fa-angle-right icon-l")
       .counter-wrap
         .counter(
           v-for='i in num' 
@@ -201,19 +201,6 @@ export default {
 
         }
 
-      }
-
-      .ctrl{
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 10;
-      }
-      .ctrl-l{
-        left: 0;
-      }
-      .ctrl-r{
-        right: 0;
       }
 
       .counter-wrap{

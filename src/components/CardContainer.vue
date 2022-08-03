@@ -55,12 +55,13 @@ export default {
         display: block;
         padding-top: 8px;
         background-color: #fff;
+        letter-spacing: normal;
 
         .link-bottom{
             font-size: 16px;
-            font-weight: 500;
+            font-weight: bold;
             display: block;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
         .details{

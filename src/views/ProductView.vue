@@ -2,7 +2,9 @@
 .page.page-product
     .section.section-header
         .wrapper
-            p 4分 MSD/MDD > 服飾
+            h3.subtitle 
+                span 4分 MSD/MDD
+                span 服飾
     .section.section-main
         .wrapper
             .product-main
@@ -18,10 +20,11 @@
                             )
                 .product-main-info
                     .pre-order-tag(v-if="product.isPreorder")
-                        span.tag.tag-l 預購商品
+                        span.tag 預購商品
                         span 預計：{{ product.deliveryDate }} 出貨
-                    .title {{ product.title }}
-                    .brand {{ product.brand }}
+                    .product-title
+                        span 【{{ product.brand }}】
+                        span {{ product.title }}
                     .prices
                         span.unit NT$
                         span.num(v-if="!currentSpec") {{ minPrice }} ~ {{ maxPrice }}
@@ -29,20 +32,22 @@
                     .specs.flex-box
                         label.flex-item 規格
                         ul.options
-                            li.btn.btn-s.spec-item(
+                            li.btn.btn-s.btn-secondary.spec-item(
                                 v-for='spec in product.specs'
                                 @click="getCurrentSpec(spec)"
                                 :class="{active: currentSpec==spec}"
                                 ) {{ spec.name }}
                     .quantity.flex-box
                         label.flex-item 數量
-                        .input
+                        .input-num
                             .btn.btn-s.btn-sub(@click="quantitySub") -
                             input(type="text" v-model="quantity")
                             .btn.btn-s.btn-add(@click="quantityAdd") +
                     .btns
-                        .btn.btn-l(@click="addCart") 加入購物車
-                        .buy.btn.btn-l 我要預購
+                        .btn.btn-l.btn-primary.btn-withIcon(@click="addCart")
+                            i(class="fa-solid fa-cart-shopping icon-s")
+                            |加入購物車
+                        .buy.btn.btn-l.btn-secondary 我要預購
                     ul.notices
                         p.pre-order 本商品為預購商品，{{ product.preorderDeadline }} 截止
                         p.delivery 運送方式：一般宅配、國際快遞、與之前的預購訂單合併出貨、7-11取貨、全家超商取貨
@@ -153,6 +158,7 @@ export default {
         getCurrentSpec(spec){
             this.currentSpec = spec
             this.currentImg = spec.url
+            this.quantity = 1
         },
         quantitySub(){
             if(this.quantity>1){
@@ -173,8 +179,6 @@ export default {
                 }
 
                 this.$store.commit('addCart', orderInfo)
-                this.currentSpec = null
-                this.quantity=1
             }
         }
     }
@@ -195,11 +199,25 @@ export default {
 
     .section-header{
         padding-bottom: 0;
-        padding-top: 12px;
+        padding-top: 24px;
+
+        .subtitle{
+            span{
+                &:after{
+                    content: ">";
+                    display: inline-block;
+                    margin: 4px;
+                }
+
+                &:last-child:after{
+                    display: none;
+                }
+            }
+        }
     }
 
     .section-main{
-        padding-top: 12px;
+        padding-top: 24px;
 
         .product-main{
             display: flex;
@@ -215,79 +233,89 @@ export default {
                 }
 
                 .thumbs{
-                    display: flex;
-                    overflow: hidden;
                     width: 100%;
+                    display: flex;
+                    flex-wrap: wrap;
+
                 }
                 .pic-l{
                     width: 450px;
-                    height: 450px;
-                    background-color: #eee;
+                    padding-bottom: 100%;
+                    background-color: #fff;
+                    cursor: zoom-in;
+                    position: relative;
 
                     img{
                         height: 100%;
+                        @include abCenter;
                     }
                 }
 
                 .pic-s{
-                    width: 82px;
-                    height: 82px;
-                    background-color: #eee;
+                    width: calc((100% - 40px) / 5);
+                    padding-bottom: calc((100% - 40px) / 5);
                     margin-right: 8px;
-                    box-sizing: border-box;
+                    margin-bottom: 12px;
                     cursor: pointer;
+                    position: relative;
+                    box-sizing: border-box;
+                    overflow: hidden;
 
                     img{
                         height: 100%;
+                        @include abCenter;
                     }
 
                     &.active{
-                        border: 1px solid #000;
+                        outline: 2px solid black;
                     }
                 }
             }
 
             .product-main-info{
                 flex: 1;
+
                 .pre-order-tag{
                     font-size: 14px;
                     margin-bottom: 12px;
                     .tag{
                         margin-right: 8px;
-                        border-radius: 0;
-                        padding: 4px 6px;
                     }
                 }
-
-                .brand{
-                    margin-bottom: 24px;
-                }
                 
-                .title{
-                    font-size: 26px;
+                .product-title{
+                    font-size: 30px;
                     font-weight: 500;
-                    // margin-bottom: 8px;
                     line-height: 1.4;
-                    opacity: .8;
+                    margin-bottom: 48px;
+                    letter-spacing: normal;
                 }
 
                 .prices{
-                    font-size: 32px;
-                    margin-bottom: 48px;
+                    font-size: 40px;
+                    color: $brand-color;
+                    margin-bottom: 32px;
                     font-weight: bold;
+                    display: flex;
+                    justify-content: flex-end;
+                    letter-spacing: normal;
                     span{
                         margin-right: 8px;
                     }
                 }
+
                 label{
                     display: block;
                     margin-bottom: 8px;
                 }
                 .specs{
                     margin-bottom: 24px;
+                    flex-wrap: wrap;
 
                     .spec-item{
                         margin-right: 8px;
+                        border: 1px solid $black-20;
+                        color: $black-80;
 
                         &.active{
                             background-color: $brand-color;
@@ -298,28 +326,6 @@ export default {
 
                 .quantity{
                     margin-bottom: 24px;
-                    .input{
-                        display: flex;
-                        align-items: center;
-                        border: 2px solid #eee;
-                        box-sizing: border-box;
-
-                        .btn{
-                            border: none;
-                        }
-                        .btn-sub{
-                            border-right: 2px solid #eee;
-                        }
-                        .btn-add{
-                            border-left: 2px solid #eee;
-                        }
-                        input{
-                            @include size(60px, 100%);
-                            border: none;
-                            text-align: center;
-
-                        }
-                    }
                 }
 
                 .btns{

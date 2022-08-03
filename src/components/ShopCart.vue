@@ -6,21 +6,22 @@
         ul.cart-list(v-if="cartList.length!=0")
             li.item(v-for="(item,id) in cartList")
                 .cart_thumbs
-                    .item-photo
+                    .item-photo(v-html="getImg(item.spec.url,'')")
                 .cart_info
                     .pre-order
-                        .tag.tag-s 預
+                        .tag 預
                         span 預計 {{ item.deliveryDate }} 出貨
-                    .subtitle {{ item.title }}
+                    .brand {{ item.brand }}
+                    .product-title {{ item.title }}
                     .spec
                         span {{ item.spec.name }}
                     .cart-quantity
-                        .input
+                        .input-num
                             .btn.btn-s.btn-sub(@click="subQty(id,item.qty)") -
                             input(type="text" :value="item.qty" @change="setQty(id,$event)")
                             .btn.btn-s.btn-add(@click="addQty(id,item.qty)") +
                     .subtotal {{ item.spec.price * item.qty}}
-                    .btn.btn-icon.btn-s.btn-delete(@click="deleteCartItem(id)")
+                    .btn.btn-icon-m.btn-text.btn-delete(@click="deleteCartItem(id)")
                         i(class="fa-regular fa-trash-can")
         .empty-cart(v-if="cartList.length==0")
             h4.subtitle 您的購物車是空的
@@ -65,21 +66,15 @@ export default {
                 qty: target.value
             }
             this.$store.commit('setQuantity', result)
+        },
+        getImg(url, alt){
+            return `<img src="${url}" alt="${alt}">`
         }
     }
 }
 </script>
 
 <style lang="scss">
-.mask-cover{
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background-color: rgba(black,.6);
-    z-index: 10;
-}
 .cart-list_wrap{
     position: fixed;
     top: 0;
@@ -121,53 +116,53 @@ export default {
         .cart_thumbs{
             margin-right: 12px;
             .item-photo{
-                @include size(60px);
-                background-color: #eee;
+                @include size(80px);
+
+                img{
+                    width: 100%;
+                }
             }
         }
 
         .cart_info{
             text-align: left;
-            font-size: 14px;
             position: relative;
             flex: 1;
             .pre-order{
                 display: flex;
                 align-items: center;
-                font-size: 13px;
                 margin-bottom: 12px;
+                font-size: 14px;
                 .tag{
-                    border-radius: 0;
-                    padding: 2px 8px;
                     margin-right: 8px;
                 }
             }
-            .subtitle{
-                margin-bottom: 12px;
+            .brand{
                 font-size: 14px;
+                opacity: .6;
+            }
+            .product-title{
+                margin-bottom: 12px;
+                font-size: 18px;
+                font-weight: 500;
             }
             .spec{
                 margin-bottom: 12px;
+                font-size: 16px;
+                opacity: .8;
             }
 
             .cart-quantity{
                 margin-bottom: 12px;
-                .input{
-                    display: flex;
-                    align-items: center;
-
-                    input{
-                        height: 100%;
-                        width: 60px;
-                        text-align: center;
-                    }
-                }
+                display: flex;
             }
 
             .subtotal{
                 text-align: right;
                 font-weight: bold;
-                font-size: 16px;
+                font-size: 20px;
+                letter-spacing: normal;
+                color: $brand-color;
 
                 &:before{
                     content: "$";
@@ -181,6 +176,7 @@ export default {
             position: absolute;
             top: 0;
             right: 0;
+            color: rgb(191, 0, 0);
         }
     }
 

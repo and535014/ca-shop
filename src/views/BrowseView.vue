@@ -1,6 +1,6 @@
 <template lang="pug">
 .page.page-browse
-    section.section.section-top 
+    section.section.section-top
         .wrapper
             .browse-header
                 .title 所有商品
@@ -62,6 +62,11 @@ export default {
 
     .section-top{
         padding-bottom: 0;
+        .browse-header{
+            .title{
+                margin-bottom: 16px;
+            }
+        }
         .options{
             display: flex;
             justify-content: space-between;

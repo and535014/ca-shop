@@ -4,9 +4,10 @@ NavComp(
     :key="cartIsOpen" 
     @update="updateCart"
     )
-router-view(v-slot="{ Component }")
-    transition(name="fadeIn" mode="out-in")
-        component(:is="Component")
+router-view
+//- router-view(v-slot="{ Component }")
+//-     transition(name="fadeIn" mode="out-in")
+//-         component(:is="Component")
 transition(name="fadeIn" mode="out-in")
     MaskCover(
         v-if="maskIsActive" 
@@ -56,6 +57,27 @@ export default {
     transition: .5s;
 }
 .fadeIn-leave-to{
+    opacity: 0;
+}
+
+//navFadeIn
+.navFadeIn-enter-from{
+    opacity: 0;
+}
+.navFadeIn-enter-active{
+    transition: .5s;
+}
+.navFadeIn-enter-to{
+    opacity: 1;
+}
+
+.navFadeIn-leave-from{
+    opacity: 1;
+}
+.navFadeIn-leave-active{
+    transition: 0s;
+}
+.navFadeIn-leave-to{
     opacity: 0;
 }
 </style>
