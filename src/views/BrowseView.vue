@@ -26,7 +26,18 @@
     section.section.section-main
         .wrapper
             .card-wrap
-                CardContainer(v-for="product in products" :product="product")
+                CardContainer(
+                    v-for="product in products"
+                    :key="product"
+                    :product="product"
+                    v-if="filteredProducts.length==0"
+                    )
+                CardContainer(
+                    v-for="product in filteredProducts"
+                    :key="product"
+                    :product="product"
+                    v-if="filteredProducts.length!=0"
+                    )
             .pages-wrap
                 ul.pages
                     li 
@@ -41,13 +52,13 @@
 
 <script>
 import CardContainer from '@/components/CardContainer.vue';
-import { mapState } from 'vuex'
+import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 export default {
     components: { CardContainer },
     computed: {
-        ...mapState({
-            products: state => state.products
-        })
+        ...mapState(['products']),
+        ...mapGetters(['filteredProducts'])
     }
 }
 </script>

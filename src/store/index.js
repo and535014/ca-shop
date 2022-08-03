@@ -109,7 +109,7 @@ export default createStore({
         brand: '25 時茶會',
         size: '4 分 MSD/MDD',
         cata: '服飾',
-        tags: ['4 分 MSD/MDD', '服飾'],
+        tags: ['pre-order','25 時茶會','4 分 MSD/MDD', '服飾'],
         discription: ``,
         specs: [
           {
@@ -144,11 +144,11 @@ export default createStore({
         isPreorder: true,
         preorderDeadline: '2022/7/30 晚上10點',
         deliveryDate: '2022/12',
-        state: 'pre-order',
+        state: 'sold-out',
         brand: 'Cocoriang',
         size: '小寵',
         cata: '服飾',
-        tags: ['小寵', '服飾'],
+        tags: ['sold-out','Cocoriang','小寵', '服飾'],
         discription: ``,
         specs: [
           {
@@ -158,6 +158,36 @@ export default createStore({
           }, {
             name: '灰色',
             price: 1200,
+            url: `/img/products/product01/pic01.png`
+          }, {
+            name: '粉色',
+            price: 1700,
+            url: `/img/products/product01/pic01.png`
+          }],
+        imgCover: `/img/products/product02/cover.png`,
+        imgs: {
+          pic01: `/img/products/product02/pic01.png`,
+          pic02: `/img/products/product02/pic02.png`
+        }
+      }, {
+        id: 2,
+        title: '鞋子',
+        price: 1610,
+        discount: 0.9,
+        isDiscount: false,
+        isPreorder: true,
+        preorderDeadline: '2022/7/30 晚上10點',
+        deliveryDate: '2022/12',
+        state: 'sold-out',
+        brand: '腳尖上的小屍',
+        size: '4 分 MSD/MDD',
+        cata: '鞋子',
+        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
+        discription: ``,
+        specs: [
+          {
+            name: '棕色',
+            price: 1000,
             url: `/img/products/product01/pic01.png`
           }, {
             name: '粉色',
@@ -239,9 +269,23 @@ export default createStore({
           ]
         }
       ]
+    },
+    filters: {
+      firstFilter: '4 分 MSD/MDD',
+      secondFilter: null
     }
   },
   getters: {
+    filteredProducts(state){
+      let products = state.products
+      let firstFilteredProducts = products.filter((d) => d.tags.find(t=>t==state.filters.firstFilter))
+      let secondFilteredProducts = null
+
+      if(state.filters.secondFilter){
+        secondFilteredProducts = firstFilteredProducts.filter((d) => d.tags.find(t=>t==state.filters.secondFilter))
+      }
+      return state.filters.secondFilter?secondFilteredProducts:firstFilteredProducts
+    }
   },
   mutations: {
     addCart(state, payload){
@@ -255,6 +299,11 @@ export default createStore({
       let qty = payload.qty
       let target = state.cartList[id]
       target.qty = qty
+    },
+    setFilters(state,payload){
+      let target = state.filters
+      target.firstFilter = payload.first
+      target.secondFilter = payload.second
     }
   },
   actions: {
