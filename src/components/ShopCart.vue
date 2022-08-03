@@ -3,32 +3,70 @@
 .cart-list_wrap
     h5.title 我的購物車
     .cart_content
-        ul.cart-list
-            li.item(v-for="i in 3")
+        ul.cart-list(v-if="cartList.length!=0")
+            li.item(v-for="(item,id) in cartList")
                 .cart_thumbs
                     .item-photo
                 .cart_info
                     .pre-order
                         .tag.tag-s 預
-                        span 預計 2023/01 出貨
-                    .subtitle 風櫻起落四分
+                        span 預計 {{ item.deliveryDate }} 出貨
+                    .subtitle {{ item.title }}
                     .spec
-                        span 訂金 綠色 MSD 
+                        span {{ item.spec.name }}
                     .cart-quantity
                         .input
-                            .btn.btn-s.btn-sub -
-                            input(type="text" value='1')
-                            .btn.btn-s.btn-add +
-                    .subtotal $750
-                    .btn.btn-icon.btn-s.btn-delete
+                            .btn.btn-s.btn-sub(@click="subQty(id,item.qty)") -
+                            input(type="text" :value="item.qty" @change="setQty(id,$event)")
+                            .btn.btn-s.btn-add(@click="addQty(id,item.qty)") +
+                    .subtotal {{ item.spec.price * item.qty}}
+                    .btn.btn-icon.btn-s.btn-delete(@click="deleteCartItem(id)")
                         i(class="fa-regular fa-trash-can")
-
-    .btn.btn-l.btn-primary.go_to_payment 前往結賬
+        .empty-cart(v-if="cartList.length==0")
+            h4.subtitle 您的購物車是空的
+    .btn.btn-l.btn-primary.go_to_payment(v-if="cartList.length!=0") 前往結賬
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
+    computed: {
+        ...mapState(['cartList'])
+    },
+    methods: {
+        deleteCartItem(id){
+            this.$store.commit('deleteCart', id)
+        },
+        addQty(id, qty){
+            qty++
+            let result = {
+                id: id,
+                qty: qty
+            }
+            this.$store.commit('setQuantity', result)
+        },
+        subQty(id, qty){
+            if(qty>1){
+                qty--
+            }else{
+                qty=1
+            }
 
+            let result = {
+                id: id,
+                qty: qty
+            }
+            this.$store.commit('setQuantity', result)
+        },
+        setQty(id, evt){
+            let target = evt.target
+            let result = {
+                id: id,
+                qty: target.value
+            }
+            this.$store.commit('setQuantity', result)
+        }
+    }
 }
 </script>
 
@@ -46,7 +84,7 @@ export default {
     position: fixed;
     top: 0;
     right: 0;
-    max-width: 700px;
+    width: 400px;
     height: 100vh;
     z-index: 100;
     background-color: #fff;
@@ -61,11 +99,10 @@ export default {
     }
 
     .title{
-        line-height: 40px;
+        padding-bottom: 16px;
         border-bottom: 2px solid #000;
     }
     .cart_content{
-
         .cart-list{
             padding: 24px 0;
 
@@ -76,6 +113,11 @@ export default {
                 margin-bottom: 12px;
             }
         }
+
+        .empty-cart{
+            margin-top: 64px;
+        }
+        
         .cart_thumbs{
             margin-right: 12px;
             .item-photo{
@@ -88,6 +130,7 @@ export default {
             text-align: left;
             font-size: 14px;
             position: relative;
+            flex: 1;
             .pre-order{
                 display: flex;
                 align-items: center;
@@ -115,6 +158,8 @@ export default {
 
                     input{
                         height: 100%;
+                        width: 60px;
+                        text-align: center;
                     }
                 }
             }
@@ -123,6 +168,10 @@ export default {
                 text-align: right;
                 font-weight: bold;
                 font-size: 16px;
+
+                &:before{
+                    content: "$";
+                }
             }
 
 

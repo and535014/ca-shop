@@ -170,11 +170,24 @@ export default createStore({
           pic02: `/img/products/product02/pic02.png`
         }
       }
-    ]
+    ],
+    cartList: []
   },
   getters: {
   },
   mutations: {
+    addCart(state, payload){
+      state.cartList.push(payload)
+    },
+    deleteCart(state,payload){
+      state.cartList.splice(payload, 1)
+    },
+    setQuantity(state,payload){
+      let id = payload.id
+      let qty = payload.qty
+      let target = state.cartList[id]
+      target.qty = qty
+    }
   },
   actions: {
   },

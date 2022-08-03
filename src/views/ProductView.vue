@@ -37,11 +37,11 @@
                     .quantity.flex-box
                         label.flex-item 數量
                         .input
-                            .btn.btn-s.btn-sub -
-                            input(type="text" value='1')
-                            .btn.btn-s.btn-add +
+                            .btn.btn-s.btn-sub(@click="quantitySub") -
+                            input(type="text" v-model="quantity")
+                            .btn.btn-s.btn-add(@click="quantityAdd") +
                     .btns
-                        .btn.btn-l 加入購物車
+                        .btn.btn-l(@click="addCart") 加入購物車
                         .buy.btn.btn-l 我要預購
                     ul.notices
                         p.pre-order 本商品為預購商品，{{ product.preorderDeadline }} 截止
@@ -113,12 +113,13 @@ export default {
         return {
             currentImg: null,
             currentSpec: null,
-            order: {}
+            quantity: 1
         }
     },
     computed: {
         ...mapState({
             products: state => state.products,
+            cartList: state => state.cartList
         }),
         product(){
             return this.products[this.id]
@@ -152,6 +153,29 @@ export default {
         getCurrentSpec(spec){
             this.currentSpec = spec
             this.currentImg = spec.url
+        },
+        quantitySub(){
+            if(this.quantity>1){
+                this.quantity--
+            }else{
+                this.quantity=1
+            }
+        },
+        quantityAdd(){
+            this.quantity++
+        },
+        addCart(){
+            if(this.currentSpec){
+                let orderInfo = {
+                    ...this.product,
+                    spec: this.currentSpec,
+                    qty: this.quantity
+                }
+
+                this.$store.commit('addCart', orderInfo)
+                this.currentSpec = null
+                this.quantity=1
+            }
         }
     }
 }
