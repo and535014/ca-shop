@@ -1,7 +1,17 @@
 <template lang="pug">
-NavComp(:cartIsOpen="cartIsOpen")
+NavComp(
+    :cartIsOpen="cartIsOpen" 
+    :key="cartIsOpen" 
+    @update="updateCart"
+    )
 router-view
-ShopCart
+transition(name="fadeIn")
+    MaskCover(
+        v-if="maskIsActive" 
+        @click="cartIsOpen=!cartIsOpen")
+ShopCart(
+    :class="{active: cartIsOpen}"
+    )
 FooterComp
 </template>
 
@@ -10,6 +20,16 @@ export default {
     data(){
         return {
             cartIsOpen: false
+        }
+    },
+    methods: {
+        updateCart(val){
+            this.cartIsOpen=val
+        }
+    },
+    computed: {
+        maskIsActive(){
+            return this.cartIsOpen?true:false
         }
     }
 }

@@ -14,7 +14,7 @@ header.header
                     i(class="fa-regular fa-heart")
                 a.btn.btn-l.btn-icon(href="#") 
                     i(class="fa-solid fa-clipboard-list")
-                a.btn.btn-l.btn-icon(href="#") 
+                .btn.btn-l.btn-icon(@click="cartOpen=!cartOpen") 
                     i(class="fa-solid fa-cart-shopping")
     nav.navigation 
         .wrapper
@@ -38,10 +38,26 @@ header.header
 <script>
 import { mapState } from 'vuex'
 export default {
+    props: ['cartIsOpen'],
     computed: {
         ...mapState({
             navigation: state => state.header.navigation
         })
+    },
+    data(){
+        return {
+            cartOpen: this.cartIsOpen 
+        }
+    },
+    methods: {
+
+    },
+    watch: {
+        cartOpen: {
+            handler(val){
+                this.$emit('update',val)
+            }
+        }
     }
 }
 </script>
