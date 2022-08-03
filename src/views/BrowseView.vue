@@ -60,13 +60,6 @@ export default {
         margin-right: 8px;
     }
 
-    *{
-        // border: 1px solid #000;
-    }
-    .browse-header{
-
-    }
-
     .section-top{
         padding-bottom: 0;
         .options{

@@ -150,9 +150,6 @@ export default {
 
 <style lang="scss">
 .page.page-home{
-  *{
-    // border: 1px solid #000;
-  }
   .test{
     font-size: 60px;
   }
@@ -167,7 +164,7 @@ export default {
         height: 405px;
         border-color: red;
         position: relative;
-        // overflow: hidden;
+        overflow: hidden;
         .item{
           transform: translate3d(0, 0, 0);
           transform-style: preserve-3d;

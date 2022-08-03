@@ -1,8 +1,19 @@
 <template lang="pug">
-NavComp
+NavComp(:cartIsOpen="cartIsOpen")
 router-view
+ShopCart
 FooterComp
 </template>
+
+<script>
+export default {
+    data(){
+        return {
+            cartIsOpen: false
+        }
+    }
+}
+</script>
 
 <style lang="scss">
 //fadeIn
