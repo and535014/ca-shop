@@ -210,7 +210,7 @@ export default createStore({
           pic02: `/img/products/product03/pic02.png`
         }
       },{
-        id: 1,
+        id: 4,
         title: '4 分 開襟毛衣',
         price: null,
         minPrice: 3000,
@@ -249,7 +249,7 @@ export default createStore({
           pic07: `/img/products/product01/pic07.png`
         }
       }, {
-        id: 2,
+        id: 5,
         title: '短斗篷套組',
         price: null,
         minPrice: 1000,
@@ -283,7 +283,7 @@ export default createStore({
           pic02: `/img/products/product02/pic02.png`
         }
       }, {
-        id: 3,
+        id: 6,
         title: '鞋子',
         price: null,
         minPrice: 1000,
@@ -313,7 +313,7 @@ export default createStore({
           pic02: `/img/products/product03/pic02.png`
         }
       },{
-        id: 1,
+        id: 7,
         title: '4 分 開襟毛衣',
         price: null,
         minPrice: 1000,
@@ -352,7 +352,7 @@ export default createStore({
           pic07: `/img/products/product01/pic07.png`
         }
       }, {
-        id: 2,
+        id: 8,
         title: '短斗篷套組',
         price: null,
         minPrice: 1000,
@@ -386,7 +386,7 @@ export default createStore({
           pic02: `/img/products/product02/pic02.png`
         }
       }, {
-        id: 3,
+        id: 9,
         title: '鞋子',
         price: null,
         minPrice: 1000,

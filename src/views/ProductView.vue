@@ -1,29 +1,28 @@
 <template lang="pug">
 .page.page-product
-    .section.section-header
-        .wrapper
-            h3.subtitle 
-                span 4分 MSD/MDD
-                span 服飾
     .section.section-main
         .wrapper
             .product-main
                 .photos
                     .main-photo
-                        .pic-l(v-html="getImg(currentImg)")
+                        .pic-l(
+                            v-html="getImg(currentImg)"
+                            @click="photoIsZoom=true"
+                            )
                     .thumbs
                         .pic-s(
-                            v-for='img in product.imgs' 
+                            v-for='(img, id) in product.imgs' 
                             v-html="getImg(img)"
                             :class="{active: currentImg==img}"
-                            @click="setCurrentImg(img)"
+                            @click="setCurrentImg(img, id)"
                             )
                 .product-main-info
                     .pre-order-tag(v-if="product.state=='pre-order'")
                         span.tag 預購商品
                         span 預計：{{ product.deliveryDate }} 出貨
+                    .product-brand
+                        span {{ product.brand }}
                     .product-title
-                        span 【{{ product.brand }}】
                         span {{ product.title }}
                     .prices
                         span.unit NT$
@@ -105,7 +104,16 @@
                         p 
                             span ◎ 
                             span 售價：全款255元。
-PhotoZoom
+    Transition(name="fadeIn" mode="out-in")
+        PhotoZoom(
+            v-if="photoIsZoom" 
+            :currentImg="currentImg"
+            :imgs="product.imgs"
+            :isOpen="photoIsZoom"
+            :currentImgId="currentImgId"
+            @update="updatePhotoZoom"
+            )
+
 </template>
 
 <script>
@@ -113,13 +121,16 @@ import { mapState } from 'vuex'
 export default {
     created(){
         this.currentImg = this.product.imgs.pic01
+        this.currentImgId = 0
     },
-    props: ['id'],
+    props: ['id','currCata'],
     data(){
         return {
             currentImg: null,
+            currentImgId: null,
             currentSpec: null,
-            quantity: 1
+            quantity: 1,
+            photoIsZoom: false
         }
     },
     computed: {
@@ -153,8 +164,9 @@ export default {
         getImg(url){
             return `<img src="${url}">`
         },
-        setCurrentImg(img){
+        setCurrentImg(img, id){
             this.currentImg = img
+            this.currentImgId = id
         },
         getCurrentSpec(spec){
             this.currentSpec = spec
@@ -181,6 +193,9 @@ export default {
 
                 this.$store.commit('addCart', orderInfo)
             }
+        },
+        updatePhotoZoom(val){
+            this.photoIsZoom=val
         }
     }
 }
@@ -196,25 +211,6 @@ export default {
 
     .flex-item{
         flex-basis: 60px;
-    }
-
-    .section-header{
-        padding-bottom: 0;
-        padding-top: 24px;
-
-        .subtitle{
-            span{
-                &:after{
-                    content: ">";
-                    display: inline-block;
-                    margin: 4px;
-                }
-
-                &:last-child:after{
-                    display: none;
-                }
-            }
-        }
     }
 
     .section-main{

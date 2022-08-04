@@ -11,7 +11,9 @@
                 .filters
                     span.options-title 篩選：
                     .filter-item
-                        .filter-item_title(@click="filterStockIsOpen=!filterStockIsOpen" :class="{active: filterStockIsOpen}")
+                        .filter-item_title(
+                            @click="filterStockIsOpen=!filterStockIsOpen;reactIsShow.stock=!reactIsShow.stock" 
+                            :class="{active: filterStockIsOpen}")
                             span 供貨情況
                             i(class="fa-solid fa-angle-down icon-s")
                         Transition(name="fadeIn")
@@ -26,7 +28,9 @@
                                         input(type="checkbox", name="spot-goods" v-model="filters.isSpot")
 
                     .filter-item
-                        .filter-item_title(@click="filterPriceIsOpen=!filterPriceIsOpen" :class="{active: filterPriceIsOpen}")
+                        .filter-item_title(
+                            @click="filterPriceIsOpen=!filterPriceIsOpen;reactIsShow.price=!reactIsShow.price" 
+                            :class="{active: filterPriceIsOpen}")
                             span 價格
                             i(class="fa-solid fa-angle-down icon-s")
                         Transition(name="fadeIn")
@@ -90,12 +94,23 @@
                         span {{ i }}
                     li.btn.btn-icon-s(v-if="pagesNum>1 && currPage<pagesNum" @click="goNextPage")
                         i(class="fa-solid fa-angle-right")
+    Transition
+        JsReact(
+            v-if="reactIsShow.stock"
+            @click="filterStockIsOpen=!filterStockIsOpen;reactIsShow.stock=!reactIsShow.stock" 
+            )
+    Transition
+        JsReact(
+            v-if="reactIsShow.price"
+            @click="filterPriceIsOpen=!filterPriceIsOpen;reactIsShow.price=!reactIsShow.price" 
+            )
+
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 export default {
-    props: ['currCata'],
+    props: ['currCata', 'cata'],
     data(){
         return {
             currPage: 1,
@@ -110,7 +125,11 @@ export default {
                 maxPrice: null
             },
             sort: null,
-            currCataLocal: this.currCata
+            currCataLocal: this.currCata,
+            reactIsShow: {
+                stock: false,
+                price: false
+            }
         }
     },
     computed: {
@@ -154,7 +173,7 @@ export default {
 
         },
         sortProducts(){
-            let products = this.furtherFilteredProducts
+            let products = [...this.furtherFilteredProducts]
             let sort = this.sort
 
             if(sort=='hot'){
@@ -177,6 +196,11 @@ export default {
             let max = this.currPage*this.productNumInPage
             let min = (this.currPage-1)*this.productNumInPage
             return this.sortProducts.slice(min,max)
+        },
+        check(){
+            let products = this.filteredProducts
+            return products.map(d=>d.id)
+
         }
     },
     methods: {
@@ -219,6 +243,8 @@ export default {
                 maxPrice: null
             }
             this.sort = null
+            this.sortProducts = [...this.filteredProducts]
+
         }
     },
     watch: {

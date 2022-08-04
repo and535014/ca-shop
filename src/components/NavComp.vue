@@ -6,7 +6,7 @@ header.header
                 .search-icon.btn.btn-l.btn-icon-m.btn-text
                     i(class="fa-solid fa-magnifying-glass")
             .logo-wrap 
-                router-link.logo(to="/") Crystal Apple
+                router-link.logo(to="/" @click="init") Crystal Apple
             .icons-wrap 
                 .btn.btn-l.btn-icon-m.btn-text
                     i(class="fa-solid fa-user")
@@ -26,21 +26,26 @@ header.header
                     @mouseleave="first.isOpen = false"
                     :class="{isOpen: first.isOpen, active: currCataLocal.firstCata == first.navFirst}"
                     )
-                    router-link.title(
-                        to="/browse"
-                        @click="setFilter(first,first.navSecond)"
-                        )
-                        span {{ first.navFirst }}
+                    template(v-if="!first.navSecond")
+                        router-link.title(
+                            :to="getPath(first,'')"
+                            @click="setFilter(first,first.navSecond)"
+                            )
+                            span {{ first.navFirst }}
+                    template(v-if="first.navSecond")
+                        .title
+                            span {{ first.navFirst }}
                     transition(name="navFadeIn")
                         .nav-second(
                             v-if="first.navSecond" 
                             v-show="first.isOpen"
                             ) 
-                            a.topic-link(
+                            router-link.topic-link(
                                 href="#" 
                                 v-for="second in first.navSecond"
-                                :class="{active: currCataLocal.secondCata == second}"
+                                :class="{active: currCataLocal.firstCata == first.navFirst && currCataLocal.secondCata == second}"
                                 @click="setFilter(first,second)"
+                                :to="getPath(first, second)"
                                 ) {{ second }}
 
 </template>
@@ -75,6 +80,14 @@ export default {
         }
     },
     methods: {
+        getPath(first,second){
+            if(first.navSecond){
+                let result = second.split(" ").join("-").split("/").join("-")
+                return `/browse/${first.navFirst}_${result}`
+            }else if(!first.navSecond){
+                return `/browse/${first.navFirst}`
+            }
+        },
         setFilter(obj1,obj2){
             let result = null
 
@@ -96,6 +109,12 @@ export default {
             }
 
             this.$store.commit('setFilters', result)
+        },
+        init(){
+            this.currCataLocal = {
+                firstCata: null,
+                secondCata: null
+            }
         }
     }
 }

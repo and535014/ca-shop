@@ -15,7 +15,7 @@ export default {
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: rgba(black,.6);
+    background-color: rgba(black,.8);
     z-index: 10;
 }
 </style>

@@ -15,7 +15,7 @@ export default {
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: red;
+    background-color: transparent;
     z-index: 1;
 }
 </style>

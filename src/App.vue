@@ -46,8 +46,6 @@ export default {
             if(val.secondCata){
                 cata.secondCata = val.secondCata
             }
-
-            // console.log(val)
         }
     },
     computed: {

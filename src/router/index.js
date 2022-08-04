@@ -9,9 +9,10 @@ const routes = [
     name: 'home',
     component: HomeView
   }, {
-    path: '/browse',
+    path: '/browse/:cata',
     name: 'Browse',
-    component: BrowseView
+    component: BrowseView,
+    props: true
   }, {
     path: '/product/:id',
     name: 'product',
@@ -26,9 +27,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to,from) => {
-  if(from.currCata){
-    console.log("checked")
-  }
+  document.body.scrollTop = 0
+  document.documentElement.scrollTop = 0
   
 })
 
