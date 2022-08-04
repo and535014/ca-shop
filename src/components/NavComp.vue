@@ -41,8 +41,7 @@ header.header
                                 v-for="second in first.navSecond"
                                 @click="setFilter(first,second)"
                                 ) {{ second }}
-    .test 
-        p {{filters}}
+
 </template>
 
 <script>
@@ -74,7 +73,6 @@ export default {
                 first: obj1.filter,
                 second: obj2
             }
-            console.log(result)
             this.$store.commit('setFilters', result)
         }
     }
