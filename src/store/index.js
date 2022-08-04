@@ -107,12 +107,11 @@ export default createStore({
     ],
     products: [
       {
-        id: 0,
+        id: 1,
         title: '4 分 開襟毛衣',
-        price: 1000,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
+        price: null,
+        minPrice: 1000,
+        maxPrice: 1000,
         preorderDeadline: '2022/07/31',
         deliveryDate: '2022/12',
         state: 'pre-order',
@@ -121,6 +120,7 @@ export default createStore({
         cata: '服飾',
         tags: ['pre-order','25 時茶會','4 分 MSD/MDD', '服飾'],
         discription: ``,
+        viewed: 8,
         specs: [
           {
             name: '棕色',
@@ -146,12 +146,11 @@ export default createStore({
           pic07: `/img/products/product01/pic07.png`
         }
       }, {
-        id: 1,
+        id: 2,
         title: '短斗篷套組',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
+        price: null,
+        minPrice: 1700,
+        maxPrice: 1700,
         preorderDeadline: '2022/7/30 晚上10點',
         deliveryDate: '2022/12',
         state: 'sold-out',
@@ -160,6 +159,71 @@ export default createStore({
         cata: '服飾',
         tags: ['sold-out','Cocoriang','小寵', '服飾'],
         discription: ``,
+        viewed: 6,
+        specs: [
+          {
+            name: '棕色',
+            price: 1000,
+            url: `/img/products/product02/pic01.png`
+          }, {
+            name: '灰色',
+            price: 1200,
+            url: `/img/products/product02/pic01.png`
+          }, {
+            name: '粉色',
+            price: 1700,
+            url: `/img/products/product02/pic02.png`
+          }],
+        imgCover: `/img/products/product02/cover.png`,
+        imgs: {
+          pic01: `/img/products/product02/pic01.png`,
+          pic02: `/img/products/product02/pic02.png`
+        }
+      }, {
+        id: 3,
+        title: '鞋子',
+        price: null,
+        minPrice: 100,
+        maxPrice: 700,
+        preorderDeadline: '2022/7/30 晚上10點',
+        deliveryDate: '2022/12',
+        state: 'spot-goods',
+        brand: '腳尖上的小屍',
+        size: '4 分 MSD/MDD',
+        cata: '鞋子',
+        tags: ['spot-goods','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
+        discription: ``,
+        viewed: 7,
+        specs: [
+          {
+            name: '棕色',
+            price: 1000,
+            url: `/img/products/product03/pic01.png`
+          }, {
+            name: '粉色',
+            price: 1700,
+            url: `/img/products/product03/pic02.png`
+          }],
+        imgCover: `/img/products/product03/cover.png`,
+        imgs: {
+          pic01: `/img/products/product03/pic01.png`,
+          pic02: `/img/products/product03/pic02.png`
+        }
+      },{
+        id: 1,
+        title: '4 分 開襟毛衣',
+        price: null,
+        minPrice: 3000,
+        maxPrice: 3600,
+        preorderDeadline: '2022/07/31',
+        deliveryDate: '2022/12',
+        state: 'pre-order',
+        brand: '25 時茶會',
+        size: '4 分 MSD/MDD',
+        cata: '服飾',
+        tags: ['pre-order','25 時茶會','4 分 MSD/MDD', '服飾'],
+        discription: ``,
+        viewed: 2,
         specs: [
           {
             name: '棕色',
@@ -168,11 +232,50 @@ export default createStore({
           }, {
             name: '灰色',
             price: 1200,
-            url: `/img/products/product01/pic01.png`
+            url: `/img/products/product01/pic06.png`
           }, {
             name: '粉色',
             price: 1700,
-            url: `/img/products/product01/pic01.png`
+            url: `/img/products/product01/pic02.png`
+          }],
+        imgCover: `/img/products/product01/cover.png`,
+        imgs: {
+          pic01: `/img/products/product01/pic01.png`,
+          pic02: `/img/products/product01/pic02.png`,
+          pic03: `/img/products/product01/pic03.png`,
+          pic04: `/img/products/product01/pic04.png`,
+          pic05: `/img/products/product01/pic05.png`,
+          pic06: `/img/products/product01/pic06.png`,
+          pic07: `/img/products/product01/pic07.png`
+        }
+      }, {
+        id: 2,
+        title: '短斗篷套組',
+        price: null,
+        minPrice: 1000,
+        maxPrice: 1700,
+        preorderDeadline: '2022/7/30 晚上10點',
+        deliveryDate: '2022/12',
+        state: 'sold-out',
+        brand: 'Cocoriang',
+        size: '小寵',
+        cata: '服飾',
+        tags: ['sold-out','Cocoriang','小寵', '服飾'],
+        discription: ``,
+        viewed: 30,
+        specs: [
+          {
+            name: '棕色',
+            price: 1000,
+            url: `/img/products/product02/pic01.png`
+          }, {
+            name: '灰色',
+            price: 1200,
+            url: `/img/products/product02/pic01.png`
+          }, {
+            name: '粉色',
+            price: 1700,
+            url: `/img/products/product02/pic02.png`
           }],
         imgCover: `/img/products/product02/cover.png`,
         imgs: {
@@ -180,29 +283,102 @@ export default createStore({
           pic02: `/img/products/product02/pic02.png`
         }
       }, {
-        id: 2,
+        id: 3,
         title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
+        price: null,
+        minPrice: 1000,
+        maxPrice: 1700,
         preorderDeadline: '2022/7/30 晚上10點',
         deliveryDate: '2022/12',
-        state: 'sold-out',
+        state: 'spot-goods',
         brand: '腳尖上的小屍',
         size: '4 分 MSD/MDD',
         cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
+        tags: ['spot-goods','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
         discription: ``,
+        viewed: 1,
+        specs: [
+          {
+            name: '棕色',
+            price: 1000,
+            url: `/img/products/product03/pic01.png`
+          }, {
+            name: '粉色',
+            price: 1700,
+            url: `/img/products/product03/pic02.png`
+          }],
+        imgCover: `/img/products/product03/cover.png`,
+        imgs: {
+          pic01: `/img/products/product03/pic01.png`,
+          pic02: `/img/products/product03/pic02.png`
+        }
+      },{
+        id: 1,
+        title: '4 分 開襟毛衣',
+        price: null,
+        minPrice: 1000,
+        maxPrice: 1700,
+        preorderDeadline: '2022/07/31',
+        deliveryDate: '2022/12',
+        state: 'pre-order',
+        brand: '25 時茶會',
+        size: '4 分 MSD/MDD',
+        cata: '服飾',
+        tags: ['pre-order','25 時茶會','4 分 MSD/MDD', '服飾'],
+        discription: ``,
+        viewed: 11,
         specs: [
           {
             name: '棕色',
             price: 1000,
             url: `/img/products/product01/pic01.png`
           }, {
+            name: '灰色',
+            price: 1200,
+            url: `/img/products/product01/pic06.png`
+          }, {
             name: '粉色',
             price: 1700,
-            url: `/img/products/product01/pic01.png`
+            url: `/img/products/product01/pic02.png`
+          }],
+        imgCover: `/img/products/product01/cover.png`,
+        imgs: {
+          pic01: `/img/products/product01/pic01.png`,
+          pic02: `/img/products/product01/pic02.png`,
+          pic03: `/img/products/product01/pic03.png`,
+          pic04: `/img/products/product01/pic04.png`,
+          pic05: `/img/products/product01/pic05.png`,
+          pic06: `/img/products/product01/pic06.png`,
+          pic07: `/img/products/product01/pic07.png`
+        }
+      }, {
+        id: 2,
+        title: '短斗篷套組',
+        price: null,
+        minPrice: 1000,
+        maxPrice: 1700,
+        preorderDeadline: '2022/7/30 晚上10點',
+        deliveryDate: '2022/12',
+        state: 'sold-out',
+        brand: 'Cocoriang',
+        size: '小寵',
+        cata: '服飾',
+        tags: ['sold-out','Cocoriang','小寵', '服飾'],
+        discription: ``,
+        viewed: 20,
+        specs: [
+          {
+            name: '棕色',
+            price: 1000,
+            url: `/img/products/product02/pic01.png`
+          }, {
+            name: '灰色',
+            price: 1200,
+            url: `/img/products/product02/pic01.png`
+          }, {
+            name: '粉色',
+            price: 1700,
+            url: `/img/products/product02/pic02.png`
           }],
         imgCover: `/img/products/product02/cover.png`,
         imgs: {
@@ -210,604 +386,34 @@ export default createStore({
           pic02: `/img/products/product02/pic02.png`
         }
       }, {
-        id: 2,
+        id: 3,
         title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
+        price: null,
+        minPrice: 1000,
+        maxPrice: 1700,
         preorderDeadline: '2022/7/30 晚上10點',
         deliveryDate: '2022/12',
-        state: 'sold-out',
+        state: 'spot-goods',
         brand: '腳尖上的小屍',
         size: '4 分 MSD/MDD',
         cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
+        tags: ['spot-goods','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
         discription: ``,
+        viewed: 10,
         specs: [
           {
             name: '棕色',
             price: 1000,
-            url: `/img/products/product01/pic01.png`
+            url: `/img/products/product03/pic01.png`
           }, {
             name: '粉色',
             price: 1700,
-            url: `/img/products/product01/pic01.png`
+            url: `/img/products/product03/pic02.png`
           }],
-        imgCover: `/img/products/product02/cover.png`,
+        imgCover: `/img/products/product03/cover.png`,
         imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
-        }
-      }, {
-        id: 2,
-        title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
-        preorderDeadline: '2022/7/30 晚上10點',
-        deliveryDate: '2022/12',
-        state: 'sold-out',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
-        discription: ``,
-        specs: [
-          {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic01.png`
-          }],
-        imgCover: `/img/products/product02/cover.png`,
-        imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
-        }
-      }, {
-        id: 2,
-        title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
-        preorderDeadline: '2022/7/30 晚上10點',
-        deliveryDate: '2022/12',
-        state: 'sold-out',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
-        discription: ``,
-        specs: [
-          {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic01.png`
-          }],
-        imgCover: `/img/products/product02/cover.png`,
-        imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
-        }
-      }, {
-        id: 2,
-        title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
-        preorderDeadline: '2022/7/30 晚上10點',
-        deliveryDate: '2022/12',
-        state: 'sold-out',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
-        discription: ``,
-        specs: [
-          {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic01.png`
-          }],
-        imgCover: `/img/products/product02/cover.png`,
-        imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
-        }
-      }, {
-        id: 2,
-        title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
-        preorderDeadline: '2022/7/30 晚上10點',
-        deliveryDate: '2022/12',
-        state: 'sold-out',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
-        discription: ``,
-        specs: [
-          {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic01.png`
-          }],
-        imgCover: `/img/products/product02/cover.png`,
-        imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
-        }
-      }, {
-        id: 2,
-        title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
-        preorderDeadline: '2022/7/30 晚上10點',
-        deliveryDate: '2022/12',
-        state: 'sold-out',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
-        discription: ``,
-        specs: [
-          {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic01.png`
-          }],
-        imgCover: `/img/products/product02/cover.png`,
-        imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
-        }
-      }, {
-        id: 2,
-        title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
-        preorderDeadline: '2022/7/30 晚上10點',
-        deliveryDate: '2022/12',
-        state: 'sold-out',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
-        discription: ``,
-        specs: [
-          {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic01.png`
-          }],
-        imgCover: `/img/products/product02/cover.png`,
-        imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
-        }
-      }, {
-        id: 2,
-        title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
-        preorderDeadline: '2022/7/30 晚上10點',
-        deliveryDate: '2022/12',
-        state: 'sold-out',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
-        discription: ``,
-        specs: [
-          {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic01.png`
-          }],
-        imgCover: `/img/products/product02/cover.png`,
-        imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
-        }
-      }, {
-        id: 2,
-        title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
-        preorderDeadline: '2022/7/30 晚上10點',
-        deliveryDate: '2022/12',
-        state: 'sold-out',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
-        discription: ``,
-        specs: [
-          {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic01.png`
-          }],
-        imgCover: `/img/products/product02/cover.png`,
-        imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
-        }
-      }, {
-        id: 2,
-        title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
-        preorderDeadline: '2022/7/30 晚上10點',
-        deliveryDate: '2022/12',
-        state: 'sold-out',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
-        discription: ``,
-        specs: [
-          {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic01.png`
-          }],
-        imgCover: `/img/products/product02/cover.png`,
-        imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
-        }
-      }, {
-        id: 2,
-        title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
-        preorderDeadline: '2022/7/30 晚上10點',
-        deliveryDate: '2022/12',
-        state: 'sold-out',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
-        discription: ``,
-        specs: [
-          {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic01.png`
-          }],
-        imgCover: `/img/products/product02/cover.png`,
-        imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
-        }
-      }, {
-        id: 2,
-        title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
-        preorderDeadline: '2022/7/30 晚上10點',
-        deliveryDate: '2022/12',
-        state: 'sold-out',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
-        discription: ``,
-        specs: [
-          {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic01.png`
-          }],
-        imgCover: `/img/products/product02/cover.png`,
-        imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
-        }
-      }, {
-        id: 2,
-        title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
-        preorderDeadline: '2022/7/30 晚上10點',
-        deliveryDate: '2022/12',
-        state: 'sold-out',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
-        discription: ``,
-        specs: [
-          {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic01.png`
-          }],
-        imgCover: `/img/products/product02/cover.png`,
-        imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
-        }
-      }, {
-        id: 2,
-        title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
-        preorderDeadline: '2022/7/30 晚上10點',
-        deliveryDate: '2022/12',
-        state: 'sold-out',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
-        discription: ``,
-        specs: [
-          {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic01.png`
-          }],
-        imgCover: `/img/products/product02/cover.png`,
-        imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
-        }
-      }, {
-        id: 2,
-        title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
-        preorderDeadline: '2022/7/30 晚上10點',
-        deliveryDate: '2022/12',
-        state: 'sold-out',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
-        discription: ``,
-        specs: [
-          {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic01.png`
-          }],
-        imgCover: `/img/products/product02/cover.png`,
-        imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
-        }
-      }, {
-        id: 2,
-        title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
-        preorderDeadline: '2022/7/30 晚上10點',
-        deliveryDate: '2022/12',
-        state: 'sold-out',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
-        discription: ``,
-        specs: [
-          {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic01.png`
-          }],
-        imgCover: `/img/products/product02/cover.png`,
-        imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
-        }
-      }, {
-        id: 2,
-        title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
-        preorderDeadline: '2022/7/30 晚上10點',
-        deliveryDate: '2022/12',
-        state: 'sold-out',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
-        discription: ``,
-        specs: [
-          {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic01.png`
-          }],
-        imgCover: `/img/products/product02/cover.png`,
-        imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
-        }
-      }, {
-        id: 2,
-        title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
-        preorderDeadline: '2022/7/30 晚上10點',
-        deliveryDate: '2022/12',
-        state: 'sold-out',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
-        discription: ``,
-        specs: [
-          {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic01.png`
-          }],
-        imgCover: `/img/products/product02/cover.png`,
-        imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
-        }
-      }, {
-        id: 2,
-        title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
-        preorderDeadline: '2022/7/30 晚上10點',
-        deliveryDate: '2022/12',
-        state: 'sold-out',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
-        discription: ``,
-        specs: [
-          {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic01.png`
-          }],
-        imgCover: `/img/products/product02/cover.png`,
-        imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
-        }
-      }, {
-        id: 2,
-        title: '鞋子',
-        price: 1610,
-        discount: 0.9,
-        isDiscount: false,
-        isPreorder: true,
-        preorderDeadline: '2022/7/30 晚上10點',
-        deliveryDate: '2022/12',
-        state: 'sold-out',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['sold-out','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
-        discription: ``,
-        specs: [
-          {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic01.png`
-          }],
-        imgCover: `/img/products/product02/cover.png`,
-        imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
+          pic01: `/img/products/product03/pic01.png`,
+          pic02: `/img/products/product03/pic02.png`
         }
       }
     ],

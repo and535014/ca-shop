@@ -6,7 +6,7 @@
                 .title 所有商品
             .options 
                 .filters
-                    span.options-title 篩選條件：
+                    span.options-title 篩選：
                     .filter-item
                         .filter-item_title(@click="filterStockIsOpen=!filterStockIsOpen" :class="{active: filterStockIsOpen}")
                             span 供貨情況
@@ -15,12 +15,12 @@
                             .filter-item_content(v-if="filterStockIsOpen")
                                 .top 
                                     span.content-title 已選取 0 項
-                                    span.btn.btn-text 重設
+                                    span.btn.btn-text(@click="resetFilter('stock')") 重設
                                 .bottom 
                                     label 預購商品
-                                        input(type="checkbox", name="pre-order")
+                                        input(type="checkbox", name="pre-order" v-model="filters.isPreOrder")
                                     label 現貨商品
-                                        input(type="checkbox", name="in-stock")
+                                        input(type="checkbox", name="spot-goods" v-model="filters.isSpot")
 
                     .filter-item
                         .filter-item_title(@click="filterPriceIsOpen=!filterPriceIsOpen" :class="{active: filterPriceIsOpen}")
@@ -30,38 +30,49 @@
                             .filter-item_content(v-if="filterPriceIsOpen")
                                 .top 
                                     span.content-title 金額
-                                    span.btn.btn-text 重設
+                                    span.btn.btn-text(@click="resetFilter('price')") 重設
                                 .bottom 
                                     span NT$
-                                    input(type="text", name="min-price")
+                                    input(type="text", name="min-price" v-model="filters.minPrice")
                                     span -
-                                    input(type="text", name="max-price")
+                                    input(type="text", name="max-price" v-model="filters.maxPrice")
                 .sort
-                    span.options-title 排序依據：
+                    span.options-title 排序：
                     .sort-options
-                        .btn.btn-secondary 最新
-                        .btn.btn-secondary 最熱門
+                        .btn.btn-secondary(
+                            @click="sort='hot'"
+                            :class="{active: sort=='hot'}"
+                            ) 最熱門
                         .select-wrap(
                                 @mouseover="sortPriceIsOpen=true"
                                 @mouseleave="sortPriceIsOpen=false"
                                 )
-                            .select-title.btn.btn-secondary
+                            .select-title.btn.btn-secondary(:class="{active: sort=='ascending'||sort=='descending'}")
                                 span 價格
                                 i(class="fa-solid fa-angle-down icon-s")
                             Transition(name="fadeIn")
                                 .select-options_wrap(v-show="sortPriceIsOpen")
-                                    .select-options_option 價格: 低到高
-                                    .select-options_option 價格: 高到低
+                                    .select-options_option(
+                                        @click="sort='ascending'"
+                                        :class="{active: sort=='ascending'}"
+                                        ) 價格: 低到高
+                                    .select-options_option(
+                                        @click="sort='descending'"
+                                        :class="{active: sort=='descending'}"
+                                    ) 價格: 高到低
                 .product-num
                     span {{ filteredProducts.length }} 件商品
     section.section.section-main
         .wrapper
-            .card-wrap(v-if="filteredProducts.length!=0")
-                CardContainer(
-                    v-for="product in productsInPage"
-                    :key="product"
-                    :product="product"
-                    )
+            Transition(name="fadeIn" mode="out-in")
+                .card-wrap(
+                    v-if="filteredProducts.length!=0" 
+                    :key="productsInPage")
+                    CardContainer(
+                        v-for="(product, id) in productsInPage"
+                        :key="id"
+                        :product="product"
+                        )
             .notFound(v-if="filteredProducts.length==0")
                 h2.title 沒有符合的商品。
             .pages-wrap
@@ -79,7 +90,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import { mapGetters } from 'vuex';
 export default {
     data(){
@@ -88,19 +98,81 @@ export default {
             productNumInPage: 20,
             filterStockIsOpen: false,
             filterPriceIsOpen: false,
-            sortPriceIsOpen: false
+            sortPriceIsOpen: false,
+            filters: {
+                isSpot: false,
+                isPreOrder: false,
+                minPrice: null,
+                maxPrice: null
+            },
+            sort: null
         }
     },
     computed: {
-        ...mapState(['products']),
         ...mapGetters(['filteredProducts']),
         pagesNum(){
             return Math.ceil(this.filteredProducts.length/this.productNumInPage)
         },
+        furtherFilteredProducts(){
+            let products = this.filteredProducts
+            let r1 = null
+            let r2 = null
+            let r3 = null
+            let r4 = null
+            let filters = this.filters
+
+            if(filters.isSpot){
+                r1 = products.filter((d) => d.state == 'spot-goods')
+                console.log("spot")
+            }else if(!filters.isSpot){
+                r1 = products
+            }
+            
+            if(filters.isPreOrder){
+                r2 = r1.filter((d) => d.state == 'pre-order')
+            }else if(!filters.isPreOrder){
+                r2 = r1
+            }
+
+            if(filters.minPrice){
+                r3 = r2.filter((d) => d.minPrice >= filters.minPrice)
+            }else if(!filters.minPrice){
+                r3 = r2
+            }
+
+            if(filters.maxPrice){
+                r4 = r3.filter((d) => d.maxPrice <= filters.maxPrice)
+            }else if(!filters.maxPrice){
+                r4 = r3
+            }
+
+            return r4
+
+        },
+        sortProducts(){
+            let products = this.furtherFilteredProducts
+            let sort = this.sort
+
+            if(sort=='hot'){
+                products.sort((a,b)=>{
+                    return b.viewed - a.viewed
+                })
+            }else if(sort=='ascending'){
+                products.sort((a,b)=>{
+                    return a.minPrice - b.minPrice
+                })
+            }else if(sort=='descending'){
+                products.sort((a,b)=>{
+                    return b.minPrice - a.minPrice
+                })
+            }
+
+            return products
+        },
         productsInPage(){
             let max = this.currPage*this.productNumInPage
             let min = (this.currPage-1)*this.productNumInPage
-            return this.filteredProducts.slice(min,max)
+            return this.sortProducts.slice(min,max)
         }
     },
     methods: {
@@ -116,6 +188,38 @@ export default {
         },
         goSpecificPage(i){
             this.currPage = i
+        },
+        resetFilter(type){
+            if(type=='stock'){
+                this.filters = {
+                    isSpot: false,
+                    isPreOrder: false
+                }    
+            }
+            if(type='price'){
+                this.filters = {
+                    minPrice: null,
+                    maxPrice: null
+                }
+            }
+        },
+        pageInit(){
+            this.currPage = 1
+            this.filterStockIsOpen = false
+            this.filterPriceIsOpen = false
+            this.sortPriceIsOpen = false
+            this.filters = {
+                isSpot: false,
+                isPreOrder: false,
+                minPrice: null,
+                maxPrice: null
+            }
+            this.sort = null
+        }
+    },
+    watch: {
+        filteredProducts(){
+            this.pageInit()
         }
     }
 }
@@ -221,6 +325,11 @@ export default {
                         padding: 2px 10px;
                         margin-right: 8px;
                         font-weight: normal;
+
+                        &.active{
+                            background-color: $brand-color;
+                            color: white;
+                        }
                     }
 
                     .select-wrap{
@@ -251,7 +360,7 @@ export default {
                                 padding: 4px 0;
                                 text-align: center;
 
-                                &:hover{
+                                &:hover, &.active{
                                     color: lighten($brand-color,5);
                                     font-weight: bold;
                                 }

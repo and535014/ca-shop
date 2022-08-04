@@ -44,7 +44,7 @@ export default {
     },
     ...mapState({
       banners: state => state.banners,
-      products: state => state.products
+      products: state => state.products.filter((d) => d.state=='pre-order')
     }),
     num(){
       return this.banners.length

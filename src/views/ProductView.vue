@@ -19,7 +19,7 @@
                             @click="setCurrentImg(img)"
                             )
                 .product-main-info
-                    .pre-order-tag(v-if="product.isPreorder")
+                    .pre-order-tag(v-if="product.state=='pre-order'")
                         span.tag 預購商品
                         span 預計：{{ product.deliveryDate }} 出貨
                     .product-title
@@ -27,7 +27,8 @@
                         span {{ product.title }}
                     .prices
                         span.unit NT$
-                        span.num(v-if="!currentSpec") {{ minPrice }} ~ {{ maxPrice }}
+                        span.num(v-if="product.price") {{ product.price }}
+                        span.num(v-if="!currentSpec && !product.price") {{ product.minPrice }} ~ {{ product.maxPrice }}
                         span.num(v-if="currentSpec") {{ currentSpec.price }}
                     .specs.flex-box
                         label.flex-item 規格

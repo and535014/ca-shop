@@ -3,12 +3,13 @@
     router-link.link-top(:to="getPath(product.id)")
         .pic(v-html="getImg(product.imgCover,'')")
     .info
-        router-link.link-bottom(to="/product") {{ product.title }}
+        router-link.link-bottom(:to="getPath(product.id)") {{ product.title }}
         .details 
             a.brand(href="#") {{ product.brand }}
             .price
                 span.unit NT$
-                span.num {{ product.price }}
+                span.num(v-if="product.price") {{ product.price }}
+                span.num(v-if="!product.price") {{ product.minPrice }} ~ {{ product.maxPrice }}
 </template>
 
 <script>
