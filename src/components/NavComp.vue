@@ -26,15 +26,23 @@ header.header
                     @mouseleave="first.isOpen = false"
                     :class="{isOpen: first.isOpen}"
                     )
-                    router-link.title(to="/browse")
+                    router-link.title(
+                        to="/browse"
+                        @click="setFilter(first,first.navSecond)"
+                        )
                         span {{ first.navFirst }}
                     transition(name="navFadeIn")
                         .nav-second(
                             v-if="first.navSecond" 
                             v-show="first.isOpen"
                             ) 
-                            a.topic-link(href="#" v-for="second in first.navSecond") {{ second }}
-
+                            a.topic-link(
+                                href="#" 
+                                v-for="second in first.navSecond"
+                                @click="setFilter(first,second)"
+                                ) {{ second }}
+    .test 
+        p {{filters}}
 </template>
 
 <script>
@@ -44,7 +52,8 @@ export default {
     computed: {
         ...mapState({
             navigation: state => state.header.navigation,
-            cartList: state => state.cartList
+            cartList: state => state.cartList,
+            filters: 'filters'
         })
     },
     data(){
@@ -57,6 +66,16 @@ export default {
             handler(val){
                 this.$emit('update',val)
             }
+        }
+    },
+    methods: {
+        setFilter(obj1,obj2){
+            let result = {
+                first: obj1.filter,
+                second: obj2
+            }
+            console.log(result)
+            this.$store.commit('setFilters', result)
         }
     }
 }

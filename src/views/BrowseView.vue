@@ -22,43 +22,67 @@
                         option 日期高到低
                         option 日期低到高
                 .product-num
-                    span 100 件商品
+                    span {{ filteredProducts.length }} 件商品
     section.section.section-main
         .wrapper
-            .card-wrap
+            .card-wrap(v-if="filteredProducts.length!=0")
                 CardContainer(
-                    v-for="product in products"
+                    v-for="product in productsInPage"
                     :key="product"
                     :product="product"
-                    v-if="filteredProducts.length==0"
                     )
-                CardContainer(
-                    v-for="product in filteredProducts"
-                    :key="product"
-                    :product="product"
-                    v-if="filteredProducts.length!=0"
-                    )
+            .notFound(v-if="filteredProducts.length==0")
+                h2.title 沒有符合的商品。
             .pages-wrap
                 ul.pages
-                    li 
-                        a(href="#") 1
-                    li 
-                        a(href="#") 2
-                    li 
-                        a(href="#") 3
-                    li
+                    li.btn.btn-s(v-if="pagesNum>1 && currPage>1" @click="goPrevPage")
+                        i(class="fa-solid fa-angle-left")
+                    li.btn.btn-s.page(
+                        v-for="i in pagesNum"
+                        :class="{active: currPage==i}"
+                        @click="goSpecificPage(i)"
+                        )
+                        span {{ i }}
+                    li.btn.btn-s(v-if="pagesNum>1" @click="goNextPage")
                         i(class="fa-solid fa-angle-right")
 </template>
 
 <script>
-import CardContainer from '@/components/CardContainer.vue';
 import { mapState } from 'vuex';
 import { mapGetters } from 'vuex';
 export default {
-    components: { CardContainer },
+    data(){
+        return {
+            currPage: 1,
+            productNumInPage: 20
+        }
+    },
     computed: {
         ...mapState(['products']),
-        ...mapGetters(['filteredProducts'])
+        ...mapGetters(['filteredProducts']),
+        pagesNum(){
+            return Math.ceil(this.filteredProducts.length/this.productNumInPage)
+        },
+        productsInPage(){
+            let max = this.currPage*this.productNumInPage
+            let min = (this.currPage-1)*this.productNumInPage
+            return this.filteredProducts.slice(min,max)
+        }
+    },
+    methods: {
+        goNextPage(){
+            if(this.currPage<this.pagesNum){
+                this.currPage++
+            }
+        },
+        goPrevPage(){
+            if(this.currPage>1){
+                this.currPage--
+            }
+        },
+        goSpecificPage(i){
+            this.currPage = i
+        }
     }
 }
 </script>
@@ -66,10 +90,6 @@ export default {
 <style lang="scss">
 .page.page-browse{
     text-align: left;
-
-    span{
-        margin-right: 8px;
-    }
 
     .section-top{
         padding-bottom: 0;
@@ -115,22 +135,26 @@ export default {
             }
         }
 
+        .notFound{
+            height: 50vh;
+            display: flex;
+            justify-content: center;
+
+            .title{
+                margin-top: 60px;
+            }
+        }
+
         .pages-wrap{
             .pages{
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                text-align: center;
 
-                li{
-                    margin-right: 8px;
-                    a{
+                .page{
+                    &.active{
                         text-decoration: underline;
-                        display: block;
-                        padding: 8px;
-                    }
-
-                    &:last-child{
-                        margin-left: 8px;
                     }
                 }
             }
