@@ -25,4 +25,11 @@ const router = createRouter({
   routes
 })
 
+router.beforeEach((to,from) => {
+  if(from.currCata){
+    console.log("checked")
+  }
+  
+})
+
 export default router

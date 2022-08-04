@@ -5,13 +5,13 @@ export default createStore({
     header: {
       navigation: [
         {
-          navFirst: '限時預購',
-          filter: 'pre-order',
-          isOpen: false,
-          navSecond: null
-        }, {
           navFirst: '所有商品',
           filter: null,
+          isOpen: false,
+          navSecond: null
+        },{
+          navFirst: '限時預購',
+          filter: 'pre-order',
           isOpen: false,
           navSecond: null
         }, {

@@ -24,7 +24,7 @@ header.header
                 li.nav-first-li(
                     @mouseover="first.isOpen = true"
                     @mouseleave="first.isOpen = false"
-                    :class="{isOpen: first.isOpen}"
+                    :class="{isOpen: first.isOpen, active: currCataLocal.firstCata == first.navFirst}"
                     )
                     router-link.title(
                         to="/browse"
@@ -39,6 +39,7 @@ header.header
                             a.topic-link(
                                 href="#" 
                                 v-for="second in first.navSecond"
+                                :class="{active: currCataLocal.secondCata == second}"
                                 @click="setFilter(first,second)"
                                 ) {{ second }}
 
@@ -47,7 +48,7 @@ header.header
 <script>
 import { mapState } from 'vuex'
 export default {
-    props: ['cartIsOpen'],
+    props: ['cartIsOpen', 'reactIsShow', 'currCata'],
     computed: {
         ...mapState({
             navigation: state => state.header.navigation,
@@ -57,22 +58,43 @@ export default {
     },
     data(){
         return {
-            cartOpen: this.cartIsOpen 
+            cartOpen: this.cartIsOpen,
+            currCataLocal: this.currCata
         }
     },
     watch: {
         cartOpen: {
             handler(val){
-                this.$emit('update',val)
+                this.$emit('update', {cartIsOpen: val})
+            }
+        },
+        currCataLocal: {
+            handler(val){
+                this.$emit('update', {firstCata: val.firstCata, secondCata: val.secondCata})
             }
         }
     },
     methods: {
         setFilter(obj1,obj2){
-            let result = {
+            let result = null
+
+            result = {
                 first: obj1.filter,
                 second: obj2
             }
+            
+            if(typeof obj2=='object'){
+                result.second = null
+            }
+
+            let judge = !result.first && !result.second && obj1.navFirst!="所有商品"
+
+            if(!judge){
+                let cata = this.currCataLocal
+                cata.firstCata = obj1.navFirst
+                cata.secondCata = obj2
+            }
+
             this.$store.commit('setFilters', result)
         }
     }
@@ -147,7 +169,7 @@ export default {
             .nav-first-li{
                 cursor: pointer;
                 z-index: 10;
-                &.isOpen{
+                &.isOpen, &.active{
                     .title{
                         font-weight: bold;
                         text-decoration: underline;
@@ -178,7 +200,7 @@ export default {
             top: 42px;
             left: 0;
             border: 1px solid $black-40;
-            z-index: 1;
+            z-index: 10;
             background-color: #fff;
             padding: 8px 12px;
 
@@ -188,7 +210,7 @@ export default {
                 display: block;
                 color: $black-60;
 
-                &:hover{
+                &:hover, &.active{
                     color: lighten($brand-color,10);
                 }
             }

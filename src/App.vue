@@ -1,13 +1,16 @@
 <template lang="pug">
 NavComp(
-    :cartIsOpen="cartIsOpen" 
+    :cartIsOpen="cartIsOpen"
     :key="cartIsOpen" 
-    @update="updateCart"
+    @update="updateNavInfo"
+    :currCata="currCata"
     )
-router-view
-//- router-view(v-slot="{ Component }")
-//-     transition(name="fadeIn" mode="out-in")
-//-         component(:is="Component")
+router-view(v-slot="{ Component }")
+    transition(name="fadeIn" mode="out-in")
+        component(
+            :is="Component" 
+            :currCata="currCata"
+            )
 transition(name="fadeIn" mode="out-in")
     MaskCover(
         v-if="maskIsActive" 
@@ -22,17 +25,41 @@ FooterComp
 export default {
     data(){
         return {
-            cartIsOpen: false
+            cartIsOpen: false,
+            currCata: {
+                firstCata: null,
+                secondCata: null
+            }
         }
     },
     methods: {
-        updateCart(val){
-            this.cartIsOpen=val
+        updateNavInfo(val){
+            if(val.cartIsOpen){
+                this.cartIsOpen = val.cartIsOpen
+            }
+
+            let cata = this.currCata
+            if(val.firstCata){
+                cata.firstCata = val.firstCata
+            }
+
+            if(val.secondCata){
+                cata.secondCata = val.secondCata
+            }
+
+            // console.log(val)
         }
     },
     computed: {
         maskIsActive(){
             return this.cartIsOpen?true:false
+        }
+    },
+    watch: {
+        currCata: {
+            handler(val){
+                this.currCata = val
+            }
         }
     }
 }

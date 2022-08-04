@@ -3,7 +3,10 @@
     section.section.section-top
         .wrapper
             .browse-header
-                .title 所有商品
+                .subtitle 
+                    span(v-if="!currCataLocal.firstCata") 所有商品
+                    span(v-if="currCataLocal") {{ currCataLocal.firstCata }}
+                    span(v-if="currCataLocal.secondCata") {{ currCataLocal.secondCata }}
             .options 
                 .filters
                     span.options-title 篩選：
@@ -92,6 +95,7 @@
 <script>
 import { mapGetters } from 'vuex';
 export default {
+    props: ['currCata'],
     data(){
         return {
             currPage: 1,
@@ -105,7 +109,8 @@ export default {
                 minPrice: null,
                 maxPrice: null
             },
-            sort: null
+            sort: null,
+            currCataLocal: this.currCata
         }
     },
     computed: {
@@ -123,7 +128,6 @@ export default {
 
             if(filters.isSpot){
                 r1 = products.filter((d) => d.state == 'spot-goods')
-                console.log("spot")
             }else if(!filters.isSpot){
                 r1 = products
             }
@@ -233,8 +237,22 @@ export default {
         padding-bottom: 0;
 
         .browse-header{
-            .title{
+            .subtitle{
                 margin-bottom: 16px;
+
+                span{
+
+                    &:before{
+                        content: ">";
+                        display: inline-block;
+                        margin: 0 8px;
+                    }
+
+                    &:first-child:before{
+                        display: none;
+                    }
+
+                }
             }
         }
 
@@ -275,7 +293,7 @@ export default {
                         top: 36px;
                         left: 0;
                         background-color: #fff;
-                        z-index: 1;
+                        z-index: 10;
                         width: 200px;
                         padding: 16px 24px;
                         border: 1px solid $black-40;
@@ -351,7 +369,7 @@ export default {
                             left: 0;
                             background-color: #fff;
                             border: 1px solid $black-40;
-                            z-index: 1;
+                            z-index: 10;
                             padding: 12px;
                             min-width: 120px;
 
