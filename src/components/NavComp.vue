@@ -82,8 +82,8 @@ export default {
     methods: {
         getPath(first,second){
             if(first.navSecond){
-                let result = second.split(" ").join("-").split("/").join("-")
-                return `/browse/${first.navFirst}_${result}`
+                let result = second.split(" ").join("_").split("/").join("-")
+                return `/browse/${first.navFirst}=${result}`
             }else if(!first.navSecond){
                 return `/browse/${first.navFirst}`
             }

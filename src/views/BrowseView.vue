@@ -4,9 +4,8 @@
         .wrapper
             .browse-header
                 .subtitle 
-                    span(v-if="!currCataLocal.firstCata") 所有商品
-                    span(v-if="currCataLocal") {{ currCataLocal.firstCata }}
-                    span(v-if="currCataLocal.secondCata") {{ currCataLocal.secondCata }}
+                    span {{ cataFirst }}
+                    span(v-if="cataSecond") {{ cataSecond }}
             .options 
                 .filters
                     span.options-title 篩選：
@@ -68,19 +67,20 @@
                                         :class="{active: sort=='descending'}"
                                     ) 價格: 高到低
                 .product-num
-                    span {{ filteredProducts.length }} 件商品
+                    span {{ fProducts.length }} 件商品
     section.section.section-main
         .wrapper
             Transition(name="fadeIn" mode="out-in")
                 .card-wrap(
-                    v-if="filteredProducts.length!=0" 
+                    v-if="fProducts.length!=0" 
                     :key="productsInPage")
                     CardContainer(
                         v-for="(product, id) in productsInPage"
                         :key="id"
                         :product="product"
+                        @click="pageInit"
                         )
-            .notFound(v-if="filteredProducts.length==0")
+            .notFound(v-if="fProducts.length==0")
                 h2.title 沒有符合的商品。
             .pages-wrap
                 ul.pages
@@ -108,7 +108,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState } from 'vuex'
 export default {
     props: ['currCata', 'cata'],
     data(){
@@ -133,12 +133,57 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['filteredProducts']),
+        ...mapState(['products']),
         pagesNum(){
-            return Math.ceil(this.filteredProducts.length/this.productNumInPage)
+            return Math.ceil(this.fProducts.length/this.productNumInPage)
+        },
+        fProducts(){
+            let datas = [...this.products]
+            let products = null
+            if(this.cataFirst=='所有商品'){
+                products = datas
+            }
+
+            if(this.cataFirst=='限時預購'){
+                products = datas.filter((d)=> d.state=='pre-order')
+            }
+
+            if(this.cataFirst=='品牌' && this.cataSecond){
+                products = datas.filter((d)=> d.brand==this.cataSecond)
+            }
+
+            if(this.cataFirst=='尺寸' && this.cataSecond){
+                products = datas.filter((d)=> d.size==this.cataSecond)
+            }
+
+            if(this.cataFirst=='服飾' && this.cataSecond){
+                let middle = datas.filter((d)=> d.cata=='服飾')
+                products = middle.filter((d)=> d.size==this.cataSecond)
+            }
+
+            if(this.cataFirst=='鞋子' && this.cataSecond){
+                let middle = datas.filter((d)=> d.cata=='鞋子')
+                products = middle.filter((d)=> d.size==this.cataSecond)
+            }
+
+            if(this.cataFirst=='假髮' && this.cataSecond){
+                let middle = datas.filter((d)=> d.cata=='假髮')
+                products = middle.filter((d)=> d.size==this.cataSecond)
+            }
+
+            if(this.cataFirst=='眼珠' && this.cataSecond){
+                let middle = datas.filter((d)=> d.cata=='眼珠')
+                products = middle.filter((d)=> d.size==this.cataSecond)
+            }
+
+            if(this.cataFirst=='配件' && this.cataSecond){
+                products = datas.filter((d)=> d.cata=='眼珠')
+            }
+
+            return products
         },
         furtherFilteredProducts(){
-            let products = this.filteredProducts
+            let products = this.fProducts
             let r1 = null
             let r2 = null
             let r3 = null
@@ -197,10 +242,17 @@ export default {
             let min = (this.currPage-1)*this.productNumInPage
             return this.sortProducts.slice(min,max)
         },
-        check(){
-            let products = this.filteredProducts
-            return products.map(d=>d.id)
-
+        cataFirst(){
+            let result = this.cata.split("=")[0]
+            return result 
+        },
+        cataSecond(){
+            let target = this.cata.split("=")[1]
+            let result = null 
+            if(target){
+                result = target.split("_").join(" ").split("-").join("/")
+            }
+            return target?result:null
         }
     },
     methods: {
@@ -243,12 +295,10 @@ export default {
                 maxPrice: null
             }
             this.sort = null
-            this.sortProducts = [...this.filteredProducts]
-
         }
     },
     watch: {
-        filteredProducts(){
+        fProducts(){
             this.pageInit()
         }
     }
