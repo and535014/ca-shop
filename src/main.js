@@ -10,6 +10,7 @@ import PhotoZoom from './components/PhotoZoom'
 import ShopCart from './components/ShopCart'
 import MaskCover from './components/MaskCover'
 import JsReact from './components/JsReact'
+import ModalComp from './components/ModalComp'
 
 const app = createApp(App)
 app.use(store).use(router)
@@ -21,6 +22,7 @@ app.component('PhotoZoom', PhotoZoom)
 app.component('ShopCart', ShopCart)
 app.component('MaskCover', MaskCover)
 app.component('JsReact', JsReact)
+app.component('ModalComp', ModalComp)
 
 
 app.mount('#app')

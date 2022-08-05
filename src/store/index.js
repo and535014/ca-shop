@@ -485,32 +485,9 @@ export default createStore({
           ]
         }
       ]
-    },
-    filters: {
-      firstFilter: null,
-      secondFilter: null
     }
   },
   getters: {
-    filteredProducts(state){
-      let products = state.products
-      let first = state.filters.firstFilter
-      let second = state.filters.secondFilter
-      let filteredproducts
-
-      if(first && !second){
-        filteredproducts = products.filter((d) => d.tags.find(t=>t===first))
-      }else if (!first && second){
-        filteredproducts = products.filter((d) => d.tags.find(t=>t===second))
-      }else if(first && second){
-        let firstfiltered = products.filter((d) => d.tags.find(t=>t===first))
-        filteredproducts = firstfiltered.filter((d) => d.tags.find(t=>t===second))
-      }else if(!first && !second){
-        filteredproducts = products
-      }
-
-      return filteredproducts
-    }
   },
   mutations: {
     addCart(state, payload){
@@ -524,11 +501,6 @@ export default createStore({
       let qty = payload.qty
       let target = state.cartList[id]
       target.qty = qty
-    },
-    setFilters(state,payload){
-      let target = state.filters
-      target.firstFilter = payload.first
-      target.secondFilter = payload.second
     }
   },
   actions: {

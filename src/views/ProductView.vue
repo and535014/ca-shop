@@ -113,91 +113,105 @@
             :currentImgId="currentImgId"
             @update="updatePhotoZoom"
             )
+    Transition(name="fadeIn" mode="out-in")
+        ModalComp.cart-added(
+            v-if="cartIsAdded"
+            msg="商品已成功加入購物車。"
+            icon="success"
+            )
+            template(v-slot:mask)
+                MaskCover
+            template(v-slot:msg)
 
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import ModalComp from '@/components/ModalComp.vue'
 export default {
-    created(){
-        this.currentImg = this.product.imgs.pic01
-        this.currentImgId = 0
+    created() {
+        this.currentImg = this.product.imgs.pic01;
     },
-    props: ['id','currCata'],
-    data(){
+    props: ["id", "currCata"],
+    data() {
         return {
             currentImg: null,
-            currentImgId: null,
+            currentImgId: 0,
             currentSpec: null,
             quantity: 1,
-            photoIsZoom: false
-        }
+            photoIsZoom: false,
+            cartIsAdded: false
+        };
     },
     computed: {
         ...mapState({
             products: state => state.products,
             cartList: state => state.cartList
         }),
-        product(){
-            return this.products[this.id]
+        product() {
+            return this.products[this.id];
         },
-        maxPrice(){
-            let specs = this.product.specs
-            let prices = specs.map((spec)=>spec.price).sort(function(a,b){
-                return a-b
-            })
-            let id = prices.length - 1
-
-            return prices[id]
+        maxPrice() {
+            let specs = this.product.specs;
+            let prices = specs.map((spec) => spec.price).sort(function (a, b) {
+                return a - b;
+            });
+            let id = prices.length - 1;
+            return prices[id];
         },
-        minPrice(){
-            let specs = this.product.specs
-            let prices = specs.map((spec)=>spec.price).sort(function(a,b){
-                return a-b
-            })
-            let id = 0
-
-            return prices[id]
+        minPrice() {
+            let specs = this.product.specs;
+            let prices = specs.map((spec) => spec.price).sort(function (a, b) {
+                return a - b;
+            });
+            let id = 0;
+            return prices[id];
         }
     },
     methods: {
-        getImg(url){
-            return `<img src="${url}">`
+        getImg(url) {
+            return `<img src="${url}">`;
         },
-        setCurrentImg(img, id){
-            this.currentImg = img
-            this.currentImgId = id
+        setCurrentImg(img, id) {
+            this.currentImg = img;
+            this.currentImgId = id;
         },
-        getCurrentSpec(spec){
-            this.currentSpec = spec
-            this.currentImg = spec.url
-            this.quantity = 1
+        getCurrentSpec(spec) {
+            this.currentSpec = spec;
+            this.currentImg = spec.url;
+            this.quantity = 1;
         },
-        quantitySub(){
-            if(this.quantity>1){
-                this.quantity--
-            }else{
-                this.quantity=1
+        quantitySub() {
+            if (this.quantity > 1) {
+                this.quantity--;
+            }
+            else {
+                this.quantity = 1;
             }
         },
-        quantityAdd(){
-            this.quantity++
+        quantityAdd() {
+            this.quantity++;
         },
-        addCart(){
-            if(this.currentSpec){
+        addCart() {
+            if (this.currentSpec) {
                 let orderInfo = {
                     ...this.product,
                     spec: this.currentSpec,
                     qty: this.quantity
-                }
+                };
+                this.$store.commit("addCart", orderInfo);
+                this.cartIsAdded=true
 
-                this.$store.commit('addCart', orderInfo)
+                setTimeout(()=>{
+                    this.cartIsAdded=false
+                },1200)
             }
         },
-        updatePhotoZoom(val){
-            this.photoIsZoom=val
+        updatePhotoZoom(val) {
+            this.photoIsZoom = val;
         }
-    }
+    },
+    components: { ModalComp }
 }
 </script>
 
@@ -383,5 +397,6 @@ export default {
             }
         }
     }
+
 }
 </style>

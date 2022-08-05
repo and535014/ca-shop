@@ -29,7 +29,6 @@ header.header
                     template(v-if="!first.navSecond")
                         router-link.title(
                             :to="getPath(first,'')"
-                            @click="setFilter(first,first.navSecond)"
                             )
                             span {{ first.navFirst }}
                     template(v-if="first.navSecond")
@@ -57,8 +56,7 @@ export default {
     computed: {
         ...mapState({
             navigation: state => state.header.navigation,
-            cartList: state => state.cartList,
-            filters: 'filters'
+            cartList: state => state.cartList
         })
     },
     data(){
@@ -88,28 +86,6 @@ export default {
                 return `/browse/${first.navFirst}`
             }
         },
-        setFilter(obj1,obj2){
-            let result = null
-
-            result = {
-                first: obj1.filter,
-                second: obj2
-            }
-            
-            if(typeof obj2=='object'){
-                result.second = null
-            }
-
-            let judge = !result.first && !result.second && obj1.navFirst!="所有商品"
-
-            if(!judge){
-                let cata = this.currCataLocal
-                cata.firstCata = obj1.navFirst
-                cata.secondCata = obj2
-            }
-
-            this.$store.commit('setFilters', result)
-        },
         init(){
             this.currCataLocal = {
                 firstCata: null,
@@ -132,7 +108,6 @@ export default {
             grid-template-columns: 1fr 1fr 1fr;
             grid-template-rows: auto;
             grid-template-areas: ' search logo icons';
-
         }
         .search-bar-wrap {
             grid-area: 'search';
