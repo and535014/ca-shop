@@ -13,6 +13,8 @@ transition(name="fadeIn" mode="out-in")
         @click="cartIsOpen=!cartIsOpen")
 ShopCart(
     :class="{active: cartIsOpen}"
+    :cartIsOpen="cartIsOpen"
+    @update="updateCartInfo"
     )
 FooterComp
 </template>
@@ -26,9 +28,10 @@ export default {
     },
     methods: {
         updateNavInfo(val){
-            if(val.cartIsOpen){
-                this.cartIsOpen = val.cartIsOpen
-            }
+            this.cartIsOpen = val.cartIsOpen
+        },
+        updateCartInfo(val){
+            this.cartIsOpen = val.cartIsOpen
         }
     },
     computed: {

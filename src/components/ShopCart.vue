@@ -13,7 +13,10 @@
                         .tag 預
                         span 預計 {{ item.deliveryDate }} 出貨
                     .brand {{ item.brand }}
-                    .product-title {{ item.title }}
+                    router-link.product-title(
+                        @click="cartIsOpen=!cartIsOpen"
+                        :to="getPath(item.id)"
+                        ) {{ item.title }}
                     .spec
                         span {{ item.spec.name }}
                     .cart-quantity
@@ -32,6 +35,11 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+    props: ['cartIsOpen'],
+    data(){
+        return {
+        }
+    },
     computed: {
         ...mapState(['cartList'])
     },
@@ -75,7 +83,18 @@ export default {
             return {
                 'background-image': 'url('+url+')',
                 'background-position': 'center center',
-                'background-size': 'cover'
+                'background-size': 'contain',
+                'background-repeat': 'no-repeat'
+            }
+        },
+        getPath(id){
+            return `/product/${id}`
+        }
+    },
+    watch: {
+        cartIsOpen: {
+            handler(val){
+                this.$emit('update', {cartIsOpen: val})
             }
         }
     }
@@ -148,11 +167,14 @@ export default {
             .brand{
                 font-size: 14px;
                 opacity: .6;
+                margin-bottom: 4px;
             }
             .product-title{
                 margin-bottom: 12px;
                 font-size: 18px;
                 font-weight: 500;
+                display: block;
+                margin-bottom: 8px;
             }
             .spec{
                 margin-bottom: 12px;
@@ -168,7 +190,8 @@ export default {
             .subtotal{
                 text-align: right;
                 font-weight: bold;
-                font-size: 20px;
+                font-size: 24px;
+                line-height: 1.6;
                 letter-spacing: normal;
                 color: $brand-color;
 

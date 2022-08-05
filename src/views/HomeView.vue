@@ -244,6 +244,7 @@ export default {
 
       .counter-wrap{
         display: flex;
+        flex-direction: row-reverse;
         position: absolute;
         bottom: 10px;
         left: 50%;
@@ -255,7 +256,7 @@ export default {
           border-radius: 50%;
           background-color: rgba(black,.3);
 
-          &:last-child{
+          &:first-child{
             margin-right: 0;
           }
 

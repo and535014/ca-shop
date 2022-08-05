@@ -1,10 +1,21 @@
 <template lang="pug">
 header.header
     .top-header
+        //- p {{keywords}}
         .wrapper
             .search-bar-wrap
-                .search-icon.btn.btn-l.btn-icon-m.btn-text
+                .search-icon.btn.btn-l.btn-icon-m.btn-text(
+                    @click="searchIsActive=!searchIsActive"
+                    :class="{active: searchIsActive}"
+                    )
                     i(class="fa-solid fa-magnifying-glass")
+                input.keyword-input(
+                    type="text" 
+                    placeholder="商品搜尋"
+                    :class="{active: searchIsActive}"
+                    v-model="keywords"
+                    @change="goSearch"
+                    )
             .logo-wrap 
                 router-link.logo(to="/") Crystal Apple
             .icons-wrap 
@@ -14,7 +25,7 @@ header.header
                     i(class="fa-regular fa-heart")
                 .btn.btn-l.btn-icon-m.btn-text
                     i(class="fa-solid fa-clipboard-list")
-                .btn.btn-l.btn-icon-m.btn-text.btn-cart(@click="cartOpen=!cartOpen") 
+                .btn.btn-l.btn-icon-m.btn-text.btn-cart(@click="cartIsOpen=!cartIsOpen") 
                     i(class="fa-solid fa-cart-shopping")
                     .cart-count(v-if="cartList.length!=0") {{ cartList.length }}
 
@@ -48,6 +59,7 @@ header.header
 </template>
 
 <script>
+import { routerKey } from 'vue-router'
 import { mapState } from 'vuex'
 export default {
     props: ['cartIsOpen', 'reactIsShow'],
@@ -59,11 +71,12 @@ export default {
     },
     data(){
         return {
-            cartOpen: this.cartIsOpen
+            searchIsActive: false,
+            keywords: ''
         }
     },
     watch: {
-        cartOpen: {
+        cartIsOpen: {
             handler(val){
                 this.$emit('update', {cartIsOpen: val})
             }
@@ -77,6 +90,16 @@ export default {
             }else if(!first.navSecond){
                 return `/browse/${first.navFirst}`
             }
+        },
+        getSearchPath(){
+            if(this.keywords){
+                return `/search/${this.keywords}`
+            }
+        },
+        goSearch(){
+            this.$router.push({path: `/search/keywords=${this.keywords}`})
+            this.keywords = null
+            this.searchIsActive = false
         }
     }
 }
@@ -99,6 +122,29 @@ export default {
             grid-area: 'search';
             display: flex;
             align-items: center;
+
+            .search-icon{
+
+                &.active{
+                    color: lighten($brand-color,10);
+                }
+            }
+
+            .keyword-input{
+                border: none;
+                border-bottom: 1px solid $black-60;
+                transition: width .3s;
+                border-radius: 0;
+                padding: 0;
+                width: 0;
+                line-height: 30px;
+                text-indent: 8px;
+
+                &.active{
+                    width: 200px;
+                }
+
+            }
         }
         .logo-wrap{
             @include flexCenter;
@@ -163,7 +209,7 @@ export default {
                 }
                 .title{
                     background-color: #fff;
-                    padding: 14px 0 10px;
+                    padding: 14px 0;
                     font-size: 16px;
                     margin: 0;
                     font-weight: normal;
