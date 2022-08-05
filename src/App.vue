@@ -3,14 +3,10 @@ NavComp(
     :cartIsOpen="cartIsOpen"
     :key="cartIsOpen" 
     @update="updateNavInfo"
-    :currCata="currCata"
     )
 router-view(v-slot="{ Component }")
     transition(name="fadeIn" mode="out-in")
-        component(
-            :is="Component" 
-            :currCata="currCata"
-            )
+        component(:is="Component")
 transition(name="fadeIn" mode="out-in")
     MaskCover(
         v-if="maskIsActive" 
@@ -25,26 +21,13 @@ FooterComp
 export default {
     data(){
         return {
-            cartIsOpen: false,
-            currCata: {
-                firstCata: null,
-                secondCata: null
-            }
+            cartIsOpen: false
         }
     },
     methods: {
         updateNavInfo(val){
             if(val.cartIsOpen){
                 this.cartIsOpen = val.cartIsOpen
-            }
-
-            let cata = this.currCata
-            if(val.firstCata){
-                cata.firstCata = val.firstCata
-            }
-
-            if(val.secondCata){
-                cata.secondCata = val.secondCata
             }
         }
     },
@@ -54,11 +37,6 @@ export default {
         }
     },
     watch: {
-        currCata: {
-            handler(val){
-                this.currCata = val
-            }
-        }
     }
 }
 </script>

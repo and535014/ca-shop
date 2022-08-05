@@ -110,7 +110,7 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-    props: ['currCata', 'cata'],
+    props: ['cata'],
     data(){
         return {
             currPage: 1,
@@ -125,7 +125,6 @@ export default {
                 maxPrice: null
             },
             sort: null,
-            currCataLocal: this.currCata,
             reactIsShow: {
                 stock: false,
                 price: false

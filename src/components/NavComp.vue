@@ -6,7 +6,7 @@ header.header
                 .search-icon.btn.btn-l.btn-icon-m.btn-text
                     i(class="fa-solid fa-magnifying-glass")
             .logo-wrap 
-                router-link.logo(to="/" @click="init") Crystal Apple
+                router-link.logo(to="/") Crystal Apple
             .icons-wrap 
                 .btn.btn-l.btn-icon-m.btn-text
                     i(class="fa-solid fa-user")
@@ -42,7 +42,6 @@ header.header
                             router-link.topic-link(
                                 href="#" 
                                 v-for="second in first.navSecond"
-                                @click="setFilter(first,second)"
                                 :to="getPath(first, second)"
                                 ) {{ second }}
 
@@ -51,7 +50,7 @@ header.header
 <script>
 import { mapState } from 'vuex'
 export default {
-    props: ['cartIsOpen', 'reactIsShow', 'currCata'],
+    props: ['cartIsOpen', 'reactIsShow'],
     computed: {
         ...mapState({
             navigation: state => state.header.navigation,
@@ -60,19 +59,13 @@ export default {
     },
     data(){
         return {
-            cartOpen: this.cartIsOpen,
-            currCataLocal: this.currCata
+            cartOpen: this.cartIsOpen
         }
     },
     watch: {
         cartOpen: {
             handler(val){
                 this.$emit('update', {cartIsOpen: val})
-            }
-        },
-        currCataLocal: {
-            handler(val){
-                this.$emit('update', {firstCata: val.firstCata, secondCata: val.secondCata})
             }
         }
     },
@@ -83,12 +76,6 @@ export default {
                 return `/browse/${first.navFirst}=${result}`
             }else if(!first.navSecond){
                 return `/browse/${first.navFirst}`
-            }
-        },
-        init(){
-            this.currCataLocal = {
-                firstCata: null,
-                secondCata: null
             }
         }
     }

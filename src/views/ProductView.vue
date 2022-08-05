@@ -132,7 +132,7 @@ export default {
     created() {
         this.currentImg = this.product.imgs.pic01
     },
-    props: ["id", "currCata"],
+    props: ["id"],
     data() {
         return {
             currentImg: null,
