@@ -11,14 +11,14 @@
                             )
                     .thumbs
                         .pic-s(
-                            v-for='(img, id) in product.imgs' 
-                            v-html="getImg(img)"
+                            v-for='(img, id) in product.imgs'
                             :class="{active: currentImg==img}"
                             @click="setCurrentImg(img, id)"
                             )
+                            .pic(:style="bgcss(img)")
                 .product-main-info
                     .pre-order-tag(v-if="product.state=='pre-order'")
-                        span.tag 預購商品
+                        span.tag 預購商品 
                         span 預計：{{ product.deliveryDate }} 出貨
                     .product-brand
                         span {{ product.brand }}
@@ -130,7 +130,7 @@ import { mapState } from 'vuex'
 import ModalComp from '@/components/ModalComp.vue'
 export default {
     created() {
-        this.currentImg = this.product.imgs.pic01;
+        this.currentImg = this.product.imgs.pic01
     },
     props: ["id", "currCata"],
     data() {
@@ -140,7 +140,7 @@ export default {
             currentSpec: null,
             quantity: 1,
             photoIsZoom: false,
-            cartIsAdded: false
+            cartIsAdded: false,
         };
     },
     computed: {
@@ -149,28 +149,20 @@ export default {
             cartList: state => state.cartList
         }),
         product() {
-            return this.products[this.id];
-        },
-        maxPrice() {
-            let specs = this.product.specs;
-            let prices = specs.map((spec) => spec.price).sort(function (a, b) {
-                return a - b;
-            });
-            let id = prices.length - 1;
-            return prices[id];
-        },
-        minPrice() {
-            let specs = this.product.specs;
-            let prices = specs.map((spec) => spec.price).sort(function (a, b) {
-                return a - b;
-            });
-            let id = 0;
-            return prices[id];
+            return this.products.filter((d)=>d.id==this.id)[0]
         }
     },
     methods: {
         getImg(url) {
             return `<img src="${url}">`;
+        },
+        bgcss(url){
+            return {
+                'background-image': 'url('+url+')',
+                'background-position': 'center center',
+                'background-size': 'contain',
+                'background-repeat': 'no-repeat'
+            }
         },
         setCurrentImg(img, id) {
             this.currentImg = img;
@@ -272,9 +264,10 @@ export default {
                     box-sizing: border-box;
                     overflow: hidden;
 
-                    img{
+                    .pic{
                         height: 100%;
                         @include abCenter;
+                        @include size(100%,100%);
                     }
 
                     &.active{

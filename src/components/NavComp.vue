@@ -24,7 +24,7 @@ header.header
                 li.nav-first-li(
                     @mouseover="first.isOpen = true"
                     @mouseleave="first.isOpen = false"
-                    :class="{isOpen: first.isOpen, active: currCataLocal.firstCata == first.navFirst}"
+                    :class="{isOpen: first.isOpen}"
                     )
                     template(v-if="!first.navSecond")
                         router-link.title(
@@ -42,7 +42,6 @@ header.header
                             router-link.topic-link(
                                 href="#" 
                                 v-for="second in first.navSecond"
-                                :class="{active: currCataLocal.firstCata == first.navFirst && currCataLocal.secondCata == second}"
                                 @click="setFilter(first,second)"
                                 :to="getPath(first, second)"
                                 ) {{ second }}
@@ -163,7 +162,7 @@ export default {
             .nav-first-li{
                 cursor: pointer;
                 z-index: 10;
-                &.isOpen, &.active{
+                &.isOpen{
                     .title{
                         font-weight: bold;
                         text-decoration: underline;
@@ -204,7 +203,7 @@ export default {
                 display: block;
                 color: $black-60;
 
-                &:hover, &.active{
+                &:hover{
                     color: lighten($brand-color,10);
                 }
             }

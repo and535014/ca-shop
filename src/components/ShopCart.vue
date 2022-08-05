@@ -6,7 +6,8 @@
         ul.cart-list(v-if="cartList.length!=0")
             li.item(v-for="(item,id) in cartList")
                 .cart_thumbs
-                    .item-photo(v-html="getImg(item.spec.url,'')")
+                    .item-photo
+                        .pic(:style="bgcss(item.spec.url)")
                 .cart_info
                     .pre-order
                         .tag 預
@@ -69,6 +70,13 @@ export default {
         },
         getImg(url, alt){
             return `<img src="${url}" alt="${alt}">`
+        },
+        bgcss(url){
+            return {
+                'background-image': 'url('+url+')',
+                'background-position': 'center center',
+                'background-size': 'cover'
+            }
         }
     }
 }
@@ -117,9 +125,9 @@ export default {
             margin-right: 12px;
             .item-photo{
                 @include size(80px);
-
-                img{
-                    width: 100%;
+                
+                .pic{
+                    @include size(100%, 100%);
                 }
             }
         }
