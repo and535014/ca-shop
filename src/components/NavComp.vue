@@ -45,7 +45,7 @@ header.header
                     template(v-if="first.navSecond")
                         .title
                             span {{ first.navFirst }}
-                    transition(name="navFadeIn")
+                    transition(name="fadeIn")
                         .nav-second(
                             v-if="first.navSecond" 
                             v-show="first.isOpen"
@@ -243,4 +243,5 @@ export default {
         }
     }
 }
+
 </style>

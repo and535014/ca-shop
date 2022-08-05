@@ -26,9 +26,9 @@
                         span {{ product.title }}
                     .prices
                         span.unit NT$
-                        span.num(v-if="product.price") {{ product.price }}
-                        span.num(v-if="!currentSpec && !product.price") {{ product.minPrice }} ~ {{ product.maxPrice }}
-                        span.num(v-if="currentSpec") {{ currentSpec.price }}
+                        span.num(v-if="product.price") {{ addCommaToNum(product.price) }}
+                        span.num(v-if="!currentSpec && !product.price") {{ addCommaToNum(product.minPrice) }} ~ {{ addCommaToNum(product.maxPrice) }}
+                        span.num(v-if="currentSpec") {{ addCommaToNum(currentSpec.price) }}
                     .specs.flex-box
                         label.flex-item 規格
                         ul.options
@@ -201,6 +201,11 @@ export default {
         },
         updatePhotoZoom(val) {
             this.photoIsZoom = val;
+        },
+        addCommaToNum(num){
+            let number = num.toString()
+            let result = number.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,",")
+            return result
         }
     },
     components: { ModalComp }
@@ -392,4 +397,5 @@ export default {
     }
 
 }
+
 </style>

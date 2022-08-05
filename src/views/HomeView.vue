@@ -97,7 +97,7 @@ export default {
             ` 
           }
         }
-      },300)
+      },200)
 
     },
     switchRight(){
@@ -139,46 +139,7 @@ export default {
             ` 
           }
         }
-      },300)
-
-    },
-    goSpecificNum(i){
-      clearTimeout(this.timer)
-      this.timer=setTimeout(()=>{
-        this.currentNum = i
-  
-        for (var i =0; i<this.num; i++){
-          let target = document.getElementsByClassName('item')[i]
-          let span = target.clientWidth
-          let delta = i - this.currentNum
-          let newLeft = 0
-
-          if( delta>=-2 && delta<=3 ){
-            newLeft = span*delta
-          }else if( delta <=-3 ){
-            newLeft = span*(this.num-Math.abs(delta))
-          }else if( delta >=4 ){
-            newLeft = -span*(this.num-Math.abs(delta))
-          }
-  
-          if( Math.abs(delta) < 2 || Math.abs(delta) > 4){
-            target.style.cssText = `
-              transform: translate3d(${newLeft}px, 0, 0);
-              visibility: visible;
-              opacity: 1;
-              transition: 0.5s;
-            `
-          }else if( Math.abs(delta) >= 2 ){
-            target.style.cssText = `
-              transform: translate3d(${newLeft}px, 0, 0);
-              visibility: hidden;
-              opacity: 0;
-              transition: 0.5s;
-            ` 
-          }
-        }
-      },300)
-
+      },200)
     },
     getImg(url, alt){
       return `<img src="${url}" alt="${alt}">`

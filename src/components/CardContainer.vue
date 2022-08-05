@@ -7,9 +7,9 @@
         .details 
             a.brand(href="#") {{ product.brand }}
             .price
-                span.unit NT$
-                span.num(v-if="product.price") {{ product.price }}
-                span.num(v-if="!product.price") {{ product.minPrice }} ~ {{ product.maxPrice }}
+                span.unit NT$ 
+                span.num(v-if="product.price") {{ addCommaToNum(product.price) }}
+                span.num(v-if="!product.price") {{ addCommaToNum(product.minPrice) }} ~ {{ addCommaToNum(product.maxPrice) }}
 </template>
 
 <script>
@@ -21,6 +21,11 @@ export default {
         },
         getPath(id){
             return `/product/${id}`
+        },
+        addCommaToNum(num){
+            let number = num.toString()
+            let result = number.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,",")
+            return result
         }
     }
 }
