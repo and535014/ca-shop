@@ -223,7 +223,7 @@ export default {
         .nav-second{
             position: absolute;
             min-width: 100%;
-            top: 42px;
+            top: 47px;
             left: 0;
             border: 1px solid $black-40;
             z-index: 10;

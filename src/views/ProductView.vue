@@ -114,10 +114,10 @@
             @update="updatePhotoZoom"
             )
     Transition(name="fadeIn" mode="out-in")
-        ModalComp.cart-added(
+        ModalComp(
             v-if="cartIsAdded"
-            msg="商品已成功加入購物車。"
-            icon="success"
+            :msg="msg"
+            :icon="msgIcon"
             )
             template(v-slot:mask)
                 MaskCover
@@ -141,6 +141,8 @@ export default {
             quantity: 1,
             photoIsZoom: false,
             cartIsAdded: false,
+            msg: '',
+            msgIcon: ''
         };
     },
     computed: {
@@ -192,10 +194,24 @@ export default {
                     qty: this.quantity
                 };
                 this.$store.commit("addCart", orderInfo);
+                this.msg = '商品已經成功加入購物車。'
+                this.msgIcon = 'success'
                 this.cartIsAdded=true
 
                 setTimeout(()=>{
                     this.cartIsAdded=false
+                    this.msg = ''
+                this.msgIcon = ''
+                },1200)
+            }else{
+                this.msg = '請選擇規格。'
+                this.msgIcon = 'alert'
+                this.cartIsAdded=true
+
+                setTimeout(()=>{
+                    this.cartIsAdded=false
+                    this.msg = ''
+                this.msgIcon = ''
                 },1200)
             }
         },

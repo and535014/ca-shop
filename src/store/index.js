@@ -19,11 +19,14 @@ export default createStore({
           filter: null,
           isOpen: false,
           navSecond: [
-            '桃子汽水',
-            '貍木',
+            '桃子汽水不加冰',
             'MELODY.C',
-            'DearDoll',
-            'Cocoriang'
+            'DearDolls',
+            'Cocoriang',
+            '25 時茶會',
+            '腳尖上的小詩',
+            '橘嶼',
+            'BEARS'
           ]
         }, {
           navFirst: '尺寸',
@@ -108,32 +111,28 @@ export default createStore({
     products: [
       {
         id: 1,
-        title: '4 分 開襟毛衣',
+        title: 'Holy Cross 高腰連身裙',
         price: null,
-        minPrice: 1000,
-        maxPrice: 1000,
+        minPrice: 2115,
+        maxPrice: 2205,
         preorderDeadline: '2022/07/31',
         deliveryDate: '2022/12',
         state: 'pre-order',
-        brand: '25 時茶會',
+        brand: 'MELODY.C',
         size: '4 分 MSD/MDD',
         cata: '服飾',
-        tags: ['pre-order','25 時茶會','4 分 MSD/MDD', '服飾'],
+        tags: ['pre-order','MELODY.C','4 分 MSD/MDD', '服飾'],
         discription: ``,
         viewed: 8,
         specs: [
           {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '灰色',
-            price: 1200,
-            url: `/img/products/product01/pic06.png`
-          }, {
-            name: '粉色',
-            price: 1700,
+            name: '白色',
+            price: 2115,
             url: `/img/products/product01/pic02.png`
+          }, {
+            name: '黑色',
+            price: 2205,
+            url: `/img/products/product01/pic03.png`
           }],
         imgCover: `/img/products/product01/cover.png`,
         imgs: {
@@ -148,9 +147,9 @@ export default createStore({
       }, {
         id: 2,
         title: '短斗篷套組',
-        price: null,
-        minPrice: 1700,
-        maxPrice: 1700,
+        price: 1610,
+        minPrice: 1610,
+        maxPrice: 1610,
         preorderDeadline: '2022/7/30 晚上10點',
         deliveryDate: '2022/12',
         state: 'sold-out',
@@ -162,16 +161,12 @@ export default createStore({
         viewed: 6,
         specs: [
           {
-            name: '棕色',
-            price: 1000,
+            name: '紅色',
+            price: 1610,
             url: `/img/products/product02/pic01.png`
           }, {
-            name: '灰色',
-            price: 1200,
-            url: `/img/products/product02/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
+            name: '藍色',
+            price: 1610,
             url: `/img/products/product02/pic02.png`
           }],
         imgCover: `/img/products/product02/cover.png`,
@@ -181,28 +176,24 @@ export default createStore({
         }
       }, {
         id: 3,
-        title: '鞋子',
-        price: null,
-        minPrice: 100,
-        maxPrice: 700,
+        title: '開襟毛衣外套',
+        price: 600,
+        minPrice: 600,
+        maxPrice: 600,
         preorderDeadline: '2022/7/30 晚上10點',
         deliveryDate: '2022/12',
         state: 'spot-goods',
-        brand: '腳尖上的小屍',
+        brand: '25 時茶會',
         size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['spot-goods','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
+        cata: '服飾',
+        tags: ['spot-goods','25 時茶會','4 分 MSD/MDD', '服飾'],
         discription: ``,
         viewed: 7,
         specs: [
           {
-            name: '棕色',
-            price: 1000,
+            name: '駝色',
+            price: 600,
             url: `/img/products/product03/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product03/pic02.png`
           }],
         imgCover: `/img/products/product03/cover.png`,
         imgs: {
@@ -211,209 +202,219 @@ export default createStore({
         }
       },{
         id: 4,
-        title: '4 分 開襟毛衣',
-        price: null,
-        minPrice: 3000,
-        maxPrice: 3600,
+        title: '雙釦帶黑色高跟鞋',
+        price: 400,
+        minPrice: 400,
+        maxPrice: 400,
         preorderDeadline: '2022/07/31',
         deliveryDate: '2022/12',
         state: 'pre-order',
-        brand: '25 時茶會',
+        brand: '腳尖上的小詩',
         size: '4 分 MSD/MDD',
-        cata: '服飾',
-        tags: ['pre-order','25 時茶會','4 分 MSD/MDD', '服飾'],
+        cata: '鞋子',
+        tags: ['pre-order','腳尖上的小詩','4 分 MSD/MDD', '鞋子'],
         discription: ``,
         viewed: 2,
         specs: [
           {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '灰色',
-            price: 1200,
-            url: `/img/products/product01/pic06.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic02.png`
+            name: '黑色',
+            price: 400,
+            url: `/img/products/product04/pic01.png`
           }],
-        imgCover: `/img/products/product01/cover.png`,
+        imgCover: `/img/products/product04/cover.png`,
         imgs: {
-          pic01: `/img/products/product01/pic01.png`,
-          pic02: `/img/products/product01/pic02.png`,
-          pic03: `/img/products/product01/pic03.png`,
-          pic04: `/img/products/product01/pic04.png`,
-          pic05: `/img/products/product01/pic05.png`,
-          pic06: `/img/products/product01/pic06.png`,
-          pic07: `/img/products/product01/pic07.png`
+          pic01: `/img/products/product04/pic01.png`
         }
       }, {
         id: 5,
-        title: '短斗篷套組',
-        price: null,
-        minPrice: 1000,
-        maxPrice: 1700,
+        title: '綁帶小絲巾',
+        price: 200,
+        minPrice: 200,
+        maxPrice: 200,
         preorderDeadline: '2022/7/30 晚上10點',
         deliveryDate: '2022/12',
         state: 'sold-out',
-        brand: 'Cocoriang',
+        brand: '橘嶼',
         size: '小寵',
         cata: '服飾',
-        tags: ['sold-out','Cocoriang','小寵', '服飾'],
+        tags: ['sold-out','橘嶼','小寵', '服飾'],
         discription: ``,
         viewed: 30,
         specs: [
           {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product02/pic01.png`
-          }, {
-            name: '灰色',
-            price: 1200,
-            url: `/img/products/product02/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product02/pic02.png`
+            name: '藍配白',
+            price: 200,
+            url: `/img/products/product05/pic01.png`
           }],
-        imgCover: `/img/products/product02/cover.png`,
+        imgCover: `/img/products/product05/cover.png`,
         imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
+          pic01: `/img/products/product05/pic01.png`
         }
       }, {
         id: 6,
-        title: '鞋子',
-        price: null,
-        minPrice: 1000,
-        maxPrice: 1700,
+        title: '晚安熊條紋睡衣',
+        price: 800,
+        minPrice: 800,
+        maxPrice: 800,
         preorderDeadline: '2022/7/30 晚上10點',
         deliveryDate: '2022/12',
         state: 'spot-goods',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['spot-goods','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
+        brand: '桃子汽水不加冰',
+        size: '6 分 YOSD',
+        cata: '服飾',
+        tags: ['spot-goods','桃子汽水不加冰','6 分 YOSD', '服飾'],
         discription: ``,
         viewed: 1,
         specs: [
           {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product03/pic01.png`
+            name: '藍色',
+            price: 800,
+            url: `/img/products/product06/pic01.png`
           }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product03/pic02.png`
+            name: '橘色',
+            price: 800,
+            url: `/img/products/product06/pic01.png`
           }],
-        imgCover: `/img/products/product03/cover.png`,
+        imgCover: `/img/products/product06/cover.png`,
         imgs: {
-          pic01: `/img/products/product03/pic01.png`,
-          pic02: `/img/products/product03/pic02.png`
+          pic01: `/img/products/product06/pic01.png`
         }
       },{
         id: 7,
-        title: '4 分 開襟毛衣',
-        price: null,
-        minPrice: 1000,
-        maxPrice: 1700,
+        title: '格紋襯衫',
+        price: 600,
+        minPrice: 600,
+        maxPrice: 600,
         preorderDeadline: '2022/07/31',
         deliveryDate: '2022/12',
         state: 'pre-order',
-        brand: '25 時茶會',
+        brand: 'BEARS',
         size: '4 分 MSD/MDD',
         cata: '服飾',
-        tags: ['pre-order','25 時茶會','4 分 MSD/MDD', '服飾'],
+        tags: ['pre-order','BEARS','4 分 MSD/MDD', '服飾'],
         discription: ``,
         viewed: 11,
         specs: [
           {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product01/pic01.png`
-          }, {
-            name: '灰色',
-            price: 1200,
-            url: `/img/products/product01/pic06.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product01/pic02.png`
+            name: '橘藍配',
+            price: 600,
+            url: `/img/products/product07/pic01.png`
           }],
-        imgCover: `/img/products/product01/cover.png`,
+        imgCover: `/img/products/product07/cover.png`,
         imgs: {
-          pic01: `/img/products/product01/pic01.png`,
-          pic02: `/img/products/product01/pic02.png`,
-          pic03: `/img/products/product01/pic03.png`,
-          pic04: `/img/products/product01/pic04.png`,
-          pic05: `/img/products/product01/pic05.png`,
-          pic06: `/img/products/product01/pic06.png`,
-          pic07: `/img/products/product01/pic07.png`
+          pic01: `/img/products/product07/pic01.png`
         }
       }, {
         id: 8,
-        title: '短斗篷套組',
-        price: null,
-        minPrice: 1000,
-        maxPrice: 1700,
+        title: '人魚套裝',
+        price: 2400,
+        minPrice: 2400,
+        maxPrice: 2400,
         preorderDeadline: '2022/7/30 晚上10點',
         deliveryDate: '2022/12',
         state: 'sold-out',
-        brand: 'Cocoriang',
-        size: '小寵',
+        brand: 'DearDolls',
+        size: '4 分 MSD/MDD',
         cata: '服飾',
-        tags: ['sold-out','Cocoriang','小寵', '服飾'],
+        tags: ['sold-out','DearDolls','4 分 MSD/MDD', '服飾'],
         discription: ``,
         viewed: 20,
         specs: [
           {
-            name: '棕色',
-            price: 1000,
-            url: `/img/products/product02/pic01.png`
-          }, {
-            name: '灰色',
-            price: 1200,
-            url: `/img/products/product02/pic01.png`
-          }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product02/pic02.png`
+            name: '白色',
+            price: 2400,
+            url: `/img/products/product08/pic01.png`
           }],
-        imgCover: `/img/products/product02/cover.png`,
+        imgCover: `/img/products/product08/cover.png`,
         imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`
+          pic01: `/img/products/product08/pic01.png`
         }
       }, {
         id: 9,
-        title: '鞋子',
-        price: null,
-        minPrice: 1000,
-        maxPrice: 1700,
+        title: '休閒套裝',
+        price: 1200,
+        minPrice: 1200,
+        maxPrice: 1200,
         preorderDeadline: '2022/7/30 晚上10點',
         deliveryDate: '2022/12',
         state: 'spot-goods',
-        brand: '腳尖上的小屍',
-        size: '4 分 MSD/MDD',
-        cata: '鞋子',
-        tags: ['spot-goods','腳尖上的小屍','4 分 MSD/MDD', '鞋子'],
+        brand: '桃子汽水不加冰',
+        size: '6 分 YOSD',
+        cata: '服飾',
+        tags: ['spot-goods','桃子汽水不加冰','6 分 YOSD', '服飾'],
+        discription: ``,
+        viewed: 10,
+        specs: [
+          {
+            name: '藍色',
+            price: 1200,
+            url: `/img/products/product09/pic01.png`
+          }, {
+            name: '紫色',
+            price: 1200,
+            url: `/img/products/product09/pic01.png`
+          }],
+        imgCover: `/img/products/product09/cover.png`,
+        imgs: {
+          pic01: `/img/products/product09/pic01.png`
+        }
+      }, {
+        id: 10,
+        title: '兔兔套裝',
+        price: 1360,
+        minPrice: 1360,
+        maxPrice: 1360,
+        preorderDeadline: '2022/7/30 晚上10點',
+        deliveryDate: '2022/12',
+        state: 'spot-goods',
+        brand: '桃子汽水不加冰',
+        size: '6 分 YOSD',
+        cata: '服飾',
+        tags: ['spot-goods','桃子汽水不加冰','6 分 YOSD', '服飾'],
+        discription: ``,
+        viewed: 10,
+        specs: [
+          {
+            name: '駝色',
+            price: 1360,
+            url: `/img/products/product10/pic01.png`
+          }, {
+            name: '灰色',
+            price: 1360,
+            url: `/img/products/product10/pic01.png`
+          }],
+        imgCover: `/img/products/product10/cover.png`,
+        imgs: {
+          pic01: `/img/products/product10/pic01.png`
+        }
+      }, {
+        id: 11,
+        title: '獅子上衣',
+        price: 400,
+        minPrice: 400,
+        maxPrice: 400,
+        preorderDeadline: '2022/7/30 晚上10點',
+        deliveryDate: '2022/12',
+        state: 'spot-goods',
+        brand: '桃子汽水不加冰',
+        size: '6 分 YOSD',
+        cata: '服飾',
+        tags: ['spot-goods','桃子汽水不加冰','6 分 YOSD', '服飾'],
         discription: ``,
         viewed: 10,
         specs: [
           {
             name: '棕色',
-            price: 1000,
-            url: `/img/products/product03/pic01.png`
+            price: 400,
+            url: `/img/products/product11/pic01.png`
           }, {
-            name: '粉色',
-            price: 1700,
-            url: `/img/products/product03/pic02.png`
+            name: '灰色',
+            price: 400,
+            url: `/img/products/product11/pic01.png`
           }],
-        imgCover: `/img/products/product03/cover.png`,
+        imgCover: `/img/products/product11/cover.png`,
         imgs: {
-          pic01: `/img/products/product03/pic01.png`,
-          pic02: `/img/products/product03/pic02.png`
+          pic01: `/img/products/product11/pic01.png`
         }
       }
     ],

@@ -10,6 +10,8 @@
                     i(class="fa-solid fa-circle-check icon-l success")
                 template(v-if="icon=='error'")
                     i(class="fa-solid fa-circle-xmark icon-l error")
+                template(v-if="icon=='alert'")
+                    i(class="fa-solid fa-triangle-exclamation icon-l alert")
                 span {{msg}}
         .modal-content(v-else)
             slot(name="content")
@@ -73,6 +75,12 @@ export default {
             .error{
                 color: rgb(188, 0, 0);
             }
+
+            .alert{
+                color: rgb(188, 0, 0);;
+            }
+
+            
         }
 
     }

@@ -1,20 +1,47 @@
 <template lang="pug">
 .card-container
-    router-link.link-top(:to="getPath(product.id)")
-        .pic(v-html="getImg(product.imgCover,'')")
+    .link-top
+        router-link(:to="getPath(id)")
+            .pic(v-html="getImg(imgCover,'')")
+        .btn-wrap
+            .btn.btn-l.btn-icon-m.btn-text.btn-heart(
+                @click.stop="addWishList()"
+                :class="{liked: isLiked}"
+            )
+                i(class="fa-solid fa-heart")
+                i(class="fa-regular fa-heart")
+        .tag-wrap
+            span.tag.pre-order-tag(v-if="state=='pre-order'") 預購
     .info
-        router-link.link-bottom(:to="getPath(product.id)") {{ product.title }}
+        router-link.link-bottom(:to="getPath(id)") {{ title }}
         .details 
-            a.brand(href="#") {{ product.brand }}
+            a.brand(href="#") {{ brand }}
             .price
                 span.unit NT$ 
-                span.num(v-if="product.price") {{ addCommaToNum(product.price) }}
-                span.num(v-if="!product.price") {{ addCommaToNum(product.minPrice) }} ~ {{ addCommaToNum(product.maxPrice) }}
+                span.num(v-if="price") {{ addCommaToNum(price) }}
+                span.num(v-if="!price") {{ addCommaToNum(minPrice) }} ~ {{ addCommaToNum(maxPrice) }}
+    Transition(name="fadeIn" mode="out-in")
+        ModalComp(
+            v-if="isAdded"
+            :msg="msg"
+            :icon="msgIcon"
+            )
+            template(v-slot:mask)
+                MaskCover
+            template(v-slot:msg)
 </template>
 
 <script>
 export default {
-    props: ['product'],
+    props: ['id', 'title', 'imgCover', 'state', 'brand', 'price', 'minPrice', 'maxPrice'],
+    data(){
+        return {
+            isAdded: false,
+            isLiked: false,
+            msg: '',
+            msgIcon: ''
+        }
+    },
     methods: {
         getImg(url, alt){
         return `<img src="${url}" alt="${alt}">`
@@ -26,6 +53,31 @@ export default {
             let number = num.toString()
             let result = number.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,",")
             return result
+        },
+        addWishList(){
+            if(!this.isLiked){
+                this.msg = '商品已加入心願清單。'
+                this.msgIcon = 'success'
+                this.isAdded=true
+                this.isLiked=true
+    
+                setTimeout(()=>{
+                    this.isAdded=false
+                    this.msg = ''
+                    this.msgIcon = ''
+                },1200)
+            }else if(this.isLiked){
+                this.msg = '商品已從心願清單移除。'
+                this.msgIcon = 'success'
+                this.isAdded=true
+                this.isLiked=false
+    
+                setTimeout(()=>{
+                    this.isAdded=false
+                    this.msg = ''
+                    this.msgIcon = ''
+                },1200)
+            }
         }
     }
 }
@@ -45,6 +97,8 @@ export default {
         width: 100%;
         padding-bottom: 100%;
         background-color: #eee;
+        position: relative;
+
         .pic{
             position: absolute;
             top: 0;
@@ -55,6 +109,84 @@ export default {
                 width: 100%;
             }
         }
+
+        &:hover{
+            .btn-wrap{
+                
+                &:before{
+                    opacity: 1;
+                }
+
+                .btn-heart{
+                    opacity: 1;
+                }
+            }
+        }
+
+        .btn-wrap{
+            position: absolute;
+            top: 0;
+            left: 0;
+            @include size(100%,100%);
+            z-index: 1;
+            pointer-events: none;
+
+            &:before{
+                content: "";
+                display: block;
+                @include size(100%,100%);
+                background-color: rgba(white,.2);
+                opacity: 0;
+            }
+
+            .btn-heart{
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                background-color: transparent;
+                z-index: 10;
+                pointer-events: all;
+                opacity: 0;
+
+                &:hover{
+                    .fa-regular{
+                        color: white;
+                    }
+                    .fa-solid{
+                        color: black;
+                        opacity: 1;
+                    }
+                }
+
+                &.liked{
+                    opacity: 1;
+                    .fa-solid{
+                        color: #e63249;
+                        opacity: 1;
+                    }
+                }
+
+                .fa-regular{
+                    color: white;
+                    position: absolute;
+                }
+
+                .fa-solid{
+                    opacity: .6;
+                }
+            }
+        }
+
+        .tag-wrap{
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            .tag{
+                background-color: lighten($brand-color,15);
+            }
+        }
+
     }
 
     .info{
