@@ -22,7 +22,7 @@
     .wrapper 
       h2.title 現正預購中
       .cards-wrap
-        CardContainer(v-for="product in products" :product="product")
+        CardContainer(v-for="product in products" v-bind="product")
 
 </template>
 
@@ -162,7 +162,6 @@ export default {
       .viewport{
         width: 720px;
         height: 405px;
-        border-color: red;
         position: relative;
         overflow: hidden;
         .item{
@@ -238,22 +237,6 @@ export default {
     .cards-wrap{
       display: flex;
       flex-wrap: wrap;
-
-      .card-container{
-        flex-basis: calc((100% - 48px) / 3);
-
-        &:nth-child(3n+3){
-          margin-right: 0;
-        }
-
-        .link-top{
-          padding-bottom: 160%;
-        }
-
-        .info{
-          display: none;
-        }
-      }
     }
   }
 }
