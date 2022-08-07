@@ -113,11 +113,19 @@ export default {
 
 <style lang="scss">
 .photo-zoom-modal{
+    .mask_cover{
+        pointer-events: all;
+    }
     .photo-zoom-modal_close{
         background-color: rgba(black,.5);
         color: white;
         @include size(40px);
         @include flexCenter;
+        pointer-events: all;
+    }
+
+    .modal-wrapper{
+        pointer-events: none;
     }
 
     .modal-content{
@@ -145,6 +153,7 @@ export default {
     .ctrl{
         @include size(40px,64px);
         @include flexCenter;
+        pointer-events: all;
     }
 
 }

@@ -51,7 +51,6 @@ export default {
         .modal-content{
             width: 100%;
             position: relative;
-            // background-color: #fff;
         }
         
         .modal-msg{

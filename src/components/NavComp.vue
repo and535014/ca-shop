@@ -69,9 +69,8 @@ header.header
             input.keyword-input(
                 type="text" 
                 placeholder="商品搜尋"
-                :class="{active: searchIsActive}"
                 v-model="keywords"
-                @change="goSearch; navMenuIsOpen=!navMenuIsOpen"
+                @change="goSearch"
                 )
         ul.nav-first(v-for='first in navigation')
             li.nav-first-li(
@@ -139,18 +138,15 @@ export default {
                 return `/browse/${first.navFirst}`;
             }
         },
-        getSearchPath() {
-            if (this.keywords) {
-                return `/search/${this.keywords}`;
-            }
-        },
         goSearch() {
-            this.$router.push({ path: `/search/keywords=${this.keywords}` });
-            this.keywords = null;
-            this.searchIsActive = false;
+            if(this.keywords){
+                this.$router.push({ path: `/search/keywords=${this.keywords}` });
+                this.keywords = null;
+                this.searchIsActive = false;
+                this.navMenuIsOpen=false
+            }
         }
-    },
-    components: { MaskCover }
+    }
 }
 </script>
 
