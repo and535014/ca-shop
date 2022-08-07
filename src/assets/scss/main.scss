@@ -272,48 +272,13 @@ textarea{
 }
 
 //rwd ------------------------------
-@media screen and (max-width: 991px){
-    .page{
-        padding-top: 110px;
-    }
+@media screen and (max-width: 1000){
 }
 
 @media screen and (max-width: 767px){
-    .title{
-        font-size: 30px;
-        margin-bottom: 16px;
-    }
 
-    .subtitle{
-        font-size: 22px;
-        margin-bottom: 12px;
-    }
-
-    .caption{
-        font-size: 13px;
-    }
-
-    .tag-l{
-        font-size: 14px;
-    }
-
-    .tag-s{
-        font-size: 12px;
-    }
-
-    #app{
-        font-size: 18px;
-        .goTop{
-            bottom: 100px;
-        }
-    }
 }
 
 @media screen and (max-width: 479px){
-    #app{
-        font-size: 16px;
-        .goTop{
-            bottom: 130px;
-        }
-    }
+
 }

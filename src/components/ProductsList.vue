@@ -104,7 +104,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 export default {
     props: ['products'],
     data(){
@@ -259,7 +258,9 @@ export default {
     text-align: left;
 
     .section-filters{
-        padding: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+
         .options{
             display: flex;
             justify-content: space-between;
@@ -274,7 +275,7 @@ export default {
                 margin-right: auto;
     
                 .filter-item{
-                    margin-right: 24px;
+                    margin-right: 12px;
                     position: relative;
 
                     .filter-item_title{
@@ -298,9 +299,9 @@ export default {
                         left: 0;
                         background-color: #fff;
                         z-index: 10;
-                        width: 200px;
                         padding: 16px 24px;
                         border: 1px solid $black-40;
+                        min-width: 200px;
 
                         .top{
                             display: flex;
@@ -403,14 +404,6 @@ export default {
             display: flex;
             flex-wrap: wrap;
             justify-content: flex-start;
-
-            .card-container{
-                margin-bottom: 32px;
-                &:nth-child(5n+5){
-                    border-color: red;
-                    margin-right: 0;
-                }
-            }
         }
 
         .notFound{
@@ -444,6 +437,38 @@ export default {
             }
         }
 
+    }
+
+    @media screen and (max-width: 767px){
+        .section-filters{
+            .options{
+                flex-wrap: wrap;
+
+                .filters{
+                    flex-basis: 100%;
+                    margin-bottom: 12px;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 479px){
+        .section-filters{
+            .options{
+
+                .filters{
+                    margin-right: 0;
+                }
+                .sort{
+                    flex-basis: 100%;
+                    margin-bottom: 12px;
+                    margin-right: 0;
+                }
+                .product-num{
+                    margin-left: auto;
+                }
+            }
+        }
     }
 }
 </style>

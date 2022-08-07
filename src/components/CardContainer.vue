@@ -89,8 +89,12 @@ export default {
     margin-right: 24px;
     margin-bottom: 32px;
     flex-basis: calc((100% - 96px) / 5);
-    min-width: 170px;
+    min-width: 168px;
     box-sizing: border-box;
+
+    &:nth-child(5n+5){
+        margin-right: 0;
+    }
 
     .link-top{
         display: block;
@@ -218,6 +222,44 @@ export default {
                 margin-top: 8px;
             }
         }
+    }
+
+    @media screen and (max-width: 1000px){
+        flex-basis: calc((100% - 48px) / 3);
+
+        &:nth-child(5n+5){
+            margin-right: 24px;
+        }
+
+        &:nth-child(3n+3){
+            margin-right: 0;
+        }
+    }
+
+    @media screen and (max-width: 767px){
+        flex-basis: calc((100% - 24px) / 2);
+
+        &:nth-child(5n+5){
+            margin-right: 0;
+        }
+
+        &:nth-child(3n+3){
+            margin-right: 24px;
+        }
+
+        &:nth-child(2n+2){
+            margin-right: 0px;
+        }
+    }
+
+    @media screen and (max-width: 479px){
+        flex-basis: 100%;
+
+        &:nth-child(3n+3){
+            margin-right: 0px;
+        }
+
+        margin-right: 0;
     }
 }
 </style>
