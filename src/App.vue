@@ -10,7 +10,7 @@ router-view(v-slot="{ Component }")
 transition(name="fadeInOut" mode="out-in")
     MaskCover(
         v-if="maskIsActive" 
-        @click="cartIsOpen=!cartIsOpen")
+        @click.once="cartIsOpen=!cartIsOpen")
 ShopCart(
     :class="{active: cartIsOpen}"
     :cartIsOpen="cartIsOpen"

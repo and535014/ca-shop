@@ -112,9 +112,7 @@ export default createStore({
       {
         id: 1,
         title: 'Holy Cross 高腰連身裙',
-        price: null,
-        minPrice: 2115,
-        maxPrice: 2205,
+        price: 2110,
         preorderDeadline: '2022/07/31',
         deliveryDate: '2022/12',
         state: 'pre-order',
@@ -127,11 +125,9 @@ export default createStore({
         specs: [
           {
             name: '白色',
-            price: 2115,
             url: `/img/products/product01/pic02.png`
           }, {
             name: '黑色',
-            price: 2205,
             url: `/img/products/product01/pic03.png`
           }],
         imgCover: `/img/products/product01/cover.png`,
@@ -148,8 +144,6 @@ export default createStore({
         id: 2,
         title: '短斗篷套組',
         price: 1610,
-        minPrice: 1610,
-        maxPrice: 1610,
         preorderDeadline: '2022/7/30 晚上10點',
         deliveryDate: '2022/12',
         state: 'sold-out',
@@ -162,11 +156,9 @@ export default createStore({
         specs: [
           {
             name: '紅色',
-            price: 1610,
             url: `/img/products/product02/pic01.png`
           }, {
             name: '藍色',
-            price: 1610,
             url: `/img/products/product02/pic02.png`
           }],
         imgCover: `/img/products/product02/cover.png`,
@@ -178,8 +170,6 @@ export default createStore({
         id: 3,
         title: '開襟毛衣外套',
         price: 600,
-        minPrice: 600,
-        maxPrice: 600,
         preorderDeadline: '2022/7/30 晚上10點',
         deliveryDate: '2022/12',
         state: 'spot-goods',
@@ -192,7 +182,6 @@ export default createStore({
         specs: [
           {
             name: '駝色',
-            price: 600,
             url: `/img/products/product03/pic01.png`
           }],
         imgCover: `/img/products/product03/cover.png`,
@@ -204,8 +193,6 @@ export default createStore({
         id: 4,
         title: '雙釦帶黑色高跟鞋',
         price: 400,
-        minPrice: 400,
-        maxPrice: 400,
         preorderDeadline: '2022/07/31',
         deliveryDate: '2022/12',
         state: 'pre-order',
@@ -218,7 +205,6 @@ export default createStore({
         specs: [
           {
             name: '黑色',
-            price: 400,
             url: `/img/products/product04/pic01.png`
           }],
         imgCover: `/img/products/product04/cover.png`,
@@ -229,8 +215,6 @@ export default createStore({
         id: 5,
         title: '綁帶小絲巾',
         price: 200,
-        minPrice: 200,
-        maxPrice: 200,
         preorderDeadline: '2022/7/30 晚上10點',
         deliveryDate: '2022/12',
         state: 'sold-out',
@@ -243,7 +227,6 @@ export default createStore({
         specs: [
           {
             name: '藍配白',
-            price: 200,
             url: `/img/products/product05/pic01.png`
           }],
         imgCover: `/img/products/product05/cover.png`,
@@ -254,8 +237,6 @@ export default createStore({
         id: 6,
         title: '晚安熊條紋睡衣',
         price: 800,
-        minPrice: 800,
-        maxPrice: 800,
         preorderDeadline: '2022/7/30 晚上10點',
         deliveryDate: '2022/12',
         state: 'spot-goods',
@@ -268,11 +249,9 @@ export default createStore({
         specs: [
           {
             name: '藍色',
-            price: 800,
             url: `/img/products/product06/pic01.png`
           }, {
             name: '橘色',
-            price: 800,
             url: `/img/products/product06/pic01.png`
           }],
         imgCover: `/img/products/product06/cover.png`,
@@ -283,8 +262,6 @@ export default createStore({
         id: 7,
         title: '格紋襯衫',
         price: 600,
-        minPrice: 600,
-        maxPrice: 600,
         preorderDeadline: '2022/07/31',
         deliveryDate: '2022/12',
         state: 'pre-order',
@@ -297,7 +274,6 @@ export default createStore({
         specs: [
           {
             name: '橘藍配',
-            price: 600,
             url: `/img/products/product07/pic01.png`
           }],
         imgCover: `/img/products/product07/cover.png`,
@@ -308,8 +284,6 @@ export default createStore({
         id: 8,
         title: '人魚套裝',
         price: 2400,
-        minPrice: 2400,
-        maxPrice: 2400,
         preorderDeadline: '2022/7/30 晚上10點',
         deliveryDate: '2022/12',
         state: 'sold-out',
@@ -322,7 +296,6 @@ export default createStore({
         specs: [
           {
             name: '白色',
-            price: 2400,
             url: `/img/products/product08/pic01.png`
           }],
         imgCover: `/img/products/product08/cover.png`,
@@ -333,8 +306,6 @@ export default createStore({
         id: 9,
         title: '休閒套裝',
         price: 1200,
-        minPrice: 1200,
-        maxPrice: 1200,
         preorderDeadline: '2022/7/30 晚上10點',
         deliveryDate: '2022/12',
         state: 'spot-goods',
@@ -347,11 +318,9 @@ export default createStore({
         specs: [
           {
             name: '藍色',
-            price: 1200,
             url: `/img/products/product09/pic01.png`
           }, {
             name: '紫色',
-            price: 1200,
             url: `/img/products/product09/pic01.png`
           }],
         imgCover: `/img/products/product09/cover.png`,
@@ -362,8 +331,6 @@ export default createStore({
         id: 10,
         title: '兔兔套裝',
         price: 1360,
-        minPrice: 1360,
-        maxPrice: 1360,
         preorderDeadline: '2022/7/30 晚上10點',
         deliveryDate: '2022/12',
         state: 'spot-goods',
@@ -376,11 +343,9 @@ export default createStore({
         specs: [
           {
             name: '駝色',
-            price: 1360,
             url: `/img/products/product10/pic01.png`
           }, {
             name: '灰色',
-            price: 1360,
             url: `/img/products/product10/pic01.png`
           }],
         imgCover: `/img/products/product10/cover.png`,
@@ -391,8 +356,6 @@ export default createStore({
         id: 11,
         title: '獅子上衣',
         price: 400,
-        minPrice: 400,
-        maxPrice: 400,
         preorderDeadline: '2022/7/30 晚上10點',
         deliveryDate: '2022/12',
         state: 'spot-goods',
@@ -405,11 +368,9 @@ export default createStore({
         specs: [
           {
             name: '棕色',
-            price: 400,
             url: `/img/products/product11/pic01.png`
           }, {
             name: '灰色',
-            price: 400,
             url: `/img/products/product11/pic01.png`
           }],
         imgCover: `/img/products/product11/cover.png`,

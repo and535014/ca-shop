@@ -152,13 +152,13 @@ export default {
             }
 
             if(filters.minPrice){
-                r3 = r2.filter((d) => d.minPrice >= filters.minPrice)
+                r3 = r2.filter((d) => d.price >= filters.minPrice)
             }else if(!filters.minPrice){
                 r3 = r2
             }
 
             if(filters.maxPrice){
-                r4 = r3.filter((d) => d.maxPrice <= filters.maxPrice)
+                r4 = r3.filter((d) => d.price <= filters.maxPrice)
             }else if(!filters.maxPrice){
                 r4 = r3
             }

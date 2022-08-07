@@ -27,8 +27,6 @@
                     .prices
                         span.unit NT$
                         span.num(v-if="product.price") {{ addCommaToNum(product.price) }}
-                        span.num(v-if="!currentSpec && !product.price") {{ addCommaToNum(product.minPrice) }} ~ {{ addCommaToNum(product.maxPrice) }}
-                        span.num(v-if="currentSpec") {{ addCommaToNum(currentSpec.price) }}
                     .specs.flex-box
                         label.flex-item 規格
                         ul.options

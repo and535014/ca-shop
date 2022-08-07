@@ -24,7 +24,7 @@
                             .btn.btn-s.btn-sub(@click="subQty(id,item.qty)") -
                             input(type="text" :value="item.qty" @change="setQty(id,$event)")
                             .btn.btn-s.btn-add(@click="addQty(id,item.qty)") +
-                    .subtotal {{ addCommaToNum(item.spec.price * item.qty)}}
+                    .subtotal {{ addCommaToNum(item.price * item.qty)}}
                     .btn.btn-icon-m.btn-text.btn-delete(@click="deleteCartItem(id)")
                         i(class="fa-regular fa-trash-can")
         .empty-cart(v-if="cartList.length==0")
