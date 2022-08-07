@@ -71,7 +71,16 @@ export default {
             }
         }
     },
-    components: { MaskCover }
+    created(){
+        document.addEventListener('keydown', (evt)=>{
+            let key = evt.key.replace("Arrow", '').toLowerCase()
+            if(key=='right'){
+                this.switchRight()
+            }else if(key=='left'){
+                this.switchLeft()
+            }
+        })
+    }
 }
 </script>
 
