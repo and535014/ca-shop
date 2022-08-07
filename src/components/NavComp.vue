@@ -60,6 +60,9 @@ header.header
                                 :to="getPath(first, second)"
                                 ) {{ second }}
     nav.navigation-menu(:class="{isOpen: navMenuIsOpen}")
+        .close-wrap
+            .search-icon.btn.btn-l.btn-icon-m.btn-text
+                i(class="fa-solid fa-xmark icon-l")
         .search-bar-wrap
             .search-icon.btn.btn-l.btn-icon-m.btn-text
                 i(class="fa-solid fa-magnifying-glass")
@@ -68,7 +71,7 @@ header.header
                 placeholder="商品搜尋"
                 :class="{active: searchIsActive}"
                 v-model="keywords"
-                @change="goSearch"
+                @change="goSearch; navMenuIsOpen=!navMenuIsOpen"
                 )
         ul.nav-first(v-for='first in navigation')
             li.nav-first-li(
@@ -78,6 +81,7 @@ header.header
                 template(v-if="!first.navSecond")
                     router-link.title(
                         :to="getPath(first,'')"
+                        @click="navMenuIsOpen=!navMenuIsOpen"
                         )
                         span {{ first.navFirst }}
                 template(v-if="first.navSecond")
@@ -91,6 +95,7 @@ header.header
                         router-link.topic-link(
                             v-for="second in first.navSecond"
                             :to="getPath(first, second)"
+                            @click="navMenuIsOpen=!navMenuIsOpen"
                             ) {{ second }}
     transition(name="fadeInOut")
         MaskCover(
@@ -158,9 +163,9 @@ export default {
         padding: 16px 0;
         .wrapper{
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: auto;
-            grid-template-areas: ' left logo icons';
+            grid-template-columns: 1fr 250px 1fr;
+            grid-template-rows: 1fr;
+            grid-template-areas: 'left logo icons';
         }
 
         .left{
@@ -197,9 +202,7 @@ export default {
         }
         .logo-wrap{
             @include flexCenter;
-            .logo{
-                grid-area: 'logo';
-            }
+            grid-area: 'logo';
         }
 
         .icons-wrap{
@@ -303,9 +306,10 @@ export default {
         left: 0;
         z-index: 10;
         background-color: #fff;
-        width: 40vw;
+        width: 300px;
         height: 100vh;
         padding: 24px;
+        padding-right: 16px;
         overflow: scroll;
         box-sizing: border-box;
         transition: .5s;
@@ -315,12 +319,18 @@ export default {
             transform: translateX(0);
         }
 
+        .close-wrap{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
         .search-bar-wrap{
             display: flex;
-            padding: 12px 20px 24px;
+            padding: 20px 24px;
             border-bottom: 1px solid #eee;
             .search-icon{
-                margin-right: 12px;
+                margin-right: 8px;
             }
             .keyword-input{
                 flex: 1;
@@ -387,6 +397,10 @@ export default {
             .search-bar-wrap{
                 display: none;
             }
+
+            .logo{
+                font-size: 32px;
+            }
         }
         .navigation{
             display: none;
@@ -397,6 +411,52 @@ export default {
 
         .navigation-menu{
             display: block;
+        }
+    }
+
+    @media screen and (max-width: 1000px){
+        .top-header{
+            .icons-wrap{
+                .btn{
+                    margin-left: 0;
+                }
+
+                .btn:nth-child(3){
+                    display: none;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 767px){
+        .top-header{
+            .icons-wrap{
+                .btn{
+                    margin-left: 0;
+                }
+
+                .btn:nth-child(2){
+                    display: none;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 479px){
+        .top-header{
+            .wrapper{
+                grid-template-columns: 1fr 100px 1fr;
+            }
+
+            .logo{
+                font-size: 18px;
+            }
+
+            .icons-wrap{
+                .btn{
+                    @include size(24px);
+                    font-size: 16px;
+                }
+            }
         }
     }
 }
