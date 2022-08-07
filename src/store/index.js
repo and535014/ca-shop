@@ -85,27 +85,45 @@ export default createStore({
       {
         id: 1,
         title: '25時茶會',
-        img: `/img/banner/pic01.png`
+        imgs: {
+          big: `/img/banner/pic01.png`,
+          small: `/img/banner/pic01_small.png`
+        }
       }, {
         id: 2,
         title: '25時茶會',
-        img: `/img/banner/pic02.png`
+        imgs: {
+          big: `/img/banner/pic02.png`,
+          small: `/img/banner/pic02_small.png`
+        }
       }, {
         id: 3,
         title: '25時茶會',
-        img: `/img/banner/pic03.png`
+        imgs: {
+          big: `/img/banner/pic03.png`,
+          small: `/img/banner/pic03_small.png`
+        }
       }, {
         id: 4,
         title: '25時茶會',
-        img: `/img/banner/pic04.png`
+        imgs: {
+          big: `/img/banner/pic04.png`,
+          small: `/img/banner/pic04_small.png`
+        }
       }, {
         id: 5,
         title: '25時茶會',
-        img: `/img/banner/pic05.png`
+        imgs: {
+          big: `/img/banner/pic05.png`,
+          small: `/img/banner/pic05_small.png`
+        }
       }, {
         id: 6,
         title: '25時茶會',
-        img: `/img/banner/pic06.png`
+        imgs: {
+          big: `/img/banner/pic06.png`,
+          small: `/img/banner/pic06_small.png`
+        }
       }
     ],
     products: [

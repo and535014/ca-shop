@@ -6,7 +6,7 @@
     .banner
       ul.viewport
         li.item(v-for="(banner, bid) in banners" :class="itemClass(bid)" @click="getLeft($event)")
-          a.link(v-html="getImg(banner.img)")
+          a.link(v-html="getImg(banner.imgs)")
           //- a.link {{ bid }}
             p {{ bid - currentNum}}
       .ctrl.ctrl-l(@click="switchLeft")
@@ -32,6 +32,11 @@ import { mapState } from 'vuex'
 export default {
   name: 'HomeView',
   created(){
+    window.addEventListener('resize',()=>{
+      if(window.innerWidth < 500 && window.innerWidth > 470){
+        location.reload()
+      }
+    })
   },
   data(){
     return {
@@ -142,7 +147,12 @@ export default {
       },200)
     },
     getImg(url, alt){
-      return `<img src="${url}" alt="${alt}">`
+      return `
+        <picture>
+          <source srcset="${url.small}" media="(max-width: 479px)">
+          <img src="${url.big}" alt="${alt}">
+        </picture>
+      `
     }
   }
 }
@@ -157,11 +167,10 @@ export default {
     .banner{
       position: relative;
       margin: 0 auto;
-      width: 720px;
-      height: 405px;
+      max-width: 800px;
       .viewport{
-        width: 720px;
-        height: 405px;
+        width: 100%;
+        padding-bottom: 56.25%;
         position: relative;
         overflow: hidden;
         .item{
@@ -186,7 +195,7 @@ export default {
 
         @for $i from 0 through 5 {
           .item-#{$i}{
-            transform: translate3d(#{($i - 2)*720}px, 0, 0);
+            transform: translate3d(#{($i - 2)*800}px, 0, 0);
             @if $i > 3 {
               visibility: hidden;
               opacity: 0;
@@ -239,5 +248,25 @@ export default {
       flex-wrap: wrap;
     }
   }
+
+  @media screen and (max-width: 767px){
+    .banner-wrap{
+      .banner{
+        width: 100%;
+      }
+    }
+  }
+
+  @media screen and (max-width: 479px){
+    .banner-wrap{
+      .banner{
+        .viewport{
+          padding-bottom: 133.3%;
+        }
+      }
+    }
+
+  }
+
 }
 </style>

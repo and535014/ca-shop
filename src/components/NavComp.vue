@@ -61,7 +61,7 @@ header.header
                                 ) {{ second }}
     nav.navigation-menu(:class="{isOpen: navMenuIsOpen}")
         .close-wrap
-            .search-icon.btn.btn-l.btn-icon-m.btn-text
+            .search-icon.btn.btn-l.btn-icon-m.btn-text(@click="navMenuIsOpen=!navMenuIsOpen")
                 i(class="fa-solid fa-xmark icon-l")
         .search-bar-wrap
             .search-icon.btn.btn-l.btn-icon-m.btn-text
