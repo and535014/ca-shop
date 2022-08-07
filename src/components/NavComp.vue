@@ -1,21 +1,25 @@
 <template lang="pug">
 header.header
     .top-header
-        //- p {{keywords}}
         .wrapper
-            .search-bar-wrap
-                .search-icon.btn.btn-l.btn-icon-m.btn-text(
-                    @click="searchIsActive=!searchIsActive"
-                    :class="{active: searchIsActive}"
+            .left
+                .btn.btn-l.btn-icon-m.btn-text.nav-menu-btn(
+                    @click="navMenuIsOpen=!navMenuIsOpen"
                     )
-                    i(class="fa-solid fa-magnifying-glass")
-                input.keyword-input(
-                    type="text" 
-                    placeholder="商品搜尋"
-                    :class="{active: searchIsActive}"
-                    v-model="keywords"
-                    @change="goSearch"
-                    )
+                    i(class="fa-solid fa-bars")
+                .search-bar-wrap
+                    .search-icon.btn.btn-l.btn-icon-m.btn-text(
+                        @click="searchIsActive=!searchIsActive"
+                        :class="{active: searchIsActive}"
+                        )
+                        i(class="fa-solid fa-magnifying-glass")
+                    input.keyword-input(
+                        type="text" 
+                        placeholder="商品搜尋"
+                        :class="{active: searchIsActive}"
+                        v-model="keywords"
+                        @change="goSearch"
+                        )
             .logo-wrap 
                 router-link.logo(to="/") Crystal Apple
             .icons-wrap 
@@ -55,53 +59,93 @@ header.header
                                 v-for="second in first.navSecond"
                                 :to="getPath(first, second)"
                                 ) {{ second }}
-
+    nav.navigation-menu(:class="{isOpen: navMenuIsOpen}")
+        .search-bar-wrap
+            .search-icon.btn.btn-l.btn-icon-m.btn-text
+                i(class="fa-solid fa-magnifying-glass")
+            input.keyword-input(
+                type="text" 
+                placeholder="商品搜尋"
+                :class="{active: searchIsActive}"
+                v-model="keywords"
+                @change="goSearch"
+                )
+        ul.nav-first(v-for='first in navigation')
+            li.nav-first-li(
+                @click="first.isOpen = !first.isOpen"
+                :class="{isOpen: first.isOpen}"
+                )
+                template(v-if="!first.navSecond")
+                    router-link.title(
+                        :to="getPath(first,'')"
+                        )
+                        span {{ first.navFirst }}
+                template(v-if="first.navSecond")
+                    .title
+                        span {{ first.navFirst }}
+                        i(class="fa-solid fa-angle-right icon-s")
+                    .nav-second(
+                        v-if="first.navSecond" 
+                        v-show="first.isOpen"
+                        ) 
+                        router-link.topic-link(
+                            v-for="second in first.navSecond"
+                            :to="getPath(first, second)"
+                            ) {{ second }}
+    transition(name="fadeInOut")
+        MaskCover(
+            v-if="navMenuIsOpen"
+            @click.once="navMenuIsOpen=!navMenuIsOpen"
+            )
 </template>
 
 <script>
-import { routerKey } from 'vue-router'
 import { mapState } from 'vuex'
+import MaskCover from './MaskCover.vue'
 export default {
-    props: ['cartIsOpen', 'reactIsShow'],
+    props: ["cartIsOpen", "reactIsShow"],
     computed: {
         ...mapState({
             navigation: state => state.header.navigation,
             cartList: state => state.cartList
         })
     },
-    data(){
+    data() {
         return {
             searchIsActive: false,
-            keywords: ''
-        }
+            keywords: "",
+            navMenuIsOpen: false
+        };
     },
     watch: {
         cartIsOpen: {
-            handler(val){
-                this.$emit('update', {cartIsOpen: val})
+            handler(val) {
+                this.$emit("update", { cartIsOpen: val });
             }
         }
     },
     methods: {
-        getPath(first,second){
-            if(first.navSecond){
-                let result = second.split(" ").join("_").split("/").join("-")
-                return `/browse/${first.navFirst}=${result}`
-            }else if(!first.navSecond){
-                return `/browse/${first.navFirst}`
+        getPath(first, second) {
+            if (first.navSecond) {
+                let result = second.split(" ").join("_").split("/").join("-");
+                return `/browse/${first.navFirst}=${result}`;
+            }
+            else if (!first.navSecond) {
+                return `/browse/${first.navFirst}`;
             }
         },
-        getSearchPath(){
-            if(this.keywords){
-                return `/search/${this.keywords}`
+        getSearchPath() {
+            if (this.keywords) {
+                return `/search/${this.keywords}`;
             }
         },
-        goSearch(){
-            this.$router.push({path: `/search/keywords=${this.keywords}`})
-            this.keywords = null
-            this.searchIsActive = false
+        goSearch() {
+            this.$router.push({ path: `/search/keywords=${this.keywords}` });
+            this.keywords = null;
+            this.searchIsActive = false;
         }
-    }
+    },
+    components: { MaskCover }
 }
 </script>
 
@@ -116,10 +160,15 @@ export default {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             grid-template-rows: auto;
-            grid-template-areas: ' search logo icons';
+            grid-template-areas: ' left logo icons';
+        }
+
+        .left{
+            grid-area: 'left';
+            display: flex;
+            align-items: center;
         }
         .search-bar-wrap {
-            grid-area: 'search';
             display: flex;
             align-items: center;
 
@@ -183,6 +232,10 @@ export default {
 
     }
 
+    .nav-menu-btn{
+        display: none;
+    }
+
     .navigation{
         .wrapper{
             display: flex;
@@ -240,6 +293,110 @@ export default {
                     color: lighten($brand-color,10);
                 }
             }
+        }
+    }
+
+    .navigation-menu{
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        background-color: #fff;
+        width: 40vw;
+        height: 100vh;
+        padding: 24px;
+        overflow: scroll;
+        box-sizing: border-box;
+        transition: .5s;
+        transform: translateX(-100%);
+
+        &.isOpen{
+            transform: translateX(0);
+        }
+
+        .search-bar-wrap{
+            display: flex;
+            padding: 12px 20px 24px;
+            border-bottom: 1px solid #eee;
+            .search-icon{
+                margin-right: 12px;
+            }
+            .keyword-input{
+                flex: 1;
+            }
+        }
+
+        .nav-first{
+            text-align: left;
+
+            .nav-first-li{
+                .title{
+                    cursor: pointer;
+                    display: block;
+                    font-size: 18px;
+                    line-height: 48px;
+                    box-sizing: border-box;
+                    transition: .5s;
+                    padding: 0 16px;
+                    padding-left: 24px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .fa-angle-right{
+                        transition: .5s;
+                        transform: rotate(0);
+                    }
+
+                    &:hover{
+                        background-color: rgba(#eee,.8);
+                    }
+                }
+
+                .nav-second{
+                    padding-left: 24px;
+                    border-bottom: 1px solid rgba(#eee,.8);
+                    .topic-link{
+                        display: block;
+                        line-height: 44px;
+                        cursor: pointer;
+
+                        &:hover{
+                            color: lighten($brand-color,10);
+                        }
+                    }
+                }
+
+                &.isOpen{
+                    .title{
+                        background-color: rgba(#eee,.8);
+
+                        .fa-angle-right{
+                            transform: rotate(90deg);
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    @media screen and (max-width: 1000px){
+        .top-header{
+            .search-bar-wrap{
+                display: none;
+            }
+        }
+        .navigation{
+            display: none;
+        }
+        .nav-menu-btn{
+            display: inline-flex;
+        }
+
+        .navigation-menu{
+            display: block;
         }
     }
 }
