@@ -232,6 +232,7 @@ export default {
 
     .flex-box{
         display: flex;
+        margin-bottom: 24px;
     }
 
     .flex-item{
@@ -249,6 +250,7 @@ export default {
             .photos{
                 margin-right: 64px;
                 max-width: 450px;
+                flex: 1;
 
                 .main-photo{
                     margin-bottom: 12px;
@@ -258,10 +260,9 @@ export default {
                     width: 100%;
                     display: flex;
                     flex-wrap: wrap;
-
                 }
                 .pic-l{
-                    width: 450px;
+                    width: 100%;
                     padding-bottom: 100%;
                     background-color: #fff;
                     cursor: zoom-in;
@@ -332,7 +333,6 @@ export default {
                     margin-bottom: 8px;
                 }
                 .specs{
-                    margin-bottom: 24px;
                     flex-wrap: wrap;
 
                     .spec-item{
@@ -347,10 +347,6 @@ export default {
                     }
                 }
 
-                .quantity{
-                    margin-bottom: 24px;
-                }
-
                 .btns{
                     margin-bottom: 24px;
                     display: flex;
@@ -359,6 +355,10 @@ export default {
 
                         &:first-child{
                             margin-right: 8px;
+                        }
+
+                        &:last-child{
+                            line-height: 26px;
                         }
                     }
                 }
@@ -406,6 +406,51 @@ export default {
                 .title{
                     margin-bottom: 12px;
                 }
+            }
+        }
+    }
+
+    @media screen and (max-width: 1000px){
+        .flex-box{
+            margin-bottom: 16px;
+        }
+        .section-main{
+            .product-main{
+                .photos{
+                    margin-right: 32px;
+                }
+
+                .product-main-info{
+                    .product-title{
+                        margin-bottom: 24px;
+                    }
+                    .prices{
+                        margin-bottom: 24px;
+                    }
+                    .btns{
+                        flex-direction: column;
+
+                        .btn:first-child{
+                            margin-right: 0;
+                            margin-bottom: 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 767px){
+        .section-main{
+            .product-main{
+                flex-direction: column;
+
+                .photos{
+                    margin-right: 0;
+                    max-width: 100%;
+                    margin-bottom: 24px;
+                }
+
             }
         }
     }
