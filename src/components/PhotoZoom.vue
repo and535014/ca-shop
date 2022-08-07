@@ -6,7 +6,11 @@ ModalComp.photo-zoom-modal
         .btn.btn-icon-m.photo-zoom-modal_close(@click="isOpen=!isOpen")
                 i(class="fa-solid fa-xmark icon-l")
     template(v-slot:content)
-        .pic-wrap(v-html="getImg(imgUrl)")
+        .pic-wrap(
+            v-html="getImg(imgUrl)"
+            @mousedown="mouseDown($event)"
+            @mouseup="mouseUp($event)"
+            )
         .ctrl.ctrl-l(@click="switchLeft")
             i(class="fa-solid fa-angle-left icon-l")
         .ctrl.ctrl-r(@click="switchRight")
@@ -20,7 +24,11 @@ export default {
     data() {
         return {
             imgUrl: this.currentImg,
-            imgId: this.currentImgId
+            imgId: this.currentImgId,
+            mouse: {
+                x: null,
+                y: null
+            }
         };
     },
     computed: {
@@ -61,6 +69,26 @@ export default {
             let key = keys[id];
             let url = this.imgs[key];
             this.imgUrl = url;
+        },
+        mouseDown(evt){
+            this.mouse.x = evt.pageX
+            this.mouse.y = evt.pageY
+
+            // console.log(this.mouse.x,this.mouse.y);
+        },
+        mouseUp(evt){
+            let delta = {
+                x: evt.pageX - this.mouse.x,
+                y: evt.pageY - this.mouse.y
+            }
+
+            // console.log(delta.x);
+            if(delta.x<0){
+                this.switchRight()
+            }else if (delta.x>0){
+                this.switchLeft()
+            }
+
         }
     },
     watch: {
@@ -104,11 +132,13 @@ export default {
         padding-bottom: 100%;
         position: relative;
         overflow: hidden;
+        pointer-events: all;
         
         img{
             @include abCenter;
             height: 100%;
             display: block;
+            pointer-events: none
         }
     }
 

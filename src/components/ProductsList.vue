@@ -458,6 +458,20 @@ export default {
 
                 .filters{
                     margin-right: 0;
+
+                    .filter-item{
+                        .filter-item_content{
+                            left: -50%;
+                            min-width: 160px;
+                            padding: 12px;
+
+                            .bottom{
+                                input[type=text]{
+                                    width: 46px;
+                                }
+                            }
+                        }
+                    }
                 }
                 .sort{
                     flex-basis: 100%;
