@@ -60,9 +60,6 @@ header.header
                                 :to="getPath(first, second)"
                                 ) {{ second }}
     nav.navigation-menu(:class="{isOpen: navMenuIsOpen}")
-        .close-wrap
-            .search-icon.btn.btn-l.btn-icon-m.btn-text(@click="navMenuIsOpen=!navMenuIsOpen")
-                i(class="fa-solid fa-xmark icon-l")
         .search-bar-wrap
             .search-icon.btn.btn-l.btn-icon-m.btn-text
                 i(class="fa-solid fa-magnifying-glass")
@@ -105,9 +102,8 @@ header.header
 
 <script>
 import { mapState } from 'vuex'
-import MaskCover from './MaskCover.vue'
 export default {
-    props: ["cartIsOpen", "reactIsShow"],
+    props: ["cartIsOpen", 'reactIsShow', 'bodyIsOVH'],
     computed: {
         ...mapState({
             navigation: state => state.header.navigation,
@@ -125,6 +121,21 @@ export default {
         cartIsOpen: {
             handler(val) {
                 this.$emit("update", { cartIsOpen: val });
+
+                this.bodyIsOVH(val)
+            }
+        },
+        navMenuIsOpen: {
+            handler(val) {
+                let classVal = document.body.getAttribute('class') || ""
+
+                if(val){
+                    classVal = classVal.concat("overflow-hidden")
+                    document.body.setAttribute('class', classVal)
+                }else if(!val){
+                    classVal = classVal.replace("overflow-hidden", "")
+                    document.body.setAttribute('class', classVal)
+                }
             }
         }
     },
@@ -304,8 +315,8 @@ export default {
         background-color: #fff;
         width: 300px;
         height: 100vh;
-        padding: 24px;
-        padding-right: 16px;
+        padding: 16px;
+        padding-bottom: 64px;
         overflow: scroll;
         box-sizing: border-box;
         transition: .5s;
@@ -315,15 +326,9 @@ export default {
             transform: translateX(0);
         }
 
-        .close-wrap{
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
         .search-bar-wrap{
             display: flex;
-            padding: 20px 24px;
+            padding: 16px 0;
             border-bottom: 1px solid #eee;
             .search-icon{
                 margin-right: 8px;
@@ -344,8 +349,8 @@ export default {
                     line-height: 48px;
                     box-sizing: border-box;
                     transition: .5s;
-                    padding: 0 16px;
-                    padding-left: 24px;
+                    padding-left: 16px;
+                    padding-right: 8px;
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
@@ -397,21 +402,7 @@ export default {
             .logo{
                 font-size: 32px;
             }
-        }
-        .navigation{
-            display: none;
-        }
-        .nav-menu-btn{
-            display: inline-flex;
-        }
 
-        .navigation-menu{
-            display: block;
-        }
-    }
-
-    @media screen and (max-width: 1000px){
-        .top-header{
             .icons-wrap{
                 .btn{
                     margin-left: 0;
@@ -422,8 +413,28 @@ export default {
                 }
             }
         }
+
+        .navigation{
+            display: none;
+        }
+
+        .nav-menu-btn{
+            display: inline-flex;
+        }
+
+        .navigation-menu{
+            display: block;
+        }
     }
+
     @media screen and (max-width: 767px){
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        background-color: #fff;
+        width: 100%;
+        box-sizing: border-box;
         .top-header{
             .icons-wrap{
                 .btn{
@@ -438,6 +449,7 @@ export default {
     }
 
     @media screen and (max-width: 479px){
+        padding: 0 16px;
         .top-header{
             .wrapper{
                 grid-template-columns: 1fr 100px 1fr;

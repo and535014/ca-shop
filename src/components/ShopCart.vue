@@ -117,7 +117,7 @@ export default {
     height: 100vh;
     z-index: 100;
     background-color: #fff;
-    padding: 24px;
+    padding: 16px;
     overflow: scroll;
     box-sizing: border-box;
     transition: .5s;

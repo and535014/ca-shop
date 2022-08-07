@@ -34,6 +34,7 @@
 <script>
 export default {
     props: ['id', 'title', 'imgCover', 'state', 'brand', 'price', 'minPrice', 'maxPrice'],
+    inject: ['provideBodyIsOVH'],
     data(){
         return {
             isAdded: false,
@@ -77,6 +78,13 @@ export default {
                     this.msg = ''
                     this.msgIcon = ''
                 },1200)
+            }
+        }
+    },
+    watch: {
+        isAdded: {
+            handler(val){
+                this.provideBodyIsOVH(val)
             }
         }
     }
@@ -237,29 +245,44 @@ export default {
     }
 
     @media screen and (max-width: 767px){
-        flex-basis: calc((100% - 24px) / 2);
+        flex-basis: calc((100% - 12px) / 2);
+        margin-right: 12px;
+        min-width: auto;
+
+        &:nth-child(5n+5){
+            margin-right: 12px;
+        }
 
         &:nth-child(3n+3){
-            margin-right: 24px;
+            margin-right: 12px;
         }
 
         &:nth-child(2n+2){
             margin-right: 0px;
         }
+
+        .link-top{
+            .btn-wrap{
+
+                .btn-heart{
+                    opacity: 1;
+                }
+            }
+        }
     }
 
-    @media screen and (max-width: 479px){
-        flex-basis: 100%;
+    // @media screen and (max-width: 479px){
+    //     flex-basis: 100%;
 
-        &:nth-child(5n+5){
-            margin-right: 0;
-        }
+    //     &:nth-child(5n+5){
+    //         margin-right: 0;
+    //     }
 
-        &:nth-child(3n+3){
-            margin-right: 0px;
-        }
+    //     &:nth-child(3n+3){
+    //         margin-right: 0px;
+    //     }
 
-        margin-right: 0;
-    }
+    //     margin-right: 0;
+    // }
 }
 </style>

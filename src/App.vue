@@ -1,12 +1,12 @@
 <template lang="pug">
 NavComp(
     :cartIsOpen="cartIsOpen"
-    :key="cartIsOpen" 
+    :bodyIsOVH="bodyIsOVH"
     @update="updateNavInfo"
     )
 router-view(v-slot="{ Component }")
     transition(name="fadeIn" mode="out-in")
-        component(:is="Component")
+        component(:is="Component" :bodyIsOVH="bodyIsOVH")
 transition(name="fadeInOut" mode="out-in")
     MaskCover(
         v-if="maskIsActive" 
@@ -51,6 +51,17 @@ export default {
                     clearInterval(timeTop)
                 }
             }, 10)
+        },
+        bodyIsOVH(val){
+            let classVal = document.body.getAttribute('class') || ""
+
+            if(val){
+                classVal = classVal.concat("overflow-hidden")
+                document.body.setAttribute('class', classVal)
+            }else if(!val){
+                classVal = classVal.replace("overflow-hidden", "")
+                document.body.setAttribute('class', classVal)
+            }
         }
     },
     computed: {
@@ -58,7 +69,10 @@ export default {
             return this.cartIsOpen?true:false
         }
     },
-    watch: {
+    provide(){
+        return {
+            provideBodyIsOVH: this.bodyIsOVH
+        }
     }
 }
 </script>
@@ -70,12 +84,13 @@ export default {
     bottom: 10rem;
     @include boxShadow;
     background-color: rgba($brand-color,.9);
+    border: 1px solid rgba(white,.5);
     color: white;
     border-radius: 50%;
     opacity: 0;
     transition: .5s;
     transform: translateY(20px);
-    z-index: 10;
+    z-index: 1;
     &.isShow{
         opacity: 1;
         transform: translateY(0);

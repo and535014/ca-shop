@@ -18,7 +18,7 @@
           v-for='i in num' 
           :class='[counterClass(i), {active: i-1 == currentNum % num}]'
           )
-  section.section.scetion-limit
+  section.section.scetion-limit.section-narrow
     .wrapper 
       h2.title 現正預購中
       .cards-wrap
@@ -218,7 +218,7 @@ export default {
         bottom: 10px;
         left: 50%;
         transform: translateX(-50%);
-        z-index: 10;
+        z-index: 1;
         .counter{
           @include size(10px);
           margin-right: 8px;

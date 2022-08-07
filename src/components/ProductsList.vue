@@ -1,6 +1,6 @@
 <template lang="pug">
 .products-list
-    .section.section-filters
+    .section.section-filters.section-narrow
         .wrapper
             .options 
                 .filters
@@ -64,7 +64,7 @@
                                     ) 價格: 高到低
                 .product-num
                     span {{ products.length }} 件商品
-    .section.section-main
+    .section.section-main.section-narrow
         .wrapper
             Transition(name="fadeIn" mode="out-in")
                 .card-wrap(

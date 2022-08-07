@@ -127,12 +127,11 @@
 
 <script>
 import { mapState } from 'vuex'
-import ModalComp from '@/components/ModalComp.vue'
 export default {
     created() {
         this.currentImg = this.product.imgs.pic01
     },
-    props: ["id"],
+    props: ["id", 'bodyIsOVH'],
     data() {
         return {
             currentImg: null,
@@ -224,7 +223,18 @@ export default {
             return result
         }
     },
-    components: { ModalComp }
+    watch: {
+        photoIsZoom: {
+            handler(val) {
+                this.bodyIsOVH(val)
+            }
+        },
+        cartIsAdded: {
+            handler(val) {
+                this.bodyIsOVH(val)
+            }
+        }
+    }
 }
 </script>
 
@@ -381,6 +391,7 @@ export default {
 
         .product-content{
             margin-top: 32px;
+            font-size: 16px;
 
             p{
                 padding-bottom: 12px;
@@ -444,15 +455,36 @@ export default {
 
     @media screen and (max-width: 767px){
         .section-main{
+            padding: 0;
             .product-main{
                 flex-direction: column;
+                padding: 0;
 
                 .photos{
                     margin-right: 0;
                     max-width: 100%;
                     margin-bottom: 24px;
+
+                    .thumbs{
+                        padding: 0 10px;
+                        box-sizing: border-box;
+                    }
                 }
 
+                .product-main-info{
+                    padding: 16px;
+                }
+
+            }
+
+            .product-content{
+                .otherInfo{
+                    padding: 16px;
+                }
+
+                .product-details{
+                    padding: 16px;
+                }
             }
         }
     }
