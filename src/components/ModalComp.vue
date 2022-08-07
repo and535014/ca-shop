@@ -37,7 +37,7 @@ export default {
         @include flexCenter;
         z-index: 1;
         max-width: 800px;
-        height: 100vh;
+        height: 100%;
         margin: 0 auto;
         position: relative;
 
@@ -51,8 +51,7 @@ export default {
         .modal-content{
             width: 100%;
             position: relative;
-            background-color: #fff;
-
+            // background-color: #fff;
         }
         
         .modal-msg{
@@ -63,6 +62,8 @@ export default {
             font-size: 24px;
             font-weight: 500;
             padding: 24px;
+            display: flex;
+            align-items: center;
 
             i{
                 margin-right: 12px;
@@ -83,6 +84,24 @@ export default {
             
         }
 
+    }
+
+    @media screen and (max-width: 767px){
+        .modal-wrapper{
+            max-width: 100%;
+        }
+    }
+
+    @media screen and (max-width: 479px){
+        .modal-wrapper{
+            .modal-msg{
+                font-size: 16px;
+                padding: 12px;
+                i{
+                    margin-right: 4px;
+                }
+            }
+        }
     }
 
 }

@@ -15,7 +15,6 @@ ModalComp.photo-zoom-modal
 </template>
 
 <script>
-import MaskCover from './MaskCover.vue'
 export default {
     props: ["currentImg", "currentImgId", "imgs", "isOpen"],
     data() {
@@ -95,15 +94,20 @@ export default {
 
     .modal-content{
         height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .pic-wrap{
-        height: 100%;
         width: 100%;
+        padding-bottom: 100%;
+        position: relative;
+        overflow: hidden;
         
         img{
+            @include abCenter;
             height: 100%;
-            margin: 0 auto;
             display: block;
         }
     }
