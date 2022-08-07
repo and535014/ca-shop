@@ -243,6 +243,10 @@ export default {
             .left{
                 margin-bottom: 12px;
             }
+
+            .right{
+                margin-left: auto;
+            }
         }
     }
 }

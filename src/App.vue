@@ -16,14 +16,24 @@ ShopCart(
     :cartIsOpen="cartIsOpen"
     @update="updateCartInfo"
     )
+.btn.btn-icon-l.goTop(@click='goTop' :class="{'isShow': scrollY > 200}")
+    i(class="fa-solid fa-angle-up icon-l")
 FooterComp
 </template>
 
 <script>
 export default {
+    created(){
+        window.addEventListener('scroll', () => {
+            let windowScrollY = window.scrollY
+
+            this.scrollY = windowScrollY
+        })
+    },
     data(){
         return {
-            cartIsOpen: false
+            cartIsOpen: false,
+            scrollY: null
         }
     },
     methods: {
@@ -32,6 +42,15 @@ export default {
         },
         updateCartInfo(val){
             this.cartIsOpen = val.cartIsOpen
+        },
+        goTop(){
+            let top = document.documentElement.scrollTop || document.body.scrollTop
+            const timeTop = setInterval(()=>{
+                document.body.scrollTop = document.documentElement.scrollTop = top-=50
+                if(top <=0){
+                    clearInterval(timeTop)
+                }
+            }, 10)
         }
     },
     computed: {
@@ -45,6 +64,23 @@ export default {
 </script>
 
 <style lang="scss">
+.btn.goTop{
+    position: fixed;
+    right: 2.4rem;
+    bottom: 10rem;
+    @include boxShadow;
+    background-color: rgba($brand-color,.9);
+    color: white;
+    border-radius: 50%;
+    opacity: 0;
+    transition: .5s;
+    transform: translateY(20px);
+    z-index: 10;
+    &.isShow{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 //fadeIn
 .fadeIn-enter-from{
     opacity: 0;
