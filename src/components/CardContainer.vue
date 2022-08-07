@@ -87,7 +87,7 @@ export default {
 .card-container{
     position: relative;
     margin-right: 24px;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
     flex-basis: calc((100% - 96px) / 5);
     min-width: 168px;
     box-sizing: border-box;
@@ -203,7 +203,7 @@ export default {
             font-size: 16px;
             font-weight: bold;
             display: block;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .details{
@@ -219,7 +219,7 @@ export default {
             .price{
                 font-size: 18px;
                 font-weight: bold;
-                margin-top: 8px;
+                margin-top: 4px;
             }
         }
     }
@@ -239,10 +239,6 @@ export default {
     @media screen and (max-width: 767px){
         flex-basis: calc((100% - 24px) / 2);
 
-        &:nth-child(5n+5){
-            margin-right: 0;
-        }
-
         &:nth-child(3n+3){
             margin-right: 24px;
         }
@@ -254,6 +250,10 @@ export default {
 
     @media screen and (max-width: 479px){
         flex-basis: 100%;
+
+        &:nth-child(5n+5){
+            margin-right: 0;
+        }
 
         &:nth-child(3n+3){
             margin-right: 0px;
