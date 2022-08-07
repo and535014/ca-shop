@@ -206,7 +206,13 @@ textarea{
     align-items: center;
     justify-content: flex-start;
     border: 1px solid $black-20;
-    color: $black-80;
+    color: $black-40;
+
+    .btn{
+        border-radius: 0;
+        font-size: 14px;
+        @include size(40px);
+    }
 
     .btn-sub{
         border-right: 1px solid $black-20;
@@ -220,6 +226,7 @@ textarea{
         border: none;
         text-align: center;
         font-weight: 500;
+        border-radius: 0;
     }
 }
 
@@ -287,4 +294,5 @@ textarea{
     .title{
         font-size: 20px;
     }
+
 }

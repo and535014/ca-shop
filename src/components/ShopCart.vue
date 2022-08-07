@@ -21,9 +21,11 @@
                         span {{ item.spec.name }}
                     .cart-quantity
                         .input-num
-                            .btn.btn-s.btn-sub(@click="subQty(id,item.qty)") -
+                            .btn.btn-sub(@click="subQty(id,item.qty)")
+                                i(class="fa-solid fa-minus")
                             input(type="text" :value="item.qty" @change="setQty(id,$event)")
-                            .btn.btn-s.btn-add(@click="addQty(id,item.qty)") +
+                            .btn.btn-add(@click="addQty(id,item.qty)")
+                                i(class="fa-solid fa-plus")
                     .subtotal {{ addCommaToNum(item.price * item.qty)}}
                     .btn.btn-icon-m.btn-text.btn-delete(@click="deleteCartItem(id)")
                         i(class="fa-regular fa-trash-can")
@@ -219,6 +221,63 @@ export default {
     .go_to_payment{
         width: 100%;
     }
+
+    @media screen and (max-width: 479px){
+    width: 300px;
+    
+    .cart_content{
+        .cart-list{
+            .item{
+                padding: 8px;
+            }
+        }
+        .cart_thumbs{
+            margin-right: 4px;
+            .item-photo{
+                @include size(44px);
+            }
+        }
+
+        .cart_info{
+            .pre-order{
+                font-size: 12px;
+                margin-bottom: 8px;
+                .tag{
+                    font-size: 12px;
+                    padding: 0 2px;
+                }
+            }
+            .brand{
+                font-size: 12px;
+            }
+            .product-title{
+                font-size: 14px;
+            }
+            .spec{
+                font-size: 12px;
+            }
+
+            .subtotal{
+                font-size: 20px;
+            }
+
+            .input-num{
+                .btn.btn-sub, .btn.btn-add{
+                    @include size(30px);
+                }
+
+                input{
+                    width: 50px;
+                }
+            }
+
+        }
+        .btn-delete{
+            @include size(24px);
+            font-size: 14px;
+        }
+    }
+}
 
 }
 </style>

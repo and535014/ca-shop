@@ -38,9 +38,11 @@
                     .quantity.flex-box
                         label.flex-item 數量
                         .input-num
-                            .btn.btn-s.btn-sub(@click="quantitySub") -
+                            .btn.btn-sub(@click="quantitySub")
+                                i(class="fa-solid fa-minus")
                             input(type="text" v-model="quantity")
-                            .btn.btn-s.btn-add(@click="quantityAdd") +
+                            .btn.btn-add(@click="quantityAdd")
+                                i(class="fa-solid fa-plus")
                     .btns
                         .btn.btn-l.btn-primary.btn-withIcon(@click="addCart")
                             i(class="fa-solid fa-cart-shopping icon-s")
