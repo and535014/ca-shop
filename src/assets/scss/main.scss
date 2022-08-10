@@ -39,9 +39,6 @@ input{
     outline: none;
     font-family: 'Noto Sans TC', 'Noto Sans', Avenir, Helvetica, Arial, sans-serif;
 
-    &:focus{
-        border: 2px solid rgba($brand-color, .6);
-    }
 }
 
 select{
@@ -67,9 +64,6 @@ textarea{
     resize: none;
     font-family: 'Noto Sans TC', 'Noto Sans', Avenir, Helvetica, Arial, sans-serif;
 
-    &:focus{
-        border: 2px solid rgba($brand-color, .6);
-    }
 }
 
 //logo---------------------------------
@@ -142,35 +136,35 @@ textarea{
 }
 
 .btn-primary{
-    background-color: $brand-color;
+    background-color: $black-90;
     color: white;
 
     &:hover{
-        background-color: lighten($brand-color,5);
+        background-color: $black-80;
     }
 }
 
 .btn-secondary{
-    border: 1px solid rgba($brand-color,.6);
-    color: $brand-color;
+    border: 1px solid $black-90;
+    color: $black-90;
 
     &:hover{
-        background-color: rgba($brand-color,.1);
+        background-color: $black-10;
     }
 }
 
 .btn-text{
-    color: $black-80;
+    color: $black-60;
 
     &:hover{
-        color: lighten($brand-color,10);
+        color: $black-80;
     }
 }
 
 
 // tag ---------------------------------------
 .tag{
-    background-color: rgba($brand-color,.7);
+    background-color: rgb(0, 151, 141);
     color: white;
     display: inline-block;
     letter-spacing: 1px;
@@ -260,7 +254,7 @@ textarea{
     font-size: 16px;
     font-weight: 500;
     line-height: 1.2;
-    color: rgba($brand-color, 1);
+    color: $black-80;
 }
 
 .caption{

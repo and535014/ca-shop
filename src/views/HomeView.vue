@@ -1,14 +1,10 @@
 <template lang="pug">
 .page.page-home 
-  //- .test 
-    p total: {{ num }}, current: {{ currentNum }} %: {{currentP}}
   .banner-wrap 
     .banner
       ul.viewport
-        li.item(v-for="(banner, bid) in banners" :class="itemClass(bid)" @click="getLeft($event)")
-          a.link(v-html="getImg(banner.imgs)")
-          //- a.link {{ bid }}
-            p {{ bid - currentNum}}
+        li.item(v-for="(banner, bid) in banners" :class="itemClass(bid)")
+          router-link.link(:to="getPath(banner.id)" v-html="getImg(banner.imgs)")
       .ctrl.ctrl-l(@click="switchLeft")
         i(class="fa-solid fa-angle-left icon-l")
       .ctrl.ctrl-r(@click="switchRight")
@@ -57,6 +53,9 @@ export default {
     }
   },
   methods: {
+    getPath(id){
+      return `/product/${id}`
+    },
     itemClass(id){
       return 'item-'+(id)
     },

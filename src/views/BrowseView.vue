@@ -48,8 +48,8 @@ export default {
                 let middle = datas.filter((d) => d.cata == "眼珠");
                 products = middle.filter((d) => d.size == this.cataSecond);
             }
-            if (this.cataFirst == "配件" && this.cataSecond) {
-                products = datas.filter((d) => d.cata == "眼珠");
+            if (this.cataFirst == "配件") {
+                products = datas.filter((d) => d.cata == "配件");
             }
             return products;
         },

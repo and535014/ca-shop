@@ -82,7 +82,7 @@
                 ul.pages
                     li.btn.btn-icon-s(v-if="pagesNum>1 && currPage>1" @click="goPrevPage")
                         i(class="fa-solid fa-angle-left")
-                    li.btn.btn-s.page(
+                    li.btn.btn-s.page-count(
                         v-for="i in pagesNum"
                         :class="{active: currPage==i}"
                         @click="goSpecificPage(i)"
@@ -109,7 +109,7 @@ export default {
     data(){
         return {
             currPage: 1,
-            productNumInPage: 20,
+            productNumInPage: 10,
             filterStockIsOpen: false,
             filterPriceIsOpen: false,
             sortPriceIsOpen: false,
@@ -175,11 +175,11 @@ export default {
                 })
             }else if(sort=='ascending'){
                 products.sort((a,b)=>{
-                    return a.minPrice - b.minPrice
+                    return a.price - b.price
                 })
             }else if(sort=='descending'){
                 products.sort((a,b)=>{
-                    return b.minPrice - a.minPrice
+                    return b.price - a.price
                 })
             }
 
@@ -242,12 +242,23 @@ export default {
                 minPrice: null,
                 maxPrice: null
             }
+
             this.sort = null
+            document.body.scrollTop = 0
+            document.documentElement.scrollTop = 0
         }
     },
     watch: {
-        products(){
-            this.pageInit()
+        products: {
+            handler(){
+                this.pageInit()
+            }
+        },
+        currPage: {
+            handler(){
+                document.body.scrollTop = 0
+                document.documentElement.scrollTop = 0
+            }
         }
     }
 }
@@ -350,7 +361,7 @@ export default {
                         font-weight: normal;
 
                         &.active{
-                            background-color: $brand-color;
+                            background-color: $black-90;
                             color: white;
                         }
                     }
@@ -384,7 +395,7 @@ export default {
                                 text-align: center;
 
                                 &:hover, &.active{
-                                    color: lighten($brand-color,5);
+                                    color: $black-90;
                                     font-weight: bold;
                                 }
                             }
@@ -427,7 +438,7 @@ export default {
                     padding-top: 4px;
                 }
 
-                .page{
+                .page-count{
                     font-size: 18px;
                     &.active{
                         text-decoration: underline;

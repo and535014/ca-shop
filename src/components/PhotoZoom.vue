@@ -144,8 +144,8 @@ export default {
         
         img{
             @include abCenter;
-            height: 100%;
             display: block;
+            height: inherit;
             pointer-events: none
         }
     }
@@ -154,6 +154,14 @@ export default {
         @include size(40px,64px);
         @include flexCenter;
         pointer-events: all;
+    }
+
+    @media screen and (max-width: 767px){
+        .pic-wrap{
+            img{
+                width: 100%;
+            }
+        }
     }
 
 }

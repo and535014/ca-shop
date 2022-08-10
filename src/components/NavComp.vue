@@ -164,7 +164,7 @@ export default {
 <style lang="scss">
 .header{
     padding: 0 24px;
-    border-bottom: 1px solid $black-40;
+    border-bottom: 1px solid $black-10;
 
     .top-header{
         padding: 16px 0;
@@ -187,7 +187,7 @@ export default {
             .search-icon{
 
                 &.active{
-                    color: lighten($brand-color,10);
+                    color: $black-90;
                 }
             }
 
@@ -224,6 +224,7 @@ export default {
 
             .btn-cart{
                 position: relative;
+
                 .cart-count{
                     position: absolute;
                     top: -8px;
@@ -231,7 +232,7 @@ export default {
                     width: 20px;
                     line-height: 20px;
                     font-size: 10px;
-                    background-color: lighten($brand-color,20);
+                    background-color: $black-90;
                     border-radius: 100px;
                     color: white;
                     font-weight: bold;
@@ -285,7 +286,7 @@ export default {
 
         .nav-second{
             position: absolute;
-            min-width: 100%;
+            min-width: 110%;
             top: 47px;
             left: 0;
             border: 1px solid $black-40;
@@ -300,7 +301,8 @@ export default {
                 color: $black-60;
 
                 &:hover{
-                    color: lighten($brand-color,10);
+                    color: $black-90;
+                    font-weight: 500;
                 }
             }
         }
@@ -374,7 +376,7 @@ export default {
                         cursor: pointer;
 
                         &:hover{
-                            color: lighten($brand-color,10);
+                            color: $black-90;
                         }
                     }
                 }

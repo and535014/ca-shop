@@ -47,7 +47,9 @@
                         .btn.btn-l.btn-primary.btn-withIcon(@click="addCart")
                             i(class="fa-solid fa-cart-shopping icon-s")
                             |加入購物車
-                        .buy.btn.btn-l.btn-secondary 我要預購
+                        .buy.btn.btn-l.btn-secondary.btn-withIcon
+                            i(class="fa-regular fa-heart")
+                            |收藏商品
                     ul.notices
                         p.pre-order 本商品為預購商品，{{ product.preorderDeadline }} 截止
                         p.delivery 運送方式：一般宅配、國際快遞、與之前的預購訂單合併出貨、7-11取貨、全家超商取貨
@@ -329,7 +331,7 @@ export default {
 
                 .prices{
                     font-size: 40px;
-                    color: $brand-color;
+                    color: $black-90;
                     margin-bottom: 32px;
                     font-weight: bold;
                     display: flex;
@@ -353,7 +355,7 @@ export default {
                         color: $black-80;
 
                         &.active{
-                            background-color: $brand-color;
+                            background-color: $black-90;
                             color: white;
                         }
                     }

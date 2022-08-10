@@ -2,7 +2,7 @@
 .card-container
     .link-top
         router-link(:to="getPath(id)")
-            .pic(v-html="getImg(imgCover,'')")
+            .pic(v-html="getImg(imgs.pic01,'')")
         .btn-wrap
             .btn.btn-l.btn-icon-m.btn-text.btn-heart(
                 @click.stop="addWishList()"
@@ -33,7 +33,7 @@
 
 <script>
 export default {
-    props: ['id', 'title', 'imgCover', 'state', 'brand', 'price', 'minPrice', 'maxPrice'],
+    props: ['id', 'title','imgs', 'state', 'brand', 'price', 'minPrice', 'maxPrice'],
     inject: ['provideBodyIsOVH'],
     data(){
         return {
@@ -45,7 +45,7 @@ export default {
     },
     methods: {
         getImg(url, alt){
-        return `<img src="${url}" alt="${alt}">`
+            return `<img src="${url}" alt="${alt}">`
         },
         getPath(id){
             return `/product/${id}`
@@ -193,10 +193,6 @@ export default {
             position: absolute;
             top: 0;
             left: 0;
-
-            .tag{
-                background-color: lighten($brand-color,15);
-            }
         }
 
     }

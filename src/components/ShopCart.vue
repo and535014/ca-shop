@@ -200,7 +200,7 @@ export default {
                 font-size: 24px;
                 line-height: 1.6;
                 letter-spacing: normal;
-                color: $brand-color;
+                color: $black-90;
 
                 &:before{
                     content: "$";

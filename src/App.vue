@@ -83,16 +83,15 @@ export default {
     right: 2.4rem;
     bottom: 10rem;
     @include boxShadow;
-    background-color: rgba($brand-color,.9);
-    border: 1px solid rgba(white,.5);
-    color: white;
+    background-color: #fff;
+    border: 1px solid black;
     border-radius: 50%;
     opacity: 0;
     transition: .5s;
     transform: translateY(20px);
     z-index: 1;
     &.isShow{
-        opacity: 1;
+        opacity: .8;
         transform: translateY(0);
     }
 }
