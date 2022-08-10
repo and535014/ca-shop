@@ -414,7 +414,7 @@ export default createStore({
         specs: [
           {
             name: '狐狸',
-            url: `./img/products/product12/cover.png`
+            url: `./img/products/product12/pic01.png`
           }],
         imgs: {
           pic01: `./img/products/product12/pic01.png`,
