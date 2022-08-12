@@ -86,7 +86,7 @@ export default createStore({
         id: 1,
         title: 'MELODY.C / 4分 / Holy Cross 高腰連身裙 - 限時預購  ~ 2022/7/31',
         imgs: {
-          big: `./img/banner/pic01.png`,
+          big: `/img/banner/pic01.png`,
           small: `/img/banner/pic01_small.png`
         }
       }, {
