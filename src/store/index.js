@@ -86,43 +86,43 @@ export default createStore({
         id: 1,
         title: 'MELODY.C / 4分 / Holy Cross 高腰連身裙 - 限時預購  ~ 2022/7/31',
         imgs: {
-          big: `/img/banner/pic01.png`,
-          small: `/img/banner/pic01_small.png`
+          big: `./img/banner/pic01.png`,
+          small: `./img/banner/pic01_small.png`
         }
       }, {
         id: 2,
         title: 'Cocoriang / 短斗篷套組 - 限時預購 2022/7/30',
         imgs: {
-          big: `/img/banner/pic02.png`,
-          small: `/img/banner/pic02_small.png`
+          big: `./img/banner/pic02.png`,
+          small: `./img/banner/pic02_small.png`
         }
       }, {
         id: 3,
         title: '25 時茶會 / 4分 / 開襟毛衣外套 - 限時預購  ~ 2022/6/1',
         imgs: {
-          big: `/img/banner/pic03.png`,
-          small: `/img/banner/pic03_small.png`
+          big: `./img/banner/pic03.png`,
+          small: `./img/banner/pic03_small.png`
         }
       }, {
         id: 4,
         title: '腳尖上的小詩/ 4分 / 雙釦帶黑色高跟鞋 - 限時預購 ~2022/8/1',
         imgs: {
-          big: `/img/banner/pic04.png`,
-          small: `/img/banner/pic04_small.png`
+          big: `./img/banner/pic04.png`,
+          small: `./img/banner/pic04_small.png`
         }
       }, {
         id: 6,
         title: '桃子汽水不加冰 / 6分 / 晚安熊條紋睡衣 - 限時預購  ~ 2022/8/11',
         imgs: {
-          big: `/img/banner/pic05.png`,
-          small: `/img/banner/pic05_small.png`
+          big: `./img/banner/pic05.png`,
+          small: `./img/banner/pic05_small.png`
         }
       }, {
         id: 12,
         title: '麟 の 手工 / 小寵 / 單人圓形沙發 - 限時預購  ~ 2022/8/20',
         imgs: {
-          big: `/img/banner/pic06.png`,
-          small: `/img/banner/pic06_small.png`
+          big: `./img/banner/pic06.png`,
+          small: `./img/banner/pic06_small.png`
         }
       }
     ],
@@ -143,19 +143,19 @@ export default createStore({
         specs: [
           {
             name: '白色',
-            url: `/img/products/product01/pic02.png`
+            url: `./img/products/product01/pic02.png`
           }, {
             name: '黑色',
-            url: `/img/products/product01/pic03.png`
+            url: `./img/products/product01/pic03.png`
           }],
         imgs: {
-          pic01: `/img/products/product01/pic01.png`,
-          pic02: `/img/products/product01/pic02.png`,
-          pic03: `/img/products/product01/pic03.png`,
-          pic04: `/img/products/product01/pic04.png`,
-          pic05: `/img/products/product01/pic05.png`,
-          pic06: `/img/products/product01/pic06.png`,
-          pic07: `/img/products/product01/pic07.png`
+          pic01: `./img/products/product01/pic01.png`,
+          pic02: `./img/products/product01/pic02.png`,
+          pic03: `./img/products/product01/pic03.png`,
+          pic04: `./img/products/product01/pic04.png`,
+          pic05: `./img/products/product01/pic05.png`,
+          pic06: `./img/products/product01/pic06.png`,
+          pic07: `./img/products/product01/pic07.png`
         }
       }, {
         id: 2,
@@ -173,15 +173,15 @@ export default createStore({
         specs: [
           {
             name: '紅色',
-            url: `/img/products/product02/pic03.png`
+            url: `./img/products/product02/pic03.png`
           }, {
             name: '藍色',
-            url: `/img/products/product02/pic03.png`
+            url: `./img/products/product02/pic03.png`
           }],
         imgs: {
-          pic01: `/img/products/product02/pic01.png`,
-          pic02: `/img/products/product02/pic02.png`,
-          pic03: `/img/products/product03/pic02.png`
+          pic01: `./img/products/product02/pic01.png`,
+          pic02: `./img/products/product02/pic02.png`,
+          pic03: `./img/products/product03/pic02.png`
         }
       }, {
         id: 3,
@@ -199,12 +199,12 @@ export default createStore({
         specs: [
           {
             name: '駝色',
-            url: `/img/products/product03/pic01.png`
+            url: `./img/products/product03/pic01.png`
           }],
         imgs: {
-          pic01: `/img/products/product03/pic01.png`,
-          pic02: `/img/products/product03/pic02.png`,
-          pic03: `/img/products/product03/pic03.png`
+          pic01: `./img/products/product03/pic01.png`,
+          pic02: `./img/products/product03/pic02.png`,
+          pic03: `./img/products/product03/pic03.png`
         }
       },{
         id: 4,
@@ -222,11 +222,11 @@ export default createStore({
         specs: [
           {
             name: '黑色',
-            url: `/img/products/product04/pic01.png`
+            url: `./img/products/product04/pic01.png`
           }],
         imgs: {
-          pic01: `/img/products/product04/pic01.png`,
-          pic02: `/img/products/product04/pic02.png`
+          pic01: `./img/products/product04/pic01.png`,
+          pic02: `./img/products/product04/pic02.png`
         }
       }, {
         id: 5,
@@ -244,17 +244,17 @@ export default createStore({
         specs: [
           {
             name: '深藍-淺藍緞帶',
-            url: `/img/products/product05/pic01.png`
+            url: `./img/products/product05/pic01.png`
           }, {
             name: '深藍-紫色緞帶',
-            url: `/img/products/product05/pic01.png`
+            url: `./img/products/product05/pic01.png`
           }, {
             name: '淺綠-粉紅緞帶',
-            url: `/img/products/product05/pic01.png`
+            url: `./img/products/product05/pic01.png`
           }],
         imgs: {
-          pic01: `/img/products/product05/pic01.png`,
-          pic02: `/img/products/product05/pic02.png`
+          pic01: `./img/products/product05/pic01.png`,
+          pic02: `./img/products/product05/pic02.png`
         }
       }, {
         id: 6,
@@ -272,16 +272,16 @@ export default createStore({
         specs: [
           {
             name: '藍色',
-            url: `/img/products/product06/pic01.png`
+            url: `./img/products/product06/pic01.png`
           }, {
             name: '橘色',
-            url: `/img/products/product06/pic01.png`
+            url: `./img/products/product06/pic01.png`
           }],
         imgs: {
-          pic01: `/img/products/product06/pic01.png`,
-          pic02: `/img/products/product06/pic02.png`,
-          pic03: `/img/products/product06/pic03.png`,
-          pic04: `/img/products/product06/pic04.png`,
+          pic01: `./img/products/product06/pic01.png`,
+          pic02: `./img/products/product06/pic02.png`,
+          pic03: `./img/products/product06/pic03.png`,
+          pic04: `./img/products/product06/pic04.png`,
         }
       },{
         id: 7,
@@ -299,10 +299,10 @@ export default createStore({
         specs: [
           {
             name: '橘藍配',
-            url: `/img/products/product07/pic01.png`
+            url: `./img/products/product07/pic01.png`
           }],
         imgs: {
-          pic01: `/img/products/product07/pic01.png`
+          pic01: `./img/products/product07/pic01.png`
         }
       }, {
         id: 8,
@@ -320,11 +320,11 @@ export default createStore({
         specs: [
           {
             name: '白色',
-            url: `/img/products/product08/pic01.png`
+            url: `./img/products/product08/pic01.png`
           }],
         imgs: {
-          pic01: `/img/products/product08/pic01.png`,
-          pic02: `/img/products/product08/pic02.png`
+          pic01: `./img/products/product08/pic01.png`,
+          pic02: `./img/products/product08/pic02.png`
         }
       }, {
         id: 9,
@@ -342,13 +342,13 @@ export default createStore({
         specs: [
           {
             name: '藍色',
-            url: `/img/products/product09/pic01.png`
+            url: `./img/products/product09/pic01.png`
           }, {
             name: '紫色',
-            url: `/img/products/product09/pic01.png`
+            url: `./img/products/product09/pic01.png`
           }],
         imgs: {
-          pic01: `/img/products/product09/pic01.png`
+          pic01: `./img/products/product09/pic01.png`
         }
       }, {
         id: 10,
@@ -366,13 +366,13 @@ export default createStore({
         specs: [
           {
             name: '駝色',
-            url: `/img/products/product10/pic01.png`
+            url: `./img/products/product10/pic01.png`
           }, {
             name: '灰色',
-            url: `/img/products/product10/pic01.png`
+            url: `./img/products/product10/pic01.png`
           }],
         imgs: {
-          pic01: `/img/products/product10/pic01.png`
+          pic01: `./img/products/product10/pic01.png`
         }
       }, {
         id: 11,
@@ -390,13 +390,13 @@ export default createStore({
         specs: [
           {
             name: '棕色',
-            url: `/img/products/product11/pic01.png`
+            url: `./img/products/product11/pic01.png`
           }, {
             name: '灰色',
-            url: `/img/products/product11/pic01.png`
+            url: `./img/products/product11/pic01.png`
           }],
         imgs: {
-          pic01: `/img/products/product11/pic01.png`
+          pic01: `./img/products/product11/pic01.png`
         }
       }, {
         id: 12,
@@ -414,12 +414,12 @@ export default createStore({
         specs: [
           {
             name: '狐狸',
-            url: `/img/products/product12/pic01.png`
+            url: `./img/products/product12/pic01.png`
           }],
         imgs: {
-          pic01: `/img/products/product12/pic01.png`,
-          pic02: `/img/products/product12/pic02.png`,
-          pic03: `/img/products/product12/pic03.png`
+          pic01: `./img/products/product12/pic01.png`,
+          pic02: `./img/products/product12/pic02.png`,
+          pic03: `./img/products/product12/pic03.png`
         }
       }, {
         id: 13,
@@ -437,14 +437,14 @@ export default createStore({
         specs: [
           {
             name: '仿真・淺灰綠',
-            url: `/img/products/product13/pic01.png`
+            url: `./img/products/product13/pic01.png`
           }, {
             name: '仿真・少年棕',
-            url: `/img/products/product13/pic02.png`
+            url: `./img/products/product13/pic02.png`
           }],
         imgs: {
-          pic01: `/img/products/product13/pic01.png`,
-          pic02: `/img/products/product13/pic02.png`
+          pic01: `./img/products/product13/pic01.png`,
+          pic02: `./img/products/product13/pic02.png`
         }
       }, {
         id: 14,
@@ -462,10 +462,10 @@ export default createStore({
         specs: [
           {
             name: '紅棕色',
-            url: `/img/products/product14/pic01.png`
+            url: `./img/products/product14/pic01.png`
           }],
         imgs: {
-          pic01: `/img/products/product14/pic01.png`
+          pic01: `./img/products/product14/pic01.png`
         }
       }, {
         id: 15,
@@ -483,10 +483,10 @@ export default createStore({
         specs: [
           {
             name: '白金色',
-            url: `/img/products/product15/pic01.png`
+            url: `./img/products/product15/pic01.png`
           }],
         imgs: {
-          pic01: `/img/products/product15/pic01.png`
+          pic01: `./img/products/product15/pic01.png`
         }
       }, {
         id: 16,
@@ -504,10 +504,10 @@ export default createStore({
         specs: [
           {
             name: '淺棕色',
-            url: `/img/products/product16/pic01.png`
+            url: `./img/products/product16/pic01.png`
           }],
         imgs: {
-          pic01: `/img/products/product16/pic01.png`
+          pic01: `./img/products/product16/pic01.png`
         }
       }
     ],

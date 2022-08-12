@@ -18,7 +18,6 @@ git commit -m 'deploy'
 
 # 部署到 https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
-# github 的分支名稱預設是 main，所以這裡要用 main
 # git push -f git@github.com:and535014/and535014.github.io.git master
 
 # 部署到 https://<USERNAME>.github.io/<REPO>
@@ -28,6 +27,6 @@ git commit -m 'deploy'
 # git push -f git@github.com:hsiangfeng/HexfootMusic.git master:gh-pages
 # 除此之外，也可以改走 HTTPS 模式
 # git push -f https://github.com/hsiangfeng/HexfootMusic.git master:gh-pages
-git push -f https://github.com/and535014/ca-shop.git master:gh-pages
+git push -f https://github.com/and535014/ca-shop.git main:gh-pages
 
 cd -
