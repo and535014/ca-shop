@@ -62,7 +62,7 @@ export default {
     counterClass(id){
       return 'counter-'+(id)
     },
-    switchLeft(){
+    switchRight(){
       clearTimeout(this.timer)
       this.timer = setTimeout(()=>{
         if(this.currentNum < this.num){
@@ -104,7 +104,7 @@ export default {
       },200)
 
     },
-    switchRight(){
+    switchLeft(){
       clearTimeout(this.timer)
       this.timer=setTimeout(()=>{
         if(this.currentNum > 1){
@@ -212,7 +212,6 @@ export default {
 
       .counter-wrap{
         display: flex;
-        flex-direction: row-reverse;
         position: absolute;
         bottom: 10px;
         left: 50%;
@@ -224,7 +223,7 @@ export default {
           border-radius: 50%;
           background-color: rgba(black,.3);
 
-          &:first-child{
+          &:last-child{
             margin-right: 0;
           }
 
