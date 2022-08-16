@@ -1,9 +1,9 @@
 <template lang="pug">
 .products-list
-    .section.section-filters.section-narrow
+    .section.section-filters.section-narrow.py-0
         .container-xl.p-0
-            .options 
-                .filters
+            .options.row.g-0
+                .col-12.col-md.mb-2.filters
                     span.options-title 篩選：
                     .filter-item
                         .filter-item_title(
@@ -38,10 +38,10 @@
                                     input(type="text", name="min-price" v-model="filters.minPrice")
                                     span -
                                     input(type="text", name="max-price" v-model="filters.maxPrice")
-                .sort
+                .col-12.col-md-auto.mb-2.sort
                     span.options-title 排序：
-                    .sort-options
-                        .btn.btn-secondary(
+                    .sort-options.d-flex
+                        .btn.btn-sm.btn-outline-primary(
                             @click="sort='hot'"
                             :class="{active: sort=='hot'}"
                             ) 最熱門
@@ -49,7 +49,7 @@
                                 @mouseover="sortPriceIsOpen=true"
                                 @mouseleave="sortPriceIsOpen=false"
                                 )
-                            .select-title.btn.btn-secondary(:class="{active: sort=='ascending'||sort=='descending'}")
+                            .select-title.btn.btn-sm.btn-outline-primary(:class="{active: sort=='ascending'||sort=='descending'}")
                                 span 價格
                                 i(class="fa-solid fa-angle-down icon-s")
                             Transition(name="fadeIn")
@@ -62,12 +62,12 @@
                                         @click="sort='descending'"
                                         :class="{active: sort=='descending'}"
                                     ) 價格: 高到低
-                .product-num
-                    span {{ products.length }} 件商品
+                .col-12.col-md-auto.mb-2.product-num
+                    span {{ sortProducts.length }} 件商品
     .section.section-main.section-narrow
         .container-xl.p-0
             Transition(name="fadeIn" mode="out-in")
-                .card-wrap(
+                .row(
                     v-if="products.length!=0" 
                     :key="productsInPage")
                     CardContainer(
@@ -77,18 +77,18 @@
                         @click="pageInit"
                         )
             .notFound(v-if="productsInPage.length==0")
-                h2.title 沒有符合的商品。
+                h2.title.mt-5 沒有符合的商品。
             .pages-wrap
-                ul.pages
-                    li.btn.btn-icon-s(v-if="pagesNum>1 && currPage>1" @click="goPrevPage")
+                ul.pages.m-0.p-0
+                    li.icon.icon-btn.icon-btn-l(v-if="pagesNum>1 && currPage>1" @click="goPrevPage")
                         i(class="fa-solid fa-angle-left")
-                    li.btn.btn-s.page-count(
+                    li.icon.icon-btn.icon-btn-l.page-count(
                         v-for="i in pagesNum"
                         :class="{active: currPage==i}"
                         @click="goSpecificPage(i)"
                         )
                         span {{ i }}
-                    li.btn.btn-icon-s(v-if="pagesNum>1 && currPage<pagesNum" @click="goNextPage")
+                    li.icon.icon-btn.icon-btn-l(v-if="pagesNum>1 && currPage<pagesNum" @click="goNextPage")
                         i(class="fa-solid fa-angle-right")
     Transition
         JsReact(
@@ -128,7 +128,7 @@ export default {
     },
     computed: {
         pagesNum(){
-            return Math.ceil(this.products.length/this.productNumInPage)
+            return Math.ceil(this.sortProducts.length/this.productNumInPage)
         },
         furtherFilteredProducts(){
             let products = this.products
@@ -269,13 +269,8 @@ export default {
     text-align: left;
 
     .section-filters{
-        padding-top: 0;
-        padding-bottom: 0;
 
         .options{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
 
             span{
                 line-height: 24px;
@@ -283,7 +278,7 @@ export default {
 
             .filters{
                 display: flex;
-                margin-right: auto;
+                align-items: center;
     
                 .filter-item{
                     margin-right: 12px;
@@ -308,15 +303,16 @@ export default {
                         position: absolute;
                         top: 36px;
                         left: 0;
-                        background-color: #fff;
+                        background-color: $white;
                         z-index: 10;
-                        padding: 16px 24px;
-                        border: 1px solid rgba(black, .4);
+                        padding: 16px;
+                        border: 1px solid $border-color;
                         min-width: 200px;
+                        box-sizing: content-box;
 
                         .top{
                             display: flex;
-                            border-bottom: 1px solid #000;
+                            border-bottom: 1px solid $black;
                             padding-bottom: 8px;
                             .content-title{
                                 flex: 1 0;
@@ -350,19 +346,15 @@ export default {
             .sort{
                 display: flex;
                 align-items: center;
-                margin-right: 24px;
 
                 .sort-options{
-                    display: flex;
 
                     .btn{
-                        padding: 2px 10px;
                         margin-right: 8px;
-                        font-weight: normal;
 
                         &.active{
-                            background-color: rgba(black, .9);
-                            color: white;
+                            background-color: $btn-hover-color;
+                            color: $white;
                         }
                     }
 
@@ -381,10 +373,10 @@ export default {
                         }
                         .select-options_wrap{
                             position: absolute;
-                            top: 30px;
+                            top: 34px;
                             left: 0;
-                            background-color: #fff;
-                            border: 1px solid rgba(black, .4);
+                            background-color: $white;
+                            border: 1px solid $gray-900;
                             z-index: 10;
                             padding: 12px;
                             min-width: 120px;
@@ -395,7 +387,7 @@ export default {
                                 text-align: center;
 
                                 &:hover, &.active{
-                                    color: rgba(black, .9);
+                                    color: $gray-900;
                                     font-weight: bold;
                                 }
                             }
@@ -404,27 +396,21 @@ export default {
                     }
                 }
             }
+            .product-num{
+                display: flex;
+                align-items: center;
+                justify-content: end;
+            }
         }
     } 
 
 
     .section-main{
-        padding-top: 32px;
-
-        .card-wrap{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-        }
 
         .notFound{
-            height: 50vh;
+            height: 80vh;
             display: flex;
             justify-content: center;
-
-            .title{
-                margin-top: 60px;
-            }
         }
 
         .pages-wrap{
@@ -432,17 +418,14 @@ export default {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                text-align: center;
-
-                .btn-icon-s{
-                    padding-top: 4px;
-                }
 
                 .page-count{
-                    font-size: 18px;
                     &.active{
-                        text-decoration: underline;
-                        text-underline-offset: 3px;
+                        span{
+                            color: $btn-hover-color;
+                            text-decoration: underline;
+                            text-underline-offset: 3px;
+                        }
                     }
                 }
             }
@@ -450,31 +433,14 @@ export default {
 
     }
 
-    @media screen and (max-width: 767px){
+    @media screen and (max-width: 575.98px){
         .section-filters{
             .options{
-                flex-wrap: wrap;
-
                 .filters{
-                    flex-basis: 100%;
-                    margin-bottom: 12px;
-                }
-            }
-        }
-    }
-
-    @media screen and (max-width: 479px){
-        .section-filters{
-            .options{
-
-                .filters{
-                    margin-right: 0;
-
                     .filter-item{
                         .filter-item_content{
                             left: -50%;
                             min-width: 160px;
-                            padding: 12px;
 
                             .bottom{
                                 input[type=text]{
@@ -484,16 +450,9 @@ export default {
                         }
                     }
                 }
-                .sort{
-                    flex-basis: 100%;
-                    margin-bottom: 12px;
-                    margin-right: 0;
-                }
-                .product-num{
-                    margin-left: auto;
-                }
             }
         }
     }
 }
+
 </style>
