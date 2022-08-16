@@ -1,18 +1,21 @@
 <template lang="pug">
-.modal
+.modal_comp
     slot(name="mask")
-    .modal-wrapper
+    .modal-wrapper.flex-center
         .modal_header
             slot(name="header")
-        .modal-msg(v-if="msg")
+        .modal-msg.p-3.p-md-4(v-if="msg")
             slot(name="msg")
                 template(v-if="icon=='success'")
-                    i(class="fa-solid fa-circle-check icon-l success")
+                    .icon.icon-l
+                        i(class="fa-solid fa-circle-check success")
                 template(v-if="icon=='error'")
-                    i(class="fa-solid fa-circle-xmark icon-l error")
-                template(v-if="icon=='alert'")
-                    i(class="fa-solid fa-triangle-exclamation icon-l alert")
-                span {{msg}}
+                    .icon.icon-l
+                        i(class="fa-solid fa-circle-xmark error")
+                template(v-if="icon=='notice'")
+                    .icon.icon-l
+                        i(class="fa-solid fa-triangle-exclamation notice")
+                p.m-0 {{msg}}
         .modal-content(v-else)
             slot(name="content")
 
@@ -25,16 +28,15 @@ export default {
 </script>
 
 <style lang="scss">
-.modal{
+.modal_comp{
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 5;
+    z-index: 1055;
 
     .modal-wrapper{
-        @include flexCenter;
         z-index: 5;
         max-width: 800px;
         height: 100%;
@@ -55,17 +57,18 @@ export default {
         
         .modal-msg{
             position: relative;
-            background-color: #fff;
-            color: $black-80;
+            background-color: $white;
+            color: $gray-800;
             border-radius: 24px;
             font-size: 24px;
             font-weight: 500;
-            padding: 24px;
+            min-width: 300px;
             display: flex;
             align-items: center;
+            justify-content: center;
 
-            i{
-                margin-right: 12px;
+            .icon{
+                margin-right: 8px;
             }
 
             .success{
@@ -76,7 +79,7 @@ export default {
                 color: rgb(188, 0, 0);
             }
 
-            .alert{
+            .notice{
                 color: rgb(188, 0, 0);;
             }
 
@@ -85,13 +88,13 @@ export default {
 
     }
 
-    @media screen and (max-width: 767px){
+    @media screen and (max-width: 767.98px){
         .modal-wrapper{
             max-width: 100%;
         }
     }
 
-    @media screen and (max-width: 479px){
+    @media screen and (max-width: 575.98px){
         .modal-wrapper{
             .modal-msg{
                 font-size: 16px;

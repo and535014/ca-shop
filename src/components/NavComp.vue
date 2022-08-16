@@ -1,90 +1,108 @@
 <template lang="pug">
-header.header
-    .top-header
-        .wrapper
-            .left
-                .btn.btn-l.btn-icon-m.btn-text.nav-menu-btn(
-                    @click="navMenuIsOpen=!navMenuIsOpen"
-                    )
-                    i(class="fa-solid fa-bars")
-                .search-bar-wrap
-                    .search-icon.btn.btn-l.btn-icon-m.btn-text(
-                        @click="searchIsActive=!searchIsActive"
-                        :class="{active: searchIsActive}"
+header.header.px-3.px-sm-4
+    .top-header.py-2
+        .container-xl.px-0
+            .row.g-0
+                .col-3.col-lg.d-flex.align-items-center
+                    .icon.icon-btn.icon-btn-l.d-lg-none.nav-menu-btn(
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#nav-menu" 
+                        aria-controls="offcanvasLabel"
                         )
-                        i(class="fa-solid fa-magnifying-glass")
-                    input.keyword-input(
-                        type="text" 
-                        placeholder="商品搜尋"
-                        :class="{active: searchIsActive}"
-                        v-model="keywords"
-                        @change="goSearch"
-                        )
-            .logo-wrap 
-                router-link.logo(to="/") Crystal Apple
-            .icons-wrap 
-                .btn.btn-l.btn-icon-m.btn-text
-                    i(class="fa-solid fa-user")
-                .btn.btn-l.btn-icon-m.btn-text
-                    i(class="fa-regular fa-heart")
-                .btn.btn-l.btn-icon-m.btn-text
-                    i(class="fa-solid fa-clipboard-list")
-                .btn.btn-l.btn-icon-m.btn-text.btn-cart(@click="cartIsOpen=!cartIsOpen") 
-                    i(class="fa-solid fa-cart-shopping")
-                    .cart-count(v-if="cartList.length!=0") {{ cartList.length }}
+                        i(class="fa-solid fa-bars")
+                    .search-bar-wrap.d-flex.align-items-center.d-none.d-lg-flex
+                        .icon.icon-btn.icon-btn-l.search-icon(
+                            @click="searchIsActive=!searchIsActive"
+                            :class="{active: searchIsActive}"
+                            )
+                            i(class="fa-solid fa-magnifying-glass")
+                        input.keyword-input(
+                            type="text" 
+                            placeholder="商品搜尋"
+                            :class="{active: searchIsActive}"
+                            v-model="keywords"
+                            @change="goSearch"
+                            )
+                .col-6.col-lg.flex-center.logo-wrap
+                    router-link.logo(to="/") Crystal Apple
+                .col-3.col-lg.d-flex.align-items-center.justify-content-end.icons-wrap 
+                    .icon.icon-btn.icon-btn-l.ms-1.ms-md-2.ms-lg-3
+                        i(class="fa-solid fa-user")
+                    .icon.icon-btn.icon-btn-l.ms-1.ms-md-2.ms-lg-3.d-none.d-sm-block
+                        i(class="fa-regular fa-heart")
+                    .icon.icon-btn.icon-btn-l.ms-1.ms-md-2.ms-lg-3.d-none.d-lg-block
+                        i(class="fa-solid fa-clipboard-list")
+                    .icon.icon-btn.icon-btn-l.ms-1.ms-md-2.ms-lg-3.btn-cart(
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#cart-list" 
+                        aria-controls="offcanvasLabel"
+                        ) 
+                        i(class="fa-solid fa-cart-shopping")
+                        .cart-count(v-if="cartList.length!=0") {{ cartList.length }}
 
-    nav.navigation 
-        .wrapper
-            ul.nav-first(v-for='first in navigation')
-                li.nav-first-li(
+    nav.navigation.d-none.d-lg-block
+        .container-xl.px-0
+            .nav-first.d-flex.align-items-center.justify-content-between
+                .nav-first-li.flex-grow-1(
+                    v-for='first in navigation'
                     @mouseover="first.isOpen = true"
                     @mouseleave="first.isOpen = false"
                     :class="{isOpen: first.isOpen}"
                     )
                     template(v-if="!first.navSecond")
-                        router-link.title(
+                        router-link.nav-first-title.py-3(
                             :to="getPath(first,'')"
                             )
                             span {{ first.navFirst }}
                     template(v-if="first.navSecond")
-                        .title
+                        .nav-first-title.py-3
                             span {{ first.navFirst }}
                     transition(name="fadeIn")
-                        .nav-second(
-                            v-if="first.navSecond" 
-                            v-show="first.isOpen"
-                            ) 
-                            router-link.topic-link(
-                                href="#" 
-                                v-for="second in first.navSecond"
-                                :to="getPath(first, second)"
-                                ) {{ second }}
-    nav.navigation-menu(:class="{isOpen: navMenuIsOpen}")
-        .search-bar-wrap
-            .search-icon.btn.btn-l.btn-icon-m.btn-text
-                i(class="fa-solid fa-magnifying-glass")
-            input.keyword-input(
-                type="text" 
-                placeholder="商品搜尋"
-                v-model="keywords"
-                @change="goSearch"
-                )
-        ul.nav-first(v-for='first in navigation')
-            li.nav-first-li(
-                @click="first.isOpen = !first.isOpen"
-                :class="{isOpen: first.isOpen}"
-                )
-                template(v-if="!first.navSecond")
-                    router-link.title(
-                        :to="getPath(first,'')"
-                        @click="navMenuIsOpen=!navMenuIsOpen"
-                        )
-                        span {{ first.navFirst }}
-                template(v-if="first.navSecond")
-                    .title
-                        span {{ first.navFirst }}
-                        i(class="fa-solid fa-angle-right icon-s")
                     .nav-second(
+                        v-if="first.navSecond" 
+                        v-show="first.isOpen"
+                        )
+                        router-link.topic-link(
+                            v-for="second in first.navSecond"
+                            :to="getPath(first, second)"
+                            ) {{ second }}
+    nav.offcanvas.offcanvas-start.navigation-menu(
+        tabindex="-1" 
+        id="nav-menu" 
+        aria-labelledby="offcanvasLabel"
+        )
+        .offcanvas-header
+            .search-bar-wrap.d-flex.py-2
+                .icon.icon-btn.icon-btn-l.search-icon.me-2
+                    i(class="fa-solid fa-magnifying-glass")
+                input.keyword-input.flex-fill(
+                    type="text" 
+                    placeholder="商品搜尋"
+                    v-model="keywords"
+                    @change="goSearch"
+                    )
+            .btn-close.text-reset(
+                type="button"
+                data-bs-dismiss="offcanvas" 
+                aria-label="Close")
+        .offcanvas-body
+            .nav-first
+                .nav-first-li(
+                    v-for='first in navigation'
+                    @click="first.isOpen = !first.isOpen"
+                    :class="{isOpen: first.isOpen}"
+                    )
+                    template(v-if="!first.navSecond")
+                        router-link.nav-first-title.px-3(
+                            :to="getPath(first,'')"
+                            @click="navMenuIsOpen=!navMenuIsOpen"
+                            )
+                            span {{ first.navFirst }}
+                    template(v-if="first.navSecond")
+                        .nav-first-title.px-3.d-flex.justify-content-between.align-items-center
+                            span {{ first.navFirst }}
+                            i(class="fa-solid fa-angle-right icon-s")
+                    .nav-second.ps-3(
                         v-if="first.navSecond" 
                         v-show="first.isOpen"
                         ) 
@@ -93,11 +111,7 @@ header.header
                             :to="getPath(first, second)"
                             @click="navMenuIsOpen=!navMenuIsOpen"
                             ) {{ second }}
-    transition(name="fadeInOut")
-        MaskCover(
-            v-if="navMenuIsOpen"
-            @click.once="navMenuIsOpen=!navMenuIsOpen"
-            )
+
 </template>
 
 <script>
@@ -113,31 +127,8 @@ export default {
     data() {
         return {
             searchIsActive: false,
-            keywords: "",
-            navMenuIsOpen: false
+            keywords: ""
         };
-    },
-    watch: {
-        cartIsOpen: {
-            handler(val) {
-                this.$emit("update", { cartIsOpen: val });
-
-                this.bodyIsOVH(val)
-            }
-        },
-        navMenuIsOpen: {
-            handler(val) {
-                let classVal = document.body.getAttribute('class') || ""
-
-                if(val){
-                    classVal = classVal.concat("overflow-hidden")
-                    document.body.setAttribute('class', classVal)
-                }else if(!val){
-                    classVal = classVal.replace("overflow-hidden", "")
-                    document.body.setAttribute('class', classVal)
-                }
-            }
-        }
     },
     methods: {
         getPath(first, second) {
@@ -163,37 +154,20 @@ export default {
 
 <style lang="scss">
 .header{
-    padding: 0 24px;
-    border-bottom: 1px solid $black-10;
+    border-bottom: 1px solid $gray-200;
 
     .top-header{
-        padding: 16px 0;
-        .wrapper{
-            display: grid;
-            grid-template-columns: 1fr 250px 1fr;
-            grid-template-rows: 1fr;
-            grid-template-areas: 'left logo icons';
-        }
 
-        .left{
-            grid-area: 'left';
-            display: flex;
-            align-items: center;
-        }
         .search-bar-wrap {
-            display: flex;
-            align-items: center;
-
             .search-icon{
-
                 &.active{
-                    color: $black-90;
+                    color: $gray-900;
                 }
             }
 
             .keyword-input{
                 border: none;
-                border-bottom: 1px solid $black-60;
+                border-bottom: 1px solid $gray-600;
                 transition: width .3s;
                 border-radius: 0;
                 padding: 0;
@@ -207,21 +181,8 @@ export default {
 
             }
         }
-        .logo-wrap{
-            @include flexCenter;
-            grid-area: 'logo';
-        }
 
         .icons-wrap{
-            grid-area: 'icons';
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-
-            .btn{
-                margin-left: 12px;
-            }
-
             .btn-cart{
                 position: relative;
 
@@ -232,9 +193,9 @@ export default {
                     width: 20px;
                     line-height: 20px;
                     font-size: 10px;
-                    background-color: $black-90;
+                    background-color: $gray-900;
                     border-radius: 100px;
-                    color: white;
+                    color: $white;
                     font-weight: bold;
                 }
             }
@@ -243,65 +204,52 @@ export default {
 
     }
 
-    .nav-menu-btn{
-        display: none;
-    }
-
     .navigation{
-        .wrapper{
-            display: flex;
-        }
         .nav-first{
-            flex: 1 0 100px;
-            position: relative;
-
 
             .nav-first-li{
-                cursor: pointer;
+                position: relative;
+                flex-basis: 100px;
                 z-index: 10;
+                cursor: pointer;
+
+                .nav-first-title{
+                    background-color: $white;
+                    font-size: 16px;
+                    display: block;
+                }
+
                 &.isOpen{
-                    .title{
+                    .nav-first-title{
                         font-weight: bold;
                         text-decoration: underline;
                         text-underline-offset: 3px;
                     }
-                    .nav-second{
-                        a{
-                            opacity: 1;
-                        }
-                    }
-                }
-                .title{
-                    background-color: #fff;
-                    padding: 14px 0;
-                    font-size: 16px;
-                    margin: 0;
-                    font-weight: normal;
-                    display: block;
-                }
 
+                }
+                
             }
 
         }
 
         .nav-second{
             position: absolute;
-            min-width: 110%;
-            top: 47px;
-            left: 0;
-            border: 1px solid $black-40;
+            top: 55px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 1px solid $border-color;
             z-index: 10;
-            background-color: #fff;
+            background-color: $white;
             padding: 8px 12px;
+            min-width: 180px;
 
             .topic-link{
                 line-height: 40px;
-                transition: .3s;
                 display: block;
-                color: $black-60;
+                color: $btn-color;
 
                 &:hover{
-                    color: $black-90;
+                    color: $btn-hover-color;
                     font-weight: 500;
                 }
             }
@@ -309,53 +257,16 @@ export default {
     }
 
     .navigation-menu{
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 100;
-        background-color: #fff;
-        width: 300px;
-        height: 100vh;
-        padding: 16px;
-        padding-bottom: 64px;
-        overflow: scroll;
-        box-sizing: border-box;
-        transition: .5s;
-        transform: translateX(-100%);
-
-        &.isOpen{
-            transform: translateX(0);
-        }
-
-        .search-bar-wrap{
-            display: flex;
-            padding: 16px 0;
-            border-bottom: 1px solid #eee;
-            .search-icon{
-                margin-right: 8px;
-            }
-            .keyword-input{
-                flex: 1;
-            }
-        }
-
         .nav-first{
             text-align: left;
 
             .nav-first-li{
-                .title{
+                .nav-first-title{
+                    transition: .5s;
                     cursor: pointer;
                     display: block;
                     font-size: 18px;
                     line-height: 48px;
-                    box-sizing: border-box;
-                    transition: .5s;
-                    padding-left: 16px;
-                    padding-right: 8px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
 
                     .fa-angle-right{
                         transition: .5s;
@@ -363,27 +274,29 @@ export default {
                     }
 
                     &:hover{
-                        background-color: rgba(#eee,.8);
+                        background-color: $gray-200;
                     }
                 }
 
                 .nav-second{
-                    padding-left: 24px;
-                    border-bottom: 1px solid rgba(#eee,.8);
+                    border-bottom: 1px solid $border-color;
+
                     .topic-link{
                         display: block;
                         line-height: 44px;
                         cursor: pointer;
+                        color: $btn-color;
 
                         &:hover{
-                            color: $black-90;
+                            font-weight: bold;
+                            color: $btn-hover-color;
                         }
                     }
                 }
 
                 &.isOpen{
-                    .title{
-                        background-color: rgba(#eee,.8);
+                    .nav-first-title{
+                        background-color: $gray-200;
 
                         .fa-angle-right{
                             transform: rotate(90deg);
@@ -395,77 +308,27 @@ export default {
         }
     }
 
-    @media screen and (max-width: 1000px){
+    @media screen and (max-width: 991.98px){
         .top-header{
-            .search-bar-wrap{
-                display: none;
-            }
-
             .logo{
                 font-size: 32px;
             }
-
-            .icons-wrap{
-                .btn{
-                    margin-left: 0;
-                }
-
-                .btn:nth-child(3){
-                    display: none;
-                }
-            }
-        }
-
-        .navigation{
-            display: none;
-        }
-
-        .nav-menu-btn{
-            display: inline-flex;
-        }
-
-        .navigation-menu{
-            display: block;
         }
     }
 
-    @media screen and (max-width: 767px){
+    @media screen and (max-width: 767.98px){
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 2;
-        background-color: #fff;
+        z-index: 1030;
+        background-color: $white;
         width: 100%;
-        box-sizing: border-box;
-        .top-header{
-            .icons-wrap{
-                .btn{
-                    margin-left: 0;
-                }
-
-                .btn:nth-child(2){
-                    display: none;
-                }
-            }
-        }
     }
 
-    @media screen and (max-width: 479px){
-        padding: 0 16px;
+    @media screen and (max-width: 575.98px){
         .top-header{
-            .wrapper{
-                grid-template-columns: 1fr 100px 1fr;
-            }
-
             .logo{
-                font-size: 18px;
-            }
-
-            .icons-wrap{
-                .btn{
-                    @include size(24px);
-                    font-size: 16px;
-                }
+                font-size: 20px;
             }
         }
     }

@@ -1,9 +1,9 @@
 <template lang="pug">
 .page.page-product
-    .section.section-main
-        .wrapper
-            .product-main
-                .photos
+    .section.section-main.p-0.p-md-4
+        .container-xl.p-0
+            .row.product-main.p-4.g-0
+                .col-12.col-md-6.col-lg-5.pe-md-4.pe-lg-5.mb-4.mb-md-0.photos
                     .main-photo
                         .pic-l(
                             v-html="getImg(currentImg)"
@@ -16,47 +16,49 @@
                             @click="setCurrentImg(img, id)"
                             )
                             .pic(:style="bgcss(img)")
-                .product-main-info
-                    .pre-order-tag(v-if="product.state=='pre-order'")
-                        span.tag 預購商品 
+                .col-12.col-md-6.col-lg-7.product-main-info
+                    .pre-order-tag.mb-2(v-if="product.state=='pre-order'")
+                        span.tag.me-2 預購商品 
                         span 預計：{{ product.deliveryDate }} 出貨
                     .product-brand
                         span {{ product.brand }}
-                    .product-title
+                    .product-title.mb-5
                         span {{ product.title }}
                     .prices
                         span.unit NT$
                         span.num(v-if="product.price") {{ addCommaToNum(product.price) }}
-                    .specs.flex-box
-                        label.flex-item 規格
-                        ul.options
-                            li.btn.btn-s.btn-secondary.spec-item(
+                    .row.specs.g-0.mb-3
+                        label.col-2 規格
+                        ul.col.options.p-0.m-0.d-flex
+                            li.btn.btn-outline-secondary.spec-item.me-2(
                                 v-for='spec in product.specs'
                                 @click="getCurrentSpec(spec)"
                                 :class="{active: currentSpec==spec}"
                                 ) {{ spec.name }}
-                    .quantity.flex-box
-                        label.flex-item 數量
-                        .input-num
-                            .btn.btn-sub(@click="quantitySub")
-                                i(class="fa-solid fa-minus")
-                            input(type="text" v-model="quantity")
-                            .btn.btn-add(@click="quantityAdd")
-                                i(class="fa-solid fa-plus")
-                    .btns
-                        .btn.btn-l.btn-primary.btn-withIcon(@click="addCart")
-                            i(class="fa-solid fa-cart-shopping icon-s")
-                            |加入購物車
-                        .buy.btn.btn-l.btn-secondary.btn-withIcon
-                            i(class="fa-regular fa-heart")
-                            |收藏商品
-                    ul.notices
-                        p.pre-order 本商品為預購商品，{{ product.preorderDeadline }} 截止
+                    .row.quantity.g-0.mb-3
+                        label.col-2 數量
+                        .col.d-flex
+                            .input-num
+                                .icon.icon-btn.icon-btn-l.btn-sub(@click="quantitySub")
+                                    i(class="fa-solid fa-minus")
+                                input(type="text" v-model="quantity")
+                                .icon.icon-btn.icon-btn-l.btn-add(@click="quantityAdd")
+                                    i(class="fa-solid fa-plus")
+                    .row.btns.mb-4.g-lg-2
+                        .col-12.col-lg-6
+                            .btn.btn-lg.btn-primary.w-100.mb-2.mb-lg-0(@click="addCart")
+                                i(class="fa-solid fa-cart-shopping me-2")
+                                |加入購物車
+                        .col-12.col-lg-6
+                            .btn.btn-lg.btn-outline-primary.w-100
+                                i(class="fa-regular fa-heart me-2")
+                                |收藏商品
+                    ul.notices.ps-0
+                        p.pre-order.fw-bold 本商品為預購商品，{{ product.preorderDeadline }} 截止
                         p.delivery 運送方式：一般宅配、國際快遞、與之前的預購訂單合併出貨、7-11取貨、全家超商取貨
                         p.pay 付款方式：LINE Pay、PayPal、信用卡、ATM 虛擬帳號、超商代碼
-
             article.product-content
-                .otherInfo
+                .otherInfo.p-4.mt-4
                     .title-area
                         .title 購買注意事項
                         hr
@@ -76,8 +78,7 @@
                             span 3. 不限金額可零卡分期2-14期或中租分期，關於零卡分期的規定請看這邊。
                         p.list-item
                             span 4. 入訂後就不可以退款、不可以改規格，請確認好再下單呦！
-
-                .product-details
+                .product-details.p-4.mt-4
                     .title-area
                         .title 商品介紹
                         hr
@@ -206,7 +207,7 @@ export default {
                 },1200)
             }else{
                 this.msg = '請選擇規格。'
-                this.msgIcon = 'alert'
+                this.msgIcon = 'notice'
                 this.cartIsAdded=true
 
                 setTimeout(()=>{
@@ -244,27 +245,12 @@ export default {
 .page.page-product{
     text-align: left;
 
-    .flex-box{
-        display: flex;
-        margin-bottom: 24px;
-    }
-
-    .flex-item{
-        flex-basis: 60px;
-    }
-
     .section-main{
-        padding-top: 24px;
 
         .product-main{
-            display: flex;
-            border: 1px solid #eee;
-            padding: 24px;
+            border: 1px solid $border-color;
 
             .photos{
-                margin-right: 64px;
-                max-width: 450px;
-                flex: 1;
 
                 .main-photo{
                     margin-bottom: 12px;
@@ -284,7 +270,10 @@ export default {
 
                     img{
                         height: 100%;
-                        @include abCenter;
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
                     }
                 }
 
@@ -300,8 +289,11 @@ export default {
 
                     .pic{
                         height: 100%;
-                        @include abCenter;
-                        @include size(100%,100%);
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 100%;height: 100%;
                     }
 
                     &.active{
@@ -311,27 +303,21 @@ export default {
             }
 
             .product-main-info{
-                flex: 1;
 
                 .pre-order-tag{
                     font-size: 14px;
-                    margin-bottom: 12px;
-                    .tag{
-                        margin-right: 8px;
-                    }
                 }
                 
                 .product-title{
                     font-size: 30px;
                     font-weight: 500;
                     line-height: 1.4;
-                    margin-bottom: 48px;
                     letter-spacing: normal;
                 }
 
                 .prices{
                     font-size: 40px;
-                    color: $black-90;
+                    color: $gray-900;
                     margin-bottom: 32px;
                     font-weight: bold;
                     display: flex;
@@ -344,45 +330,21 @@ export default {
 
                 label{
                     display: block;
-                    margin-bottom: 8px;
                 }
-                .specs{
-                    flex-wrap: wrap;
 
+                .specs{
                     .spec-item{
-                        margin-right: 8px;
-                        border: 1px solid $black-20;
-                        color: $black-80;
+                        color: $gray-800;
 
                         &.active{
-                            background-color: $black-90;
-                            color: white;
-                        }
-                    }
-                }
-
-                .btns{
-                    margin-bottom: 24px;
-                    display: flex;
-                    .btn{
-                        flex: 1;
-
-                        &:first-child{
-                            margin-right: 8px;
-                        }
-
-                        &:last-child{
-                            line-height: 26px;
+                            background-color: $gray-900;
+                            color: $white;
                         }
                     }
                 }
 
                 .notices{
                     opacity: .6;
-
-                    .pre-order{
-                        font-weight: bold;
-                    }
 
                     p{
                         line-height: 30px;
@@ -392,7 +354,6 @@ export default {
         }
 
         .product-content{
-            margin-top: 32px;
             font-size: 16px;
 
             p{
@@ -404,15 +365,11 @@ export default {
             }
 
             .otherInfo{
-                padding: 24px;
-                margin: 24px 0;
-                border: 1px solid #eee;
+                border: 1px solid $border-color;
             }
 
             .product-details{
-                padding: 24px;
-                margin: 24px 0;
-                border: 1px solid #eee;
+                border: 1px solid $border-color;
             }
 
             .title-area{
@@ -420,72 +377,6 @@ export default {
 
                 .title{
                     margin-bottom: 12px;
-                }
-            }
-        }
-    }
-
-    @media screen and (max-width: 1000px){
-        .flex-box{
-            margin-bottom: 16px;
-        }
-        .section-main{
-            .product-main{
-                .photos{
-                    margin-right: 32px;
-                }
-
-                .product-main-info{
-                    .product-title{
-                        margin-bottom: 24px;
-                    }
-                    .prices{
-                        margin-bottom: 24px;
-                    }
-                    .btns{
-                        flex-direction: column;
-
-                        .btn:first-child{
-                            margin-right: 0;
-                            margin-bottom: 8px;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @media screen and (max-width: 767px){
-        .section-main{
-            padding: 0;
-            .product-main{
-                flex-direction: column;
-                padding: 0;
-
-                .photos{
-                    margin-right: 0;
-                    max-width: 100%;
-                    margin-bottom: 24px;
-
-                    .thumbs{
-                        padding: 0 10px;
-                        box-sizing: border-box;
-                    }
-                }
-
-                .product-main-info{
-                    padding: 16px;
-                }
-
-            }
-
-            .product-content{
-                .otherInfo{
-                    padding: 16px;
-                }
-
-                .product-details{
-                    padding: 16px;
                 }
             }
         }

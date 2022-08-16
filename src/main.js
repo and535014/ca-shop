@@ -12,13 +12,8 @@ import MaskCover from './components/MaskCover'
 import JsReact from './components/JsReact'
 import ModalComp from './components/ModalComp'
 import ProductsList from './components/ProductsList'
-import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/dist/css/bootstrap.min.css'
 import "bootstrap"
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPhone } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
-library.add(faPhone)
 
 const app = createApp(App)
 app.use(store).use(router)
@@ -32,6 +27,5 @@ app.component('MaskCover', MaskCover)
 app.component('JsReact', JsReact)
 app.component('ModalComp', ModalComp)
 app.component('ProductsList', ProductsList)
-app.component('font-awesome-icon', FontAwesomeIcon)
 
 app.mount('#app')

@@ -1,7 +1,7 @@
 <template lang="pug">
 .products-list
     .section.section-filters.section-narrow
-        .wrapper
+        .container-xl.p-0
             .options 
                 .filters
                     span.options-title 篩選：
@@ -65,7 +65,7 @@
                 .product-num
                     span {{ products.length }} 件商品
     .section.section-main.section-narrow
-        .wrapper
+        .container-xl.p-0
             Transition(name="fadeIn" mode="out-in")
                 .card-wrap(
                     v-if="products.length!=0" 
@@ -311,7 +311,7 @@ export default {
                         background-color: #fff;
                         z-index: 10;
                         padding: 16px 24px;
-                        border: 1px solid $black-40;
+                        border: 1px solid rgba(black, .4);
                         min-width: 200px;
 
                         .top{
@@ -361,7 +361,7 @@ export default {
                         font-weight: normal;
 
                         &.active{
-                            background-color: $black-90;
+                            background-color: rgba(black, .9);
                             color: white;
                         }
                     }
@@ -384,7 +384,7 @@ export default {
                             top: 30px;
                             left: 0;
                             background-color: #fff;
-                            border: 1px solid $black-40;
+                            border: 1px solid rgba(black, .4);
                             z-index: 10;
                             padding: 12px;
                             min-width: 120px;
@@ -395,7 +395,7 @@ export default {
                                 text-align: center;
 
                                 &:hover, &.active{
-                                    color: $black-90;
+                                    color: rgba(black, .9);
                                     font-weight: bold;
                                 }
                             }

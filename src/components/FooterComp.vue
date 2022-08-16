@@ -1,39 +1,39 @@
 <template lang="pug">
 footer.footer
-    .wrapper
-        .top-section
-            .left
+    .container-xl
+        .row.top-section.py-5
+            .col-12.col-md-5.col-lg-3.mb-4.p-0
                 .logo.logo-s Crystal Apple
-            .content
-                .links
-                    ul.footer-links_wrap(v-for="link in links")
-                        li.footer-links_item
-                            .footer-links_title {{ link.title }}
-                        li.footer-links_item(v-for="content in link.content")
-                            a.footer-links_link(href="#") {{ content.title }}
-                .right
-                    .social-links-wrap
-                        .social-links_title 追蹤我們
-                        .social-links_item
-                            .btn.social-links_link
-                                i(class="fa-brands fa-instagram")
-                            .btn.social-links_link
-                                i(class="fa-brands fa-line")
-                            .btn.social-links_link
-                                i(class="fa-brands fa-facebook-f")
-                            .btn.social-links_link
-                                i(class="fa-brands fa-twitter")
-                    .subscribe-wrap
-                        .subscribe_title 訂閱電子報
-                        .subscribe_input
-                            input(type="email")
-                            .btn.btn-s.btn-primary 訂閱
-        .bottom-section
-            .left 
+            .col-12.col-md-7.col-lg-5.links
+                ul.footer-links_wrap.ps-0(v-for="link in links")
+                    li.footer-links_item
+                        .footer-links_title {{ link.title }}
+                    li.footer-links_item(v-for="content in link.content")
+                        a.footer-links_link(href="#") {{ content.title }}
+            .col-12.col-md-7.col-lg-4.offset-md-5.offset-lg-0
+                .social-links-wrap
+                    .social-links_title 追蹤我們
+                    .social-links_item.d-flex
+                        .icon.icon-btn.icon-btn-l.me-3.social-links_link
+                            i(class="fa-brands fa-instagram")
+                        .icon.icon-btn.icon-btn-l.me-3.social-links_link
+                            i(class="fa-brands fa-line")
+                        .icon.icon-btn.icon-btn-l.me-3.social-links_link
+                            i(class="fa-brands fa-facebook-f")
+                        .icon.icon-btn.icon-btn-l.me-3.social-links_link
+                            i(class="fa-brands fa-twitter")
+                .subscribe-wrap
+                    .subscribe_title 訂閱電子報
+                    .subscribe_input
+                        input(type="email")
+                        .btn.btn-s.btn-primary 訂閱
+        .row.bottom-section
+            .col-12.col-sm-9.col-md-10.md-2.md-sm-0
                 p.copyright.caption Copyright © Our Mori Co., Ltd. All rights reserved.
-            .right
-                .lang-switch
-                    i(class="fa-solid fa-earth-americas icon-s")
+            .col-12.col-sm-3.col-md-2
+                .lang-switch.d-flex.justify-content-end.align-items-center
+                    .icon.icon-s
+                        i(class="fa-solid fa-earth-americas")
                     span 繁體中文
 
 
@@ -56,198 +56,100 @@ export default {
     padding: 32px 24px;
     font-size: 14px;
     text-align: left;
+
     .top-section{
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
         border-bottom: 1px solid #eee;
-        padding: 32px 0;
 
         .logo{
-            margin-right: 32px;
             display: inline-block;
         }
 
-        .content{
-            flex: 1;
+        .links{
             display: flex;
+            justify-content: space-between;
 
-            .links{
-                display: flex;
-                justify-content: space-between;
+            .footer-links_wrap{
                 margin-right: 32px;
-                flex: 1;
-
-                .footer-links_wrap{
-                    margin-right: 32px;
-                }
-                .footer-links_item{
-                    margin-bottom: 8px;
-                }
-                .footer-links_title{
-                    font-weight: 500;
-                    font-size: 15px;
-                }
-                .footer-links_link{
-                    &:hover{
-                        text-decoration: underline;
-                    }
-                }
+            }
+            .footer-links_item{
+                margin-bottom: 8px;
             }
 
-            .right{
-                min-width: 320px;
-                flex: 1;
+            .footer-links_title{
+                font-weight: 500;
+                font-size: 15px;
             }
 
-            .social-links-wrap{
-                margin-bottom: 32px;
-
-                .social-links_title{
-                    font-weight: bold;
-                    font-size: 16px;
-                    margin-bottom: 16px;
+            .footer-links_link{
+                &:hover{
+                    text-decoration: underline;
                 }
-                .social-links_item{
-                    margin-bottom: 12px;
-                }
-                .social-links_link{
-                    margin-right: 36px;
-                    border-radius: 100px;
-                    font-size: 20px;
-                    @include size(40px);
-                    background-color: $black-60;
-                    color: white;
-
-                    &:nth-child(3){
-                        font-size: 18px;
-                    }
-                }
-
-            }
-            .subscribe-wrap{
-                margin-bottom: 24px;
-                max-width: 320px;
-
-                .subscribe_title{
-                    font-weight: bold;
-                    font-size: 16px;
-                    margin-bottom: 16px;
-                }
-
-                .subscribe_input{
-                    // border: 2px solid #eee;
-                    display: flex;
-
-                    input{
-                        flex: 1;
-                        border: 2px solid #eee;
-                        border-radius: 2px 0 0 2px;
-                    }
-                    .btn{
-                        border: none;
-                        border-radius: 0;
-                    }
-                }
-
             }
         }
+
+        .social-links-wrap{
+            margin-bottom: 32px;
+
+            .social-links_title{
+                font-weight: bold;
+                font-size: 16px;
+                margin-bottom: 16px;
+            }
+            .social-links_item{
+                margin-bottom: 12px;
+            }
+            .social-links_link{
+                border-radius: 100px;
+                background-color: rgba(black, .6);
+                color: white;
+
+                &:nth-child(3){
+                    font-size: 18px;
+                }
+            }
+
+        }
+
+        .subscribe-wrap{
+            margin-bottom: 24px;
+            max-width: 320px;
+
+            .subscribe_title{
+                font-weight: bold;
+                font-size: 16px;
+                margin-bottom: 16px;
+            }
+
+            .subscribe_input{
+                // border: 2px solid #eee;
+                display: flex;
+
+                input{
+                    flex: 1;
+                    border: 2px solid #eee;
+                    border-radius: 2px 0 0 2px;
+                }
+                .btn{
+                    border: none;
+                    border-radius: 0;
+                }
+            }
+
+        }
+
     }
 
     .bottom-section{
-        display: flex;
-        justify-content: space-between;
         padding: 12px 0 32px;
-        flex-wrap: wrap;
 
-        .left{
-            margin-right: 12px;
-        }
-
-        .right{
-            .lang-switch{
-                cursor: pointer;
-                i{
-                    margin-right: 4px;
-                }
+        .lang-switch{
+            cursor: pointer;
+            i{
+                margin-right: 4px;
             }
         }
     }
 
-    @media screen and (max-width: 1000px){
-        .top-section{
-            padding: 24px 0;
-            .left{
-                flex: 2; 
-            }
-
-            .content{
-                flex-direction: column;
-                flex: 3;
-
-                .links{
-                    margin-bottom: 32px;
-                }
-
-            }
-        }
-    }
-
-    @media screen and (max-width: 767px){
-        .top-section{
-            flex-wrap: wrap;
-            .left{
-                flex-basis: 100%;
-                margin-bottom: 32px;
-                margin-right: 0;
-
-                .logo{
-                    font-size: 28px;
-                }
-            }
-
-            .content{
-                .links{
-                    margin-right: 0;
-                    justify-content: flex-start;
-                    .footer-links_wrap{
-                        margin-right: 24px;
-                    }
-                }
-
-                .social-links-wrap{
-                    .social-links_link{
-                        margin-right: 24px;
-                    }
-                }
-            }
-
-        }
-    }
-
-    @media screen and (max-width: 479px){
-        .top-section{
-            .content{
-                .subscribe-wrap{
-                    margin-right: 0;
-                    max-width: 250px;
-                }
-
-                .right{
-                    min-width: 300px;
-                }
-
-            }
-        }
-        .bottom-section{
-            .left{
-                margin-bottom: 12px;
-            }
-
-            .right{
-                margin-left: auto;
-            }
-        }
-    }
 }
+
 </style>

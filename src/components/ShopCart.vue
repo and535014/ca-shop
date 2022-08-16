@@ -1,11 +1,16 @@
 <template lang="pug">
-//- .mask-cover
-.cart-list_wrap
-    h5.title 我的購物車
-    .cart_content
-        ul.cart-list(v-if="cartList.length!=0")
-            li.item(v-for="(item,id) in cartList")
-                .cart_thumbs
+.offcanvas.offcanvas-end.cart-list_wrap(
+    tabindex="-1" 
+    id="cart-list" 
+    aria-labelledby="offcanvasLabel"
+    )
+    .offcanvas-header
+        h5.offcanvas-title 我的購物車
+        .btn-close.text-reset(type="button" data-bs-dismiss="offcanvas" aria-label="Close")
+    .offcanvas-body.cart_content
+        .cart-list(v-if="cartList.length!=0")
+            .item.p-2.mb-3(v-for="(item,id) in cartList")
+                .cart_thumbs.me-1.me-sm-2
                     .item-photo
                         .pic(:style="bgcss(item.spec.url)")
                 .cart_info
@@ -21,27 +26,23 @@
                         span {{ item.spec.name }}
                     .cart-quantity
                         .input-num
-                            .btn.btn-sub(@click="subQty(id,item.qty)")
+                            .icon.icon-btn.icon-btn-l.btn-sub(@click="subQty(id,item.qty)")
                                 i(class="fa-solid fa-minus")
                             input(type="text" :value="item.qty" @change="setQty(id,$event)")
-                            .btn.btn-add(@click="addQty(id,item.qty)")
+                            .icon.icon-btn.icon-btn-l.btn-add(@click="addQty(id,item.qty)")
                                 i(class="fa-solid fa-plus")
                     .subtotal {{ addCommaToNum(item.price * item.qty)}}
-                    .btn.btn-icon-m.btn-text.btn-delete(@click="deleteCartItem(id)")
+                    .icon.icon-btn.icon-btn-l.btn-delete(@click="deleteCartItem(id)")
                         i(class="fa-regular fa-trash-can")
         .empty-cart(v-if="cartList.length==0")
             h4.subtitle 您的購物車是空的
-    .btn.btn-l.btn-primary.go_to_payment(v-if="cartList.length!=0") 前往結賬
+        .btn.btn-l.btn-primary.go_to_payment(v-if="cartList.length!=0") 前往結賬
 </template>
 
 <script>
 import { mapState } from 'vuex'
 export default {
     props: ['cartIsOpen'],
-    data(){
-        return {
-        }
-    },
     computed: {
         ...mapState(['cartList'])
     },
@@ -97,49 +98,19 @@ export default {
             let result = number.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,",")
             return result
         }
-    },
-    watch: {
-        cartIsOpen: {
-            handler(val){
-                this.$emit('update', {cartIsOpen: val})
-            }
-        }
     }
 }
 </script>
 
 <style lang="scss">
 .cart-list_wrap{
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 400px;
-    height: 100vh;
-    z-index: 100;
-    background-color: #fff;
-    padding: 16px;
-    overflow: scroll;
-    box-sizing: border-box;
-    transition: .5s;
-    transform: translateX(100%);
-
-    &.active{
-        transform: translateX(0);
-    }
-
-    .title{
-        padding-bottom: 16px;
-        border-bottom: 2px solid #000;
-    }
     .cart_content{
+
         .cart-list{
-            padding: 24px 0;
 
             .item{
                 display: flex;
-                padding: 12px;
                 border: 1px solid #eee;
-                margin-bottom: 12px;
             }
         }
 
@@ -148,12 +119,14 @@ export default {
         }
         
         .cart_thumbs{
-            margin-right: 12px;
+
             .item-photo{
-                @include size(80px);
+                width: 80px;
+                height: 80px;
                 
                 .pic{
-                    @include size(100%, 100%);
+                    width: 100%;
+                    height: 100%;
                 }
             }
         }
@@ -200,7 +173,7 @@ export default {
                 font-size: 24px;
                 line-height: 1.6;
                 letter-spacing: normal;
-                color: $black-90;
+                color: rgba(black,.9);
 
                 &:before{
                     content: "$";
@@ -221,63 +194,6 @@ export default {
     .go_to_payment{
         width: 100%;
     }
-
-    @media screen and (max-width: 479px){
-    width: 300px;
-    
-    .cart_content{
-        .cart-list{
-            .item{
-                padding: 8px;
-            }
-        }
-        .cart_thumbs{
-            margin-right: 4px;
-            .item-photo{
-                @include size(44px);
-            }
-        }
-
-        .cart_info{
-            .pre-order{
-                font-size: 12px;
-                margin-bottom: 8px;
-                .tag{
-                    font-size: 12px;
-                    padding: 0 2px;
-                }
-            }
-            .brand{
-                font-size: 12px;
-            }
-            .product-title{
-                font-size: 14px;
-            }
-            .spec{
-                font-size: 12px;
-            }
-
-            .subtotal{
-                font-size: 20px;
-            }
-
-            .input-num{
-                .btn.btn-sub, .btn.btn-add{
-                    @include size(30px);
-                }
-
-                input{
-                    width: 50px;
-                }
-            }
-
-        }
-        .btn-delete{
-            @include size(24px);
-            font-size: 14px;
-        }
-    }
-}
 
 }
 </style>

@@ -16,8 +16,8 @@ ShopCart(
     :cartIsOpen="cartIsOpen"
     @update="updateCartInfo"
     )
-.btn.btn-icon-l.goTop(@click='goTop' :class="{'isShow': scrollY > 200}")
-    i(class="fa-solid fa-angle-up icon-l")
+.icon.icon-btn.icon-btn-l.goTop(@click='goTop' :class="{'isShow': scrollY > 200}")
+    i(class="fa-solid fa-angle-up")
 FooterComp
 </template>
 
@@ -78,11 +78,13 @@ export default {
 </script>
 
 <style lang="scss">
-.btn.goTop{
+@import './assets/scss/all.scss';
+
+.icon-btn.goTop{
     position: fixed;
-    right: 2.4rem;
-    bottom: 10rem;
-    @include boxShadow;
+    right: 24px;
+    bottom: 100px;
+    box-shadow: 0 1px 24px 0 rgba(black,.1);
     background-color: #fff;
     border: 1px solid black;
     border-radius: 50%;

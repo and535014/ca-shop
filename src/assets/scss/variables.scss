@@ -1,16 +1,27 @@
 //color --------
-$black-100: rgba(black, 1);
-$black-90: rgba(black, .9);
-$black-80: rgba(black, .8);
-$black-70: rgba(black, .7);
-$black-60: rgba(black, .6);
-$black-50: rgba(black, .5);
-$black-40: rgba(black, .4);
-$black-30: rgba(black, .3);
-$black-20: rgba(black, .2);
-$black-10: rgba(black, .1);
 
-// root ----------------------
-html{
-    font-size: 10px;
-}
+$white:    #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black:    #000;
+
+$border-width:                1px;
+$border-widths: (
+  1: 1px,
+  2: 2px,
+  3: 3px,
+  4: 4px,
+  5: 5px
+);
+
+$border-style:                solid;
+$border-color:                $gray-300;
+$btn-color:                $gray-600;
+$btn-hover-color:                $gray-900;

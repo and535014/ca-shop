@@ -1,0 +1,242 @@
+@import "~bootstrap/scss/functions";
+
+@import "../scss/helpers/variables";
+
+@import "~bootstrap/scss/bootstrap";
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); 
+
+// html tag -------------------------------
+
+input{
+    box-sizing: border-box;
+    font-size: 14px;
+    padding: 4px;
+    border-radius: 2px;
+    border: none;
+    border: 2px solid $border-color;
+    outline: none;
+    font-family: 'Noto Sans TC', 'Noto Sans', Avenir, Helvetica, Arial, sans-serif;
+
+}
+
+//logo---------------------------------
+.logo{
+    font-family: 'DM Serif Display', serif;
+    font-size: 40px;
+
+    &.logo-s{
+        font-size: 32px;
+        background-color: $gray-800;
+        color: $white;
+        line-height: 2;
+        padding: 0 16px;
+    }
+}
+
+// icon --------------------------------
+.icon{
+    color: $btn-color;
+    text-align: center;
+    display: inline-block;
+
+    i{
+        display: inline-block;
+    }
+
+    &.icon-l{
+        i{
+            font-size: 20px;
+            width: 36px;
+            line-height: 36px;
+        }
+    }
+
+    &.icon-s{
+        font-size: 16px;
+        width: 24px;
+        i{
+            line-height: 24px;
+        }
+    }
+
+    &.icon-btn{
+        cursor: pointer;
+
+        &:hover{
+            color: $btn-hover-color;
+        }
+    }
+
+    &.icon-btn-l{
+        i{
+            font-size: 20px;
+            width: 36px;
+            line-height: 36px;
+        }
+    }
+    
+    &.icon-btn-s{
+        i{
+            font-size: 14px;
+            width: 24px;
+            line-height: 24px;
+        }
+    }
+}
+
+// tag ---------------------------------------
+.tag{
+    background-color: rgb(0, 151, 141);
+    color: white;
+    display: inline-block;
+    letter-spacing: 1px;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 0px 6px;
+    line-height: 24px;
+    text-align: center;
+}
+
+// ctrl ---------------------------------------
+.ctrl{
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: $gray-500;
+    color: white;
+    border-radius: 2px;
+    z-index: 1;
+}
+.ctrl-l{
+    left: 0;
+}
+
+.ctrl-r{
+    right: 0;
+}
+
+//input-num------------------------------
+.input-num{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid $border-color;
+    
+    .icon-btn{
+        color: $gray-400;
+        border-radius: 0;
+        i{
+            font-size: 14px;
+            line-height: 36px;
+        }
+
+        &:hover{
+            color: $gray-600;
+        }
+    }
+
+    .btn-sub{
+        border-right: 1px solid $border-color;
+    }
+    .btn-add{
+        border-left: 1px solid $border-color;
+    }
+
+    input{
+        width: 60px;
+        height: 100%;
+        border: none;
+        text-align: center;
+        font-weight: 500;
+        border-radius: 0;
+    }
+}
+
+//page ---------------
+
+//section ---------------
+.section{
+    position: relative;
+    padding: 36px 24px;
+}
+
+// title --------------------------------
+.title{
+    //h2
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1.2;
+
+    //h2
+}
+
+.subtitle{
+    //h3
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: $gray-800;
+}
+
+.caption{
+    font-size: 12px;
+}
+
+// ------------------------------------
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ab-center{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#app {
+    font-family: 'Noto Sans TC', 'Noto Sans', Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.4;
+    color: $gray-900;
+    letter-spacing: .6px;
+}
+
+body{
+    &.overflow-hidden{
+        overflow: hidden;
+        padding-right: 15px;
+    }
+}
+
+//rwd ------------------------------
+@media screen and (max-width: 767.98px){
+    .page{
+        padding-top: 62px;
+    }
+    .section-narrow{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@media screen and (max-width: 575.98px){
+    .page{
+        padding-top: 54px;
+    }
+    #app{
+        font-size: 14px;
+    }
+
+    .title{
+        font-size: 20px;
+    }
+
+}

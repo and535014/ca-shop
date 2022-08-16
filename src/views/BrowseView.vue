@@ -1,7 +1,7 @@
 <template lang="pug">
 .page.page-browse
     .section.section-top.section-narrow
-        .wrapper
+        .container-xl.p-0
             .browse-header
                 .title
                     span {{ cataFirst }}

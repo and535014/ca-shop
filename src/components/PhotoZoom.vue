@@ -3,18 +3,18 @@ ModalComp.photo-zoom-modal
     template(v-slot:mask)
         MaskCover(@click="isOpen=!isOpen")
     template(v-slot:header)
-        .btn.btn-icon-m.photo-zoom-modal_close(@click="isOpen=!isOpen")
-                i(class="fa-solid fa-xmark icon-l")
+        .icon.icon-btn.icon-btn-l.photo-zoom-modal_close(@click="isOpen=!isOpen")
+                i(class="fa-solid fa-xmark")
     template(v-slot:content)
         .pic-wrap(
             v-html="getImg(imgUrl)"
             @mousedown="mouseDown($event)"
             @mouseup="mouseUp($event)"
             )
-        .ctrl.ctrl-l(@click="switchLeft")
-            i(class="fa-solid fa-angle-left icon-l")
-        .ctrl.ctrl-r(@click="switchRight")
-            i(class="fa-solid fa-angle-right icon-l")
+        .ctrl.ctrl-l.icon.icon-l(@click="switchLeft")
+            i(class="fa-solid fa-angle-left")
+        .ctrl.ctrl-r.icon.icon-l(@click="switchRight")
+            i(class="fa-solid fa-angle-right")
 
 </template>
 
@@ -119,9 +119,16 @@ export default {
     .photo-zoom-modal_close{
         background-color: rgba(black,.5);
         color: white;
-        @include size(40px);
-        @include flexCenter;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         pointer-events: all;
+
+        &:hover{
+            color: white;
+        }
     }
 
     .modal-wrapper{
@@ -143,7 +150,10 @@ export default {
         pointer-events: all;
         
         img{
-            @include abCenter;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             display: block;
             height: inherit;
             pointer-events: none
@@ -151,8 +161,11 @@ export default {
     }
 
     .ctrl{
-        @include size(40px,64px);
-        @include flexCenter;
+        width: 40px;
+        height: 64px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         pointer-events: all;
     }
 

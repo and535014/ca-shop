@@ -1,10 +1,10 @@
 <template lang="pug">
-.card-container
+.card-container.col-6.col-sm-4.col-lg-3.mb-4.mb-lg-5.px-1.px-sm-2
     .link-top
         router-link(:to="getPath(id)")
             .pic(v-html="getImg(imgs.pic01,'')")
         .btn-wrap
-            .btn.btn-l.btn-icon-m.btn-text.btn-heart(
+            .icon.icon-btn.icon-btn-l.btn-heart(
                 @click.stop="addWishList()"
                 :class="{liked: isLiked}"
             )
@@ -29,6 +29,7 @@
             template(v-slot:mask)
                 MaskCover
             template(v-slot:msg)
+
 </template>
 
 <script>
@@ -94,15 +95,6 @@ export default {
 <style lang="scss">
 .card-container{
     position: relative;
-    margin-right: 24px;
-    margin-bottom: 40px;
-    flex-basis: calc((100% - 96px) / 5);
-    min-width: 168px;
-    box-sizing: border-box;
-
-    &:nth-child(5n+5){
-        margin-right: 0;
-    }
 
     .link-top{
         display: block;
@@ -139,14 +131,16 @@ export default {
             position: absolute;
             top: 0;
             left: 0;
-            @include size(100%,100%);
+            width: 100%;
+            height: 100%;
             z-index: 1;
             pointer-events: none;
 
             &:before{
                 content: "";
                 display: block;
-                @include size(100%,100%);
+                width: 100%;
+                height: 100%;
                 background-color: rgba(white,.2);
                 opacity: 0;
             }
@@ -159,6 +153,16 @@ export default {
                 z-index: 10;
                 pointer-events: all;
                 opacity: 0;
+
+                .fa-regular{
+                    color: white;
+                    position: absolute;
+                    left: 0;
+                }
+
+                .fa-solid{
+                    opacity: .6;
+                }
 
                 &:hover{
                     .fa-regular{
@@ -178,14 +182,7 @@ export default {
                     }
                 }
 
-                .fa-regular{
-                    color: white;
-                    position: absolute;
-                }
-
-                .fa-solid{
-                    opacity: .6;
-                }
+                
             }
         }
 
@@ -228,57 +225,6 @@ export default {
         }
     }
 
-    @media screen and (max-width: 1000px){
-        flex-basis: calc((100% - 48px) / 3);
-
-        &:nth-child(5n+5){
-            margin-right: 24px;
-        }
-
-        &:nth-child(3n+3){
-            margin-right: 0;
-        }
-    }
-
-    @media screen and (max-width: 767px){
-        flex-basis: calc((100% - 12px) / 2);
-        margin-right: 12px;
-        min-width: auto;
-
-        &:nth-child(5n+5){
-            margin-right: 12px;
-        }
-
-        &:nth-child(3n+3){
-            margin-right: 12px;
-        }
-
-        &:nth-child(2n+2){
-            margin-right: 0px;
-        }
-
-        .link-top{
-            .btn-wrap{
-
-                .btn-heart{
-                    opacity: 1;
-                }
-            }
-        }
-    }
-
-    // @media screen and (max-width: 479px){
-    //     flex-basis: 100%;
-
-    //     &:nth-child(5n+5){
-    //         margin-right: 0;
-    //     }
-
-    //     &:nth-child(3n+3){
-    //         margin-right: 0px;
-    //     }
-
-    //     margin-right: 0;
-    // }
 }
+
 </style>
